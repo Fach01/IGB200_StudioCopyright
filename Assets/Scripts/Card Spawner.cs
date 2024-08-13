@@ -13,8 +13,8 @@ public class CardSpawner : MonoBehaviour
         string[] cardAssets = AssetDatabase.FindAssets("t:Card");
         foreach (string cardAsset in cardAssets)
         {
-            Debug.Log(AssetDatabase.GUIDToAssetPath(cardAsset));
-            AssetDatabase.LoadAssetAtPath(AssetDatabase.GUIDToAssetPath(cardAsset), typeof(Card));
+            Card card = (Card) AssetDatabase.LoadAssetAtPath(AssetDatabase.GUIDToAssetPath(cardAsset), typeof(Card));
+            Debug.Log(card.name);
         }
     }
 
