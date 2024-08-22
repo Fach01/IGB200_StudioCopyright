@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Deck : MonoBehaviour
 {
-    public Card[] cardDeck;
+    public List<Card> cardDeck;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,5 +15,15 @@ public class Deck : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public Card DrawRandomCard()
+    {
+        int cardNum = Random.Range(0, (cardDeck.Count - 1));
+        Card card = cardDeck[cardNum];
+        cardDeck.RemoveAt(cardNum);
+        Debug.Log(card);
+        Debug.Log("test");
+        return cardDeck[cardNum];
     }
 }

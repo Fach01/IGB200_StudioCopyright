@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class LevelManager : MonoBehaviour
 {
-    public GameObject deck;
+    public GameObject hand;
     private Card[] activePlannerCards;
+    private HandController handController;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        handController = hand.GetComponent<HandController>();
+        BeginLevel();
     }
 
     // Update is called once per frame
@@ -21,7 +23,10 @@ public class LevelManager : MonoBehaviour
 
     void BeginLevel()
     {
-        //draw 4 random cards from deck
+        for (int i = 0; i < 4; i++)
+        {
+            handController.DrawCard();
+        }
         // turn()
     }
 
