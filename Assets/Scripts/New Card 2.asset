@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5d4abf91e1029cb488ef4e4f8b92543a, type: 3}
-  m_Name: New Card
+  m_Name: New Card 2
   m_EditorClassIdentifier: 
-  cost: 0
-  type: planner
-  name: abcd
-  description: a b d e g
+  cost: 2141234214
+  type: 
+  name: sgsegea
+  description: egwegwerge
