@@ -11,6 +11,7 @@ public class LevelManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Debug.Log("start called");
         handController = hand.GetComponent<HandController>();
         BeginLevel();
     }
@@ -23,6 +24,7 @@ public class LevelManager : MonoBehaviour
 
     void BeginLevel()
     {
+        Debug.Log("begin level called");
         for (int i = 0; i < 4; i++)
         {
             handController.DrawCard();

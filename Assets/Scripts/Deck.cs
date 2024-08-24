@@ -23,7 +23,7 @@ public class Deck : MonoBehaviour
         Card card = cardDeck[cardNum];
         cardDeck.RemoveAt(cardNum);
         Debug.Log(card);
-        Debug.Log("test");
-        return cardDeck[cardNum];
+
+        return card;
     }
 }

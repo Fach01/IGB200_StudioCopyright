@@ -9,18 +9,23 @@ public class HandController : MonoBehaviour
     public GameObject deckObject;
     private Deck deck;
 
-    private List<Card> hand;
+    private List<GameObject> hand = new List<GameObject> { };
 
     private int rows()
     {
-        if (hand.Count <= 0) {
+        if (hand.Count <= 0)
+        {
             return 1;
         }
         // rows of 4
-        return Mathf.CeilToInt(hand.Count / 4);
+        int rows = Mathf.CeilToInt(hand.Count / 4);
+        if (rows > 0)
+        {
+            return rows;
+        }
+        return 1;
+        
     }
-
-
 
     // Start is called before the first frame update
     void Start()
@@ -36,8 +41,10 @@ public class HandController : MonoBehaviour
 
     private void InstantiateNewCard(Card card)
     {
+        
         int numRows = rows();
         int posInHand = hand.Count + 1;
+        
 
         int width = 12 * 4;
         int height = 15 * numRows;
@@ -45,15 +52,26 @@ public class HandController : MonoBehaviour
         float midx = (12f * 3f) / 2f;
         float midy = (15f * (numRows - 1)) / 2f;
         // x width: 10, y width: 13
-        int row = Mathf.CeilToInt(posInHand / 4f);
-        int cardsInRow = row == numRows ? hand.Count % 4 : 4;
-        Vector3 position = new Vector3(width / cardsInRow * (posInHand % 4) - midx, height / numRows * row - midy, 0f);
+        Vector3 position;
+        if (hand.Count > 0)
+        {
+            int row = Mathf.CeilToInt(posInHand / 4f);
+            Debug.Log("pos in hand = " + posInHand + " num rows = " + numRows);
+            //fix this line:
+            position = new Vector3(width / posInHand - midx, height / numRows * row - midy, 0f);
+        }
+        else
+        {
+            position = new Vector3(width / 16 - midx, height / numRows - midy, 0f);
+        }
 
         GameObject newCard = Instantiate(cardPrefab, position, transform.rotation, transform);
         CardManager cardManager = newCard.GetComponent<CardManager>();
         cardManager.SetCost(card.cost.ToString());
         cardManager.SetName(card.name);
         cardManager.SetDescription(card.description);
+
+        hand.Add(newCard);
     }
 
     public void DrawCard()
