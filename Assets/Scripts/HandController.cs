@@ -9,6 +9,8 @@ public class HandController : MonoBehaviour
     public GameObject deckObject;
     private Deck deck;
 
+    private int rowSize = 5;
+
     private List<GameObject> hand = new List<GameObject> { };
 
     private int rows()
@@ -17,8 +19,8 @@ public class HandController : MonoBehaviour
         {
             return 1;
         }
-        // rows of 4
-        int rows = Mathf.CeilToInt(hand.Count / 4);
+        // rows of 5
+        int rows = Mathf.CeilToInt(hand.Count / rowSize);
         if (rows > 0)
         {
             return rows;
@@ -41,28 +43,36 @@ public class HandController : MonoBehaviour
 
     private void InstantiateNewCard(Card card)
     {
-        
         int numRows = rows();
-        int posInHand = hand.Count + 1;
-        
 
         int width = 12 * 4;
-        int height = 15 * numRows;
-
+        int rowHeight = 15;
         float midx = (12f * 3f) / 2f;
-        float midy = (15f * (numRows - 1)) / 2f;
         // x width: 10, y width: 13
+
         Vector3 position;
+
         if (hand.Count > 0)
         {
-            int row = Mathf.CeilToInt(posInHand / 4f);
-            Debug.Log("pos in hand = " + posInHand + " num rows = " + numRows);
+            int posInHand = hand.Count + 1;
+
+            // check for new row 
+            if (posInHand % rowSize == 1)
+            {
+                //if there is a new row, move everything up by just over height of a card
+                foreach (GameObject obj in hand)
+                {
+                    Vector3 currentPos = obj.transform.position;
+                    currentPos.y = obj.transform.position.y + rowHeight;
+                    obj.transform.position = currentPos;
+                }
+            }
             //fix this line:
-            position = new Vector3(width / posInHand - midx, height / numRows * row - midy, 0f);
+            position = new Vector3(width / posInHand - midx, 0f, 0f);
         }
         else
         {
-            position = new Vector3(width / 16 - midx, height / numRows - midy, 0f);
+            position = new Vector3(width / 16 - midx, 0f, 0f);
         }
 
         GameObject newCard = Instantiate(cardPrefab, position, transform.rotation, transform);
