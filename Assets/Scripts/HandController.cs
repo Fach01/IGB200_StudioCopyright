@@ -45,7 +45,7 @@ public class HandController : MonoBehaviour
     {
         int numRows = rows();
 
-        int width = 12 * 4;
+        int width = 12 * rowSize;
         int rowHeight = 15;
         float midx = (12f * 3f) / 2f;
         // x width: 10, y width: 13
@@ -56,8 +56,10 @@ public class HandController : MonoBehaviour
         {
             int posInHand = hand.Count + 1;
 
+            int rowPos = posInHand % rowSize;
+
             // check for new row 
-            if (posInHand % rowSize == 1)
+            if (rowPos == 1)
             {
                 //if there is a new row, move everything up by just over height of a card
                 foreach (GameObject obj in hand)
@@ -68,11 +70,11 @@ public class HandController : MonoBehaviour
                 }
             }
             //fix this line:
-            position = new Vector3(width / posInHand - midx, 0f, 0f);
+            position = new Vector3(width / rowSize * rowPos - midx, 0f, 15f);
         }
         else
         {
-            position = new Vector3(width / 16 - midx, 0f, 0f);
+            position = new Vector3(width / rowSize * 1 - midx, 0f, 15f);
         }
 
         GameObject newCard = Instantiate(cardPrefab, position, transform.rotation, transform);
