@@ -24,7 +24,7 @@ public class MenuButtons : MonoBehaviour
 
     public void OnClickDraw()
     {
-        levelManager.Spend(100);
+        levelManager.Spend(10000);
         handController.DrawCard();
     }
 }

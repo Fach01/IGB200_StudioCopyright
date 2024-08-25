@@ -11,6 +11,14 @@ public class LevelManager : MonoBehaviour
 
     private float budget = 10000;
     public TMP_Text budgetText;
+    public TMP_Text utilText;
+    public TMP_Text frameworkText;
+
+    public int frameworkGoal;
+    public int utilGoal;
+
+    private int currentFramework = 0;
+    private int currentUtil = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -59,5 +67,19 @@ public class LevelManager : MonoBehaviour
             // game over
         }
         budgetText.text = "Budget: " + budget;
+    }
+
+    public void Play(Card card)
+    {
+        Spend(card.cost);
+        // if card is planner do planner things
+        if (!card.planner)
+        {
+            card.framework += currentFramework;
+            card.utilities += currentUtil;
+            frameworkText.text = "Framework: " + currentFramework;
+            utilText.text = "Utilities: " + currentUtil;
+
+        }
     }
 }
