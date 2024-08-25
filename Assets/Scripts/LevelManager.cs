@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class LevelManager : MonoBehaviour
 {
@@ -8,11 +9,14 @@ public class LevelManager : MonoBehaviour
     private Card[] activePlannerCards;
     private HandController handController;
 
+    private float budget = 10000;
+    public TMP_Text budgetText;
+
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("start called");
         handController = hand.GetComponent<HandController>();
+        budgetText.text = "Budget: " + budget;
         BeginLevel();
     }
 
@@ -45,5 +49,15 @@ public class LevelManager : MonoBehaviour
         // if deck.size = 0
         // or budget <= 0 
         // Game over
+    }
+
+    public void Spend(float value)
+    {
+        budget -= value;
+        if (budget <= 0)
+        {
+            // game over
+        }
+        budgetText.text = "Budget: " + budget;
     }
 }
