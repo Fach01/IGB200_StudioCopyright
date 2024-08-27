@@ -9,7 +9,7 @@ public class LevelManager : MonoBehaviour
     private Card[] activePlannerCards;
     private HandController handController;
 
-    private float budget = 10000;
+    private float budget = 100000;
     public TMP_Text budgetText;
     public TMP_Text utilText;
     public TMP_Text frameworkText;
@@ -22,6 +22,7 @@ public class LevelManager : MonoBehaviour
 
     private bool turn = false;
     public GameObject playButton;
+    public GameObject selectedCard = null;
 
     // Start is called before the first frame update
     void Start()
@@ -34,7 +35,6 @@ public class LevelManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        GameObject selectedCard = null;
         if (turn)
         {
             if (Input.GetMouseButtonDown(0))
@@ -49,6 +49,11 @@ public class LevelManager : MonoBehaviour
                     Debug.Log("Card selected: " + selectedCard.GetComponent<CardManager>().card.name);
                 }
 
+            }
+
+            if (selectedCard != null)
+            {
+                playButton.SetActive(true);
             }
         }
 
@@ -92,17 +97,19 @@ public class LevelManager : MonoBehaviour
         budgetText.text = "Budget: " + budget;
     }
 
-    public void Play(Card card)
+    public void Play(GameObject currentCard)
     {
-        Spend(card.cost);
+        Card cardDetails = currentCard.GetComponent<CardManager>().card;
+        Spend(cardDetails.cost);
         // if card is planner do planner things
-        if (!card.planner)
+        if (!cardDetails.planner)
         {
-            card.framework += currentFramework;
-            card.utilities += currentUtil;
+            cardDetails.framework += currentFramework;
+            cardDetails.utilities += currentUtil;
             frameworkText.text = "Framework: " + currentFramework;
             utilText.text = "Utilities: " + currentUtil;
 
         }
+        Destroy(currentCard);
     }
 }
