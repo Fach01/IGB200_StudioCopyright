@@ -101,13 +101,16 @@ public class LevelManager : MonoBehaviour
     {
         Card cardDetails = currentCard.GetComponent<CardManager>().card;
         Spend(cardDetails.cost);
+
         // if card is planner do planner things
         if (!cardDetails.planner)
         {
-            cardDetails.framework += currentFramework;
-            cardDetails.utilities += currentUtil;
+
+            currentFramework += cardDetails.framework;
+            currentUtil += cardDetails.utilities;
             frameworkText.text = "Framework: " + currentFramework;
             utilText.text = "Utilities: " + currentUtil;
+            Debug.Log(currentFramework);
 
         }
         Destroy(currentCard);
