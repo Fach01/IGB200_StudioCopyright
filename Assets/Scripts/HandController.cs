@@ -79,9 +79,7 @@ public class HandController : MonoBehaviour
 
         GameObject newCard = Instantiate(cardPrefab, position, transform.rotation, transform);
         CardManager cardManager = newCard.GetComponent<CardManager>();
-        cardManager.SetCost(card.cost.ToString());
-        cardManager.SetName(card.name);
-        cardManager.SetDescription(card.description);
+        cardManager.SetCard(card);
 
         hand.Add(newCard);
     }

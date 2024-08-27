@@ -20,6 +20,9 @@ public class LevelManager : MonoBehaviour
     private int currentFramework = 0;
     private int currentUtil = 0;
 
+    private bool turn = false;
+    public GameObject playButton;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -31,7 +34,24 @@ public class LevelManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        GameObject selectedCard = null;
+        if (turn)
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                // Create a ray from the camera to the point where the mouse clicked
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                RaycastHit hit;
+
+                if (Physics.Raycast(ray, out hit) && hit.collider.CompareTag("Card"))
+                {
+                    selectedCard = hit.collider.gameObject;
+                    Debug.Log("Card selected: " + selectedCard.GetComponent<CardManager>().card.name);
+                }
+
+            }
+        }
+
     }
 
     void BeginLevel()
@@ -40,8 +60,9 @@ public class LevelManager : MonoBehaviour
         for (int i = 0; i < 4; i++)
         {
             handController.DrawCard();
+
         }
-        // turn()
+        Turn();
     }
 
     void Turn()
@@ -49,6 +70,8 @@ public class LevelManager : MonoBehaviour
         //for cards in active planner cards
         //get planners ability and enable
         //
+        Debug.Log("starting turn");
+        turn = true;
         
     }
 

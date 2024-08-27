@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Bricklayer
   m_EditorClassIdentifier: 
   cost: 30000
-  type: Framework
+  planner: 0
   name: Bricklayer
-  description: 
+  description: '-'
   utilities: 0
   framework: 10

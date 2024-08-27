@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Surveyor
   m_EditorClassIdentifier: 
   cost: 10000
-  type: Planner
+  planner: 0
   name: Surveyor
-  description: 
+  description: '-'
   utilities: 0
   framework: 0

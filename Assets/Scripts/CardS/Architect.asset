@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Architect
   m_EditorClassIdentifier: 
   cost: 0
-  type: 
-  name: 
-  description: 
+  planner: 0
+  name: Architect
+  description: '-'
   utilities: 0
   framework: 0

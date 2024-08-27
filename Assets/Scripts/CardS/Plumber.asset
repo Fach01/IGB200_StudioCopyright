@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Plumber
   m_EditorClassIdentifier: 
   cost: 20000
-  type: Utility
+  planner: 0
   name: Plumber
-  description: 
+  description: '-'
   utilities: 5
   framework: 0
