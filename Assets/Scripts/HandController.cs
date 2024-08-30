@@ -64,9 +64,9 @@ public class HandController : MonoBehaviour
                 //if there is a new row, move everything up by just over height of a card
                 foreach (GameObject obj in hand)
                 {
-                    Vector3 currentPos = obj.transform.position;
-                    currentPos.y = obj.transform.position.y + rowHeight;
-                    obj.transform.position = currentPos;
+                    Vector3 currentPos = obj.transform.localPosition;
+                    currentPos.y = obj.transform.localPosition.y + rowHeight;
+                    obj.transform.localPosition = currentPos;
                 }
             }
             //fix this line:
@@ -78,6 +78,7 @@ public class HandController : MonoBehaviour
         }
 
         GameObject newCard = Instantiate(cardPrefab, position, transform.rotation, transform);
+        newCard.transform.localPosition = position;
         CardManager cardManager = newCard.GetComponent<CardManager>();
         cardManager.SetCard(card);
 
@@ -125,9 +126,8 @@ public class HandController : MonoBehaviour
             int row = Mathf.CeilToInt(i / rowSize);
             int rowPos = i % rowSize;
 
-            Vector3 position = new Vector3(width / rowSize * rowPos - midx, 0f, rowHeight * row);
-            //int cardsInRow = row == rows ? cardAssets.Length % 4 : 4;
-            //Vector3 position = new Vector3(width / cardsInRow * (i % 4) - midx, height / rows * row - midy, 0f);
+            Vector3 position = new Vector3(width / rowSize * rowPos - midx, rowHeight * row, 15f);
+            hand[i].transform.localPosition = position;
         }
 
     }
