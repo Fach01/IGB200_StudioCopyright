@@ -114,6 +114,5 @@ public class LevelManager : MonoBehaviour
 
         }
         handController.DeleteCard(currentCard);
-        Destroy(currentCard);
     }
 }

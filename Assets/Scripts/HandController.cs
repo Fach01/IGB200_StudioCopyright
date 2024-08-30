@@ -74,7 +74,7 @@ public class HandController : MonoBehaviour
         }
         else
         {
-            position = new Vector3(width / rowSize * 1 - midx, 0f, 15f);
+            position = new Vector3(width / rowSize - midx, 0f, 15f);
         }
 
         GameObject newCard = Instantiate(cardPrefab, position, transform.rotation, transform);
@@ -102,7 +102,8 @@ public class HandController : MonoBehaviour
     }
 
     public void DeleteCard(GameObject card)
-    {
+    {  
+        // remove card from hand
         for (int i = 0; i < hand.Count;  i++)
         {
             if (hand[i] == card)
@@ -111,6 +112,23 @@ public class HandController : MonoBehaviour
             }
         }
 
+        Destroy(card);
+
         // reorder cards
+        int width = 12 * rowSize;
+        int rowHeight = 15;
+        float midx = (12f * 3f) / 2f;
+
+        for (int i = 0; i < hand.Count; i++)
+        {
+
+            int row = Mathf.CeilToInt(i / rowSize);
+            int rowPos = i % rowSize;
+
+            Vector3 position = new Vector3(width / rowSize * rowPos - midx, 0f, rowHeight * row);
+            //int cardsInRow = row == rows ? cardAssets.Length % 4 : 4;
+            //Vector3 position = new Vector3(width / cardsInRow * (i % 4) - midx, height / rows * row - midy, 0f);
+        }
+
     }
 }
