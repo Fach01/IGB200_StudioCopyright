@@ -74,7 +74,7 @@ public class HandController : MonoBehaviour
         }
         else
         {
-            position = new Vector3(width / rowSize - midx, 0f, 15f);
+            position = new Vector3(0 - midx, 0f, 15f);
         }
 
         GameObject newCard = Instantiate(cardPrefab, position, transform.rotation, transform);
