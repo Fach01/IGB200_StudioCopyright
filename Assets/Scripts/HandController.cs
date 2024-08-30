@@ -93,6 +93,24 @@ public class HandController : MonoBehaviour
             {
                 InstantiateNewCard(card);
             }
+            else
+            {
+                Debug.Log("out of cards!");
+                //TODO: add feedback for this
+            }
         }
+    }
+
+    public void DeleteCard(GameObject card)
+    {
+        for (int i = 0; i < hand.Count;  i++)
+        {
+            if (hand[i] == card)
+            {
+                hand.RemoveAt(i);
+            }
+        }
+
+        // reorder cards
     }
 }

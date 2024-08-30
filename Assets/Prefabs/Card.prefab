@@ -540,7 +540,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 1
+  m_PresetInfoIsWorld: 0
 --- !u!114 &4946212456898717985
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -570,6 +570,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6771638719704024fa7c125b5f2a973c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  card: {fileID: 0}
 --- !u!1 &7929619866733741870
 GameObject:
   m_ObjectHideFlags: 0
@@ -596,7 +597,7 @@ Transform:
   m_GameObject: {fileID: 7929619866733741870}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.124, y: -0.28411865, z: 69.4}
+  m_LocalPosition: {x: -0.048, y: -0.035, z: 69.4}
   m_LocalScale: {x: 0.1, y: 0.07692308, z: 10}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -614,7 +615,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 0.35597587, b: 0, a: 1}
-  m_Intensity: 1
+  m_Intensity: 10
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
