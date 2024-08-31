@@ -15,7 +15,7 @@ public class HandController : MonoBehaviour
 
     private int rowSize = 5;
 
-    private List<GameObject> hand = new List<GameObject> { };
+    public List<GameObject> hand = new List<GameObject> { };
 
     private int rows()
     {
@@ -51,8 +51,6 @@ public class HandController : MonoBehaviour
         int cardSize = 12; // width of each card with padding
         float initPosX = 0; // the local position of the first card
 
-        Debug.Log("pos in hand: " + posInHand + " pos in row: " + posInRow);
-
         if (posInRow == 0)
         {
             return initPosX;
@@ -64,9 +62,8 @@ public class HandController : MonoBehaviour
     private void InstantiateNewCard(Card card)
     {
 
-        int width = 12 * rowSize;
         int rowHeight = 15;
-        float midx = (12f * 3f) / 2f;
+
         // card size is x width: 10, y width: 13
 
         Vector3 position;
@@ -96,7 +93,7 @@ public class HandController : MonoBehaviour
 
         GameObject newCard = Instantiate(cardPrefab, new Vector3 (0,0,0), transform.rotation, transform);
         newCard.transform.localPosition = position;
-        Debug.Log(position);
+
         CardManager cardManager = newCard.GetComponent<CardManager>();
         cardManager.SetCard(card);
 
@@ -134,9 +131,7 @@ public class HandController : MonoBehaviour
         Destroy(card);
 
         // reorder cards
-        int width = 12 * rowSize;
         int rowHeight = 15;
-        float midx = (12f * 3f) / 2f;
 
         for (int i = 0; i < hand.Count; i++)
         {
