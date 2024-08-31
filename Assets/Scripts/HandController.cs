@@ -19,7 +19,6 @@ public class HandController : MonoBehaviour
         {
             return 1;
         }
-        // rows of 5
         int rows = Mathf.CeilToInt(hand.Count / rowSize);
         if (rows > 0)
         {

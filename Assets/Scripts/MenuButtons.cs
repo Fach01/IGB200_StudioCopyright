@@ -31,6 +31,9 @@ public class MenuButtons : MonoBehaviour
     public void OnCancelPlay()
     {
         levelManager.selectedCard = null;
+        levelManager.cardGlow.SetActive(false);
+        levelManager.cardGlow = null;
+
         levelManager.playButton.SetActive(false);
     }
 

@@ -23,6 +23,7 @@ public class LevelManager : MonoBehaviour
     private bool turn = false;
     public GameObject playButton;
     public GameObject selectedCard = null;
+    public GameObject cardGlow = null;
 
     // Start is called before the first frame update
     void Start()
@@ -45,8 +46,14 @@ public class LevelManager : MonoBehaviour
 
                 if (Physics.Raycast(ray, out hit) && hit.collider.CompareTag("Card"))
                 {
+                    if (cardGlow != null)
+                    {
+                        cardGlow.SetActive(false);
+                    }
+                    
                     selectedCard = hit.collider.gameObject;
                     Debug.Log("Card selected: " + selectedCard.GetComponent<CardManager>().card.name);
+                    
                 }
 
             }
@@ -54,6 +61,12 @@ public class LevelManager : MonoBehaviour
             if (selectedCard != null)
             {
                 playButton.SetActive(true);
+                Transform child = selectedCard.transform.Find("Glow");
+                if (child != null)
+                {
+                    cardGlow = child.gameObject;
+                    cardGlow.SetActive(true);
+                }
             }
         }
 
