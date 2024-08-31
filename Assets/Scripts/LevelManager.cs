@@ -51,9 +51,7 @@ public class LevelManager : MonoBehaviour
                         cardGlow.SetActive(false);
                     }
                     
-                    selectedCard = hit.collider.gameObject;
-                    Debug.Log("Card selected: " + selectedCard.GetComponent<CardManager>().card.name);
-                    
+                    selectedCard = hit.collider.gameObject;                    
                 }
                 if (selectedCard != null)
                 {

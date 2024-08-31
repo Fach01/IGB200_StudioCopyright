@@ -23,7 +23,7 @@ public class HandController : MonoBehaviour
         {
             return 1;
         }
-        int rows = Mathf.CeilToInt(hand.Count / rowSize);
+        int rows = Mathf.CeilToInt(hand.Count / (float)rowSize);
         if (rows > 0)
         {
             return rows;
@@ -44,25 +44,39 @@ public class HandController : MonoBehaviour
         
     }
 
+    private float CalculatePosX(int posInHand)
+    {
+        //= row == rows ? cardAssets.Length % 4 : 4;
+        int posInRow = posInHand % rowSize;
+        int cardSize = 12; // width of each card with padding
+        float initPosX = 0; // the local position of the first card
+
+        Debug.Log("pos in hand: " + posInHand + " pos in row: " + posInRow);
+
+        if (posInRow == 0)
+        {
+            return initPosX;
+        }
+        return initPosX + (cardSize * posInRow);
+
+    }
+
     private void InstantiateNewCard(Card card)
     {
-        int numRows = rows();
 
         int width = 12 * rowSize;
         int rowHeight = 15;
         float midx = (12f * 3f) / 2f;
-        // x width: 10, y width: 13
+        // card size is x width: 10, y width: 13
 
         Vector3 position;
 
         if (hand.Count > 0)
         {
-            int posInHand = hand.Count + 1;
-
-            int rowPos = posInHand % rowSize;
+            int posInHand = hand.Count;
 
             // check for new row 
-            if (rowPos == 1)
+            if (hand.Count != 1 && posInHand % rowSize == 0)
             {
                 //if there is a new row, move everything up by just over height of a card
                 foreach (GameObject obj in hand)
@@ -73,15 +87,16 @@ public class HandController : MonoBehaviour
                 }
             }
             //fix this line:
-            position = new Vector3(width / rowSize * rowPos - midx, 0f, 15f);
+            position = new Vector3(CalculatePosX(posInHand), 0f, 15f);
         }
         else
         {
-            position = new Vector3(0 - midx, 0f, 15f);
+            position = new Vector3(CalculatePosX(0), 0f, 15f);
         }
 
-        GameObject newCard = Instantiate(cardPrefab, position, transform.rotation, transform);
+        GameObject newCard = Instantiate(cardPrefab, new Vector3 (0,0,0), transform.rotation, transform);
         newCard.transform.localPosition = position;
+        Debug.Log(position);
         CardManager cardManager = newCard.GetComponent<CardManager>();
         cardManager.SetCard(card);
 
@@ -129,7 +144,7 @@ public class HandController : MonoBehaviour
             int row = Mathf.CeilToInt(i / rowSize);
             int rowPos = i % rowSize;
 
-            Vector3 position = new Vector3(width / rowSize * rowPos - midx, rowHeight * row, 15f);
+            Vector3 position = new Vector3(CalculatePosX(i), rowHeight * row, 15f);
             hand[i].transform.localPosition = position;
         }
 
