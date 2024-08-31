@@ -25,6 +25,18 @@ public class LevelManager : MonoBehaviour
     public GameObject selectedCard = null;
     public GameObject cardGlow = null;
 
+    // turn/phase stuff
+    private Phase phase;
+    private enum Phase // play, event, end
+    {
+        Setup,
+        Play,
+        Event,
+        End
+        // could have an emergency phase here idk, phases need further discussion in general
+    }
+    private int actionPoints;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -36,39 +48,42 @@ public class LevelManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (turn)
+        switch (phase)
         {
-            if (Input.GetMouseButtonDown(0))
-            {
-                // Create a ray from the camera to the point where the mouse clicked
-                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                RaycastHit hit;
-
-                if (Physics.Raycast(ray, out hit) && hit.collider.CompareTag("Card"))
+            case Phase.Setup:
+                StartTurn();
+                break;
+            case Phase.Play:
+                if (Input.GetMouseButtonDown(0))
                 {
-                    if (cardGlow != null)
-                    {
-                        cardGlow.SetActive(false);
-                    }
-                    
-                    selectedCard = hit.collider.gameObject;
-                    Debug.Log("Card selected: " + selectedCard.GetComponent<CardManager>().card.name);
-                    
-                }
-                if (selectedCard != null)
-                {
-                    playButton.SetActive(true);
-                    Transform child = selectedCard.transform.Find("Glow");
-                    if (child != null)
-                    {
-                        cardGlow = child.gameObject;
-                        cardGlow.SetActive(true);
-                    }
-                }
-            }
+                    // Create a ray from the camera to the point where the mouse clicked
+                    Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                    RaycastHit hit;
 
+                    if (Physics.Raycast(ray, out hit) && hit.collider.CompareTag("Card"))
+                    {
+                        if (cardGlow != null)
+                        {
+                            cardGlow.SetActive(false);
+                        }
+
+                        selectedCard = hit.collider.gameObject;
+                        Debug.Log("Card selected: " + selectedCard.GetComponent<CardManager>().card.name);
+
+                    }
+                    if (selectedCard != null)
+                    {
+                        playButton.SetActive(true);
+                        Transform child = selectedCard.transform.Find("Glow");
+                        if (child != null)
+                        {
+                            cardGlow = child.gameObject;
+                            cardGlow.SetActive(true);
+                        }
+                    }
+                }
+                break;
         }
-
     }
 
     void BeginLevel()
@@ -79,17 +94,19 @@ public class LevelManager : MonoBehaviour
             handController.DrawCard();
 
         }
-        Turn();
+        phase = Phase.Setup;
+        StartTurn();
     }
 
-    void Turn()
+    void StartTurn()
     {
         //for cards in active planner cards
         //get planners ability and enable
         //
         Debug.Log("starting turn");
-        turn = true;
-        
+        // turn = true;
+
+        actionPoints = 2;
     }
 
     void LoseGame()
@@ -127,5 +144,10 @@ public class LevelManager : MonoBehaviour
         }
         handController.DeleteCard(currentCard);
         
+    }
+
+    private void OnTurnEnd()
+    {
+
     }
 }
