@@ -71,15 +71,17 @@ public class LevelManager : MonoBehaviour
                         Debug.Log("Card selected: " + selectedCard.GetComponent<CardManager>().card.name);
 
                     }
-                    if (selectedCard != null)
+                    
+                    selectedCard = hit.collider.gameObject;                    
+                }
+                if (selectedCard != null)
+                {
+                    playButton.SetActive(true);
+                    Transform child = selectedCard.transform.Find("Glow");
+                    if (child != null)
                     {
-                        playButton.SetActive(true);
-                        Transform child = selectedCard.transform.Find("Glow");
-                        if (child != null)
-                        {
-                            cardGlow = child.gameObject;
-                            cardGlow.SetActive(true);
-                        }
+                        cardGlow = child.gameObject;
+                        cardGlow.SetActive(true);
                     }
                 }
                 break;
