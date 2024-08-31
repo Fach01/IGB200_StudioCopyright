@@ -2,12 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using TMPro;
+using UnityEngine.UI;
 
 public class HandController : MonoBehaviour
 {
     public GameObject cardPrefab;
     public GameObject deckObject;
     private Deck deck;
+    public TMP_Text deckText;
+    public Button drawButton;
 
     private int rowSize = 5;
 
@@ -93,11 +97,11 @@ public class HandController : MonoBehaviour
             {
                 InstantiateNewCard(card);
             }
-            else
-            {
-                Debug.Log("out of cards!");
-                //TODO: add feedback for this
-            }
+        }
+        else
+        {
+            deckText.text = "Out of cards!";
+            drawButton.interactable = false;
         }
     }
 

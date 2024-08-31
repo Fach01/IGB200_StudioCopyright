@@ -24,7 +24,6 @@ public class Deck : MonoBehaviour
             int cardNum = Random.Range(0, (cardDeck.Count - 1));
             Card card = cardDeck[cardNum];
             cardDeck.RemoveAt(cardNum);
-            Debug.Log(card);
 
             return card;
         }
