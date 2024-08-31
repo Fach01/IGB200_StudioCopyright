@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Bricklayer
   m_EditorClassIdentifier: 
   cost: 30000
-  planner: 0
+  cardType: 1
   name: Bricklayer
   description: '-'
   utilities: 0

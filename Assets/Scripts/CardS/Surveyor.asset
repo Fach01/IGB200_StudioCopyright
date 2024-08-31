@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Surveyor
   m_EditorClassIdentifier: 
   cost: 10000
-  planner: 0
+  cardType: 0
   name: Surveyor
-  description: '-'
+  description: If a job would give you an amount of frames, double it
   utilities: 0
   framework: 0

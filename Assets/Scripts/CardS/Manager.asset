@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Manager
   m_EditorClassIdentifier: 
   cost: 40000
-  planner: 0
+  cardType: 0
   name: Manager
-  description: '-'
+  description: Convert any material to another at a ratio 2:1
   utilities: 0
   framework: 0

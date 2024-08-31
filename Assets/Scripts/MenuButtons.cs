@@ -41,5 +41,7 @@ public class MenuButtons : MonoBehaviour
     {
         levelManager.Play(levelManager.selectedCard);
         levelManager.playButton.SetActive(false);
+
+        levelManager.playButton.SetActive(false);
     }
 }

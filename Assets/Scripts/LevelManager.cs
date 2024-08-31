@@ -116,7 +116,7 @@ public class LevelManager : MonoBehaviour
         Spend(cardDetails.cost);
 
         // if card is planner do planner things
-        if (!cardDetails.planner)
+        if (!cardDetails.IsPlanner())
         {
 
             currentFramework += cardDetails.framework;
