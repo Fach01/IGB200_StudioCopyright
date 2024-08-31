@@ -55,19 +55,18 @@ public class LevelManager : MonoBehaviour
                     Debug.Log("Card selected: " + selectedCard.GetComponent<CardManager>().card.name);
                     
                 }
-
-            }
-
-            if (selectedCard != null)
-            {
-                playButton.SetActive(true);
-                Transform child = selectedCard.transform.Find("Glow");
-                if (child != null)
+                if (selectedCard != null)
                 {
-                    cardGlow = child.gameObject;
-                    cardGlow.SetActive(true);
+                    playButton.SetActive(true);
+                    Transform child = selectedCard.transform.Find("Glow");
+                    if (child != null)
+                    {
+                        cardGlow = child.gameObject;
+                        cardGlow.SetActive(true);
+                    }
                 }
             }
+
         }
 
     }
@@ -127,5 +126,6 @@ public class LevelManager : MonoBehaviour
 
         }
         handController.DeleteCard(currentCard);
+        
     }
 }

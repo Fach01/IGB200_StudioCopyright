@@ -538,8 +538,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -352.2, y: 169.12}
-  m_SizeDelta: {x: 76.4268, y: 27.3449}
+  m_AnchoredPosition: {x: -285.80423, y: 169.12}
+  m_SizeDelta: {x: 209.2184, y: 27.3449}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &277490773
 MonoBehaviour:
@@ -624,7 +624,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: -62.816383, w: 0}
+  m_margin: {x: 0, y: 0, z: -6.3799896, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -1130,8 +1130,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 273.4, y: 141.78}
-  m_SizeDelta: {x: 76.4268, y: 27.3449}
+  m_AnchoredPosition: {x: 317.59, y: 142.33}
+  m_SizeDelta: {x: 159.4215, y: 26.2383}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &789789720
 MonoBehaviour:
@@ -1216,7 +1216,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: -57.667477, w: 0}
+  m_margin: {x: 0, y: 0, z: -0.12447361, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -1302,8 +1302,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 273.4, y: 169.12}
-  m_SizeDelta: {x: 76.4268, y: 27.3449}
+  m_AnchoredPosition: {x: 317.59, y: 169.12}
+  m_SizeDelta: {x: 164.81, y: 27.345}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &950213922
 MonoBehaviour:
@@ -1388,7 +1388,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: -57.667477, w: 0}
+  m_margin: {x: 0, y: 0, z: -3.4441986, w: -3.319798}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
