@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class DrawCard : MonoBehaviour
@@ -17,7 +15,7 @@ public class DrawCard : MonoBehaviour
     {
         if (deck != null && deck.cardDeck.Count <= 0)
         {
-            
+
         }
     }
 }
