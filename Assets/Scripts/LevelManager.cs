@@ -1,15 +1,18 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LevelManager : MonoBehaviour
 {
     public GameObject hand;
     private HandController handController;
 
-    private float budget = 100000;
+    public float budget = 300000;
+
     public TMP_Text budgetText;
     public TMP_Text utilText;
     public TMP_Text frameworkText;
+    
 
     public int frameworkGoal;
     public int utilGoal;
@@ -18,7 +21,10 @@ public class LevelManager : MonoBehaviour
 
     private bool turn = false;
     public GameObject playButton;
+
+    [HideInInspector]
     public GameObject selectedCard = null;
+    [HideInInspector]
     public GameObject cardGlow = null;
 
     // turn/phase stuff
@@ -40,11 +46,23 @@ public class LevelManager : MonoBehaviour
     public int AP {  get; private set; }
 
     public GameObject playfield;
+    public GameObject plannerComponents;
+    private GameObject activePlannerMods;
+    private GameObject replacePlannerPanel;
+
+    private void Awake()
+    {
+        handController = hand.GetComponent<HandController>();
+        activePlannerMods = plannerComponents.transform.Find("Planner Modifiers").gameObject;
+        replacePlannerPanel = plannerComponents.transform.Find("Replace Card").gameObject;
+
+        
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        handController = hand.GetComponent<HandController>();
+        replacePlannerPanel.SetActive(false);
         budgetText.text = "Budget: " + budget;
         BeginLevel();
 
@@ -215,8 +233,19 @@ public class LevelManager : MonoBehaviour
             {
                 handController.hand.Remove(currentCard);
                 // currentCard.transform.SetParent(null, false);
-            }
 
+                for (int i = 0; i < activePlannerMods.transform.childCount; i++)
+                {
+                    if (activePlannerMods.transform.GetChild(i).name.Contains("Text Slot"))
+                    {
+                        Transform textField = activePlannerMods.transform.GetChild(i);
+
+                        Card card = playfield.GetComponent<PlayFieldManager>().GetCard(i).GetComponent<CardManager>().card;
+                        textField.GetComponent<TextMeshProUGUI>().text = card.description;
+
+                    }
+                }
+            }
 
             handController.ReorderCards(handController.hand);
         }
