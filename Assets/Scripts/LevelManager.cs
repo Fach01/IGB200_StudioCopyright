@@ -29,6 +29,19 @@ public class LevelManager : MonoBehaviour
     [HideInInspector]
     public GameObject cardGlow = null;
 
+    // turn/phase stuff
+    public GameObject phaseText;
+    private Phase phase;
+    private enum Phase // play, event, end
+    {
+        Setup,
+        Play,
+        Event,
+        End
+        // could have an emergency phase here idk, phases need further discussion in general
+    }
+    private int turnnumber;
+    private int actionPoints;
     private Vector3[] plannerCardSlots = new Vector3[3];
     private GameObject[] activePlannerCards = new GameObject[3];
     public GameObject plannerComponents;
@@ -60,37 +73,24 @@ public class LevelManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (turn)
+        switch (phase)
         {
-            if (Input.GetMouseButtonDown(0))
-            {
-                // Create a ray from the camera to the point where the mouse clicked
-                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                RaycastHit hit;
-
-                if (Physics.Raycast(ray, out hit) && hit.collider.CompareTag("Card"))
-                {
-                    if (cardGlow != null)
-                    {
-                        cardGlow.SetActive(false);
-                    }
-                    
-                    selectedCard = hit.collider.gameObject;                    
-                }
-                if (selectedCard != null)
-                {
-                    playButton.SetActive(true);
-                    Transform child = selectedCard.transform.Find("Glow");
-                    if (child != null)
-                    {
-                        cardGlow = child.gameObject;
-                        cardGlow.SetActive(true);
-                    }
-                }
-            }
-
+            case Phase.Setup:
+                StartTurn();
+                break;
+            case Phase.Play:
+                PlayPhase();
+                break;
+            case Phase.Event:
+                // events
+                break;
+            case Phase.End:
+                OnTurnEnd();
+                break;
+            default: // we shouldn't hit this but we can fix it later if we do somehow
+                break;
         }
-
+        phaseText.GetComponent<TMP_Text>().text = "turn: " + turnnumber + " phase: " + phase.ToString();
     }
 
     void BeginLevel()
@@ -101,17 +101,64 @@ public class LevelManager : MonoBehaviour
             handController.DrawCard();
 
         }
-        Turn();
+        phase = Phase.Setup;
     }
 
-    void Turn()
+    void StartTurn()
     {
         //for cards in active planner cards
         //get planners ability and enable
         //
         Debug.Log("starting turn");
-        turn = true;
-        
+        // turn = true;
+
+        actionPoints = 2;
+        phase = Phase.Play;
+    }
+
+    void PlayPhase()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            // Create a ray from the camera to the point where the mouse clicked
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+
+            if (Physics.Raycast(ray, out hit) && hit.collider.CompareTag("Card"))
+            {
+                if (cardGlow != null)
+                {
+                    cardGlow.SetActive(false);
+                }
+
+                selectedCard = hit.collider.gameObject;
+                Debug.Log("Card selected: " + selectedCard.GetComponent<CardManager>().card.name);
+
+            }
+        }
+        if (selectedCard != null)
+        {
+            playButton.SetActive(true);
+            Transform child = selectedCard.transform.Find("Glow");
+            if (child != null)
+            {
+                cardGlow = child.gameObject;
+                cardGlow.SetActive(true);
+            }
+        }
+        // phase = Phase.Event;
+    }
+
+    private void PlayEvents()
+    {
+        // go through events queue
+        phase = Phase.End;
+    }
+
+    private void OnTurnEnd()
+    {
+        // add resources to total, implement later
+        phase = Phase.Setup;
     }
 
     void LoseGame()

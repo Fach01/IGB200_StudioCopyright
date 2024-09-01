@@ -49,7 +49,8 @@ public class HandController : MonoBehaviour
         //= row == rows ? cardAssets.Length % 4 : 4;
         int posInRow = posInHand % rowSize;
         int cardSize = 12; // width of each card with padding
-        float initPosX = 0; // the local position of the first card
+        float initPosX = -15; // the local position of the first card
+        // Ami: I changed this ^ :) looks great now
 
         if (posInRow == 0)
         {
