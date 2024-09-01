@@ -19,6 +19,9 @@ public class Surveyor : Ability
     // Update is called once per frame
     void Update()
     {
-        
+        if (isActive)
+        {
+            //if framework card is played, card framework = *2
+        }
     }
 }
