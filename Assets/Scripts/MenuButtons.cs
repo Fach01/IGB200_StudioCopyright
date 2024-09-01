@@ -7,6 +7,10 @@ public class MenuButtons : MonoBehaviour
 
     public GameObject hand;
     private HandController handController;
+
+    // temp
+    public GameObject cardreplacecancel;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -44,5 +48,10 @@ public class MenuButtons : MonoBehaviour
     public void OnEndTurn()
     {
         levelManager.EndPlay();
+    }
+
+    public void OnCancelPlannerReplace()
+    {
+        cardreplacecancel.SetActive(false);
     }
 }

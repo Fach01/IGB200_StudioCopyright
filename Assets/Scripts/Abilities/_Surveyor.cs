@@ -1,4 +1,4 @@
-public class Surveyor : Ability
+public class _Surveyor : Ability
 {
     bool isActive = false;
     public override void ActivateAbility()

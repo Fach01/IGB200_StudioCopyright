@@ -13,7 +13,7 @@ public class PlayFieldManager : MonoBehaviour
 
     }
 
-    private float distance = 24f;
+    private float distance = 24f; // temporary until cardspace
     private void Update()
     {
         for (int i = 0; i < cards.Count; i++)
@@ -27,6 +27,11 @@ public class PlayFieldManager : MonoBehaviour
         }
     }
 
+    public GameObject GetCard(int index)
+    {
+        Debug.Log(index);
+        return cards[index];
+    }
     public bool AddCard(GameObject card)
     {
         if (cards.Contains(card) || cards.Count >= capacity)
@@ -37,5 +42,9 @@ public class PlayFieldManager : MonoBehaviour
         cards.Add(card);
         card.transform.SetParent(transform, false);
         return true;
+    }
+    public int GetCount()
+    {
+        return cards.Count;
     }
 }

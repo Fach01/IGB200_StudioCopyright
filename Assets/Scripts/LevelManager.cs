@@ -43,7 +43,7 @@ public class LevelManager : MonoBehaviour
     // private Vector3[] plannerCardSlots = new Vector3[3];
     // private GameObject[] activePlannerCards = new GameObject[3];
 
-    public int AP {  get; private set; }
+    public int AP { get => actionPoints; }
 
     public GameObject playfield;
     public GameObject plannerComponents;
@@ -92,12 +92,13 @@ public class LevelManager : MonoBehaviour
             default: // we shouldn't hit this but we can fix it later if we do somehow
                 break;
         }
-        phaseText.GetComponent<TMP_Text>().text = "turn: " + turnnumber + " phase: " + phase.ToString();
+        // phaseText.GetComponent<TMP_Text>().text = "turn: " + turnnumber + " phase: " + phase.ToString();
     }
 
     void BeginLevel()
     {
         Debug.Log("begin level called");
+        actionPoints = 4;
         for (int i = 0; i < 4; i++)
         {
             handController.DrawCard();
@@ -234,17 +235,24 @@ public class LevelManager : MonoBehaviour
                 handController.hand.Remove(currentCard);
                 // currentCard.transform.SetParent(null, false);
 
+                int temp = 0;
+
                 for (int i = 0; i < activePlannerMods.transform.childCount; i++)
                 {
                     if (activePlannerMods.transform.GetChild(i).name.Contains("Text Slot"))
                     {
                         Transform textField = activePlannerMods.transform.GetChild(i);
+                        if (playfield.GetComponent<PlayFieldManager>().GetCount() <= temp) continue;
 
-                        Card card = playfield.GetComponent<PlayFieldManager>().GetCard(i).GetComponent<CardManager>().card;
+                        Card card = playfield.GetComponent<PlayFieldManager>().GetCard(temp).GetComponent<CardManager>().card;
                         textField.GetComponent<TextMeshProUGUI>().text = card.description;
-
+                        temp += 1;
                     }
                 }
+            }
+            else
+            {
+                replacePlannerPanel.SetActive(true);
             }
 
             handController.ReorderCards(handController.hand);
