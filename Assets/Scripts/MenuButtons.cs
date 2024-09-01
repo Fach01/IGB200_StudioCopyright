@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MenuButtons : MonoBehaviour
@@ -9,6 +7,10 @@ public class MenuButtons : MonoBehaviour
 
     public GameObject hand;
     private HandController handController;
+
+    // temp
+    public GameObject cardreplacecancel;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -19,7 +21,7 @@ public class MenuButtons : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void OnClickDraw()
@@ -41,5 +43,15 @@ public class MenuButtons : MonoBehaviour
     {
         levelManager.Play(levelManager.selectedCard);
         levelManager.playButton.SetActive(false);
+    }
+
+    public void OnEndTurn()
+    {
+        levelManager.EndPlay();
+    }
+
+    public void OnCancelPlannerReplace()
+    {
+        cardreplacecancel.SetActive(false);
     }
 }

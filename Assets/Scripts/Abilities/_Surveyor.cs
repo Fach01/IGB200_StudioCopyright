@@ -1,8 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class Surveyor : Ability
+public class _Surveyor : Ability
 {
     bool isActive = false;
     public override void ActivateAbility()

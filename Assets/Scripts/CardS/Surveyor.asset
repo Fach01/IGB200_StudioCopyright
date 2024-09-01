@@ -15,6 +15,7 @@ MonoBehaviour:
   cost: 10000
   cardType: 0
   name: Surveyor
-  description: If a job would give you an amount of frames, double it
+  description: 
   utilities: 0
   framework: 0
+  ability: {fileID: 11400000, guid: e30159a4b978e4245b00596396e6803e, type: 2}

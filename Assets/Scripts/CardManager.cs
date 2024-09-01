@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -35,6 +33,14 @@ public class CardManager : MonoBehaviour
         this.card = card;
         cost.text = card.cost.ToString();
         name.text = card.name;
-        description.text = card.description;
+        if (card.ability != null)
+        {
+            description.text = card.ability.description;
+            card.description = card.ability.description;
+        }
+        else
+        {
+            description.text = card.description;
+        }
     }
 }
