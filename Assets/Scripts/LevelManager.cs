@@ -26,6 +26,7 @@ public class LevelManager : MonoBehaviour
     public GameObject cardGlow = null;
 
     // turn/phase stuff
+    public GameObject phaseText;
     private Phase phase;
     private enum Phase // play, event, end
     {
@@ -35,6 +36,7 @@ public class LevelManager : MonoBehaviour
         End
         // could have an emergency phase here idk, phases need further discussion in general
     }
+    private int turnnumber;
     private int actionPoints;
 
     // Start is called before the first frame update
@@ -54,38 +56,18 @@ public class LevelManager : MonoBehaviour
                 StartTurn();
                 break;
             case Phase.Play:
-                if (Input.GetMouseButtonDown(0))
-                {
-                    // Create a ray from the camera to the point where the mouse clicked
-                    Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                    RaycastHit hit;
-
-                    if (Physics.Raycast(ray, out hit) && hit.collider.CompareTag("Card"))
-                    {
-                        if (cardGlow != null)
-                        {
-                            cardGlow.SetActive(false);
-                        }
-
-                        selectedCard = hit.collider.gameObject;
-                        Debug.Log("Card selected: " + selectedCard.GetComponent<CardManager>().card.name);
-
-                    }
-                    
-                    selectedCard = hit.collider.gameObject;                    
-                }
-                if (selectedCard != null)
-                {
-                    playButton.SetActive(true);
-                    Transform child = selectedCard.transform.Find("Glow");
-                    if (child != null)
-                    {
-                        cardGlow = child.gameObject;
-                        cardGlow.SetActive(true);
-                    }
-                }
+                PlayPhase();
+                break;
+            case Phase.Event:
+                // events
+                break;
+            case Phase.End:
+                OnTurnEnd();
+                break;
+            default: // we shouldn't hit this but we can fix it later if we do somehow
                 break;
         }
+        phaseText.GetComponent<TMP_Text>().text = "turn: " + turnnumber + " phase: " + phase.ToString();
     }
 
     void BeginLevel()
@@ -97,7 +79,6 @@ public class LevelManager : MonoBehaviour
 
         }
         phase = Phase.Setup;
-        StartTurn();
     }
 
     void StartTurn()
@@ -109,6 +90,52 @@ public class LevelManager : MonoBehaviour
         // turn = true;
 
         actionPoints = 2;
+        phase = Phase.Play;
+    }
+
+    void PlayPhase()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            // Create a ray from the camera to the point where the mouse clicked
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+
+            if (Physics.Raycast(ray, out hit) && hit.collider.CompareTag("Card"))
+            {
+                if (cardGlow != null)
+                {
+                    cardGlow.SetActive(false);
+                }
+
+                selectedCard = hit.collider.gameObject;
+                Debug.Log("Card selected: " + selectedCard.GetComponent<CardManager>().card.name);
+
+            }
+        }
+        if (selectedCard != null)
+        {
+            playButton.SetActive(true);
+            Transform child = selectedCard.transform.Find("Glow");
+            if (child != null)
+            {
+                cardGlow = child.gameObject;
+                cardGlow.SetActive(true);
+            }
+        }
+        // phase = Phase.Event;
+    }
+
+    private void PlayEvents()
+    {
+        // go through events queue
+        phase = Phase.End;
+    }
+
+    private void OnTurnEnd()
+    {
+        // add resources to total, implement later
+        phase = Phase.Setup;
     }
 
     void LoseGame()
@@ -145,11 +172,5 @@ public class LevelManager : MonoBehaviour
 
         }
         handController.DeleteCard(currentCard);
-        
-    }
-
-    private void OnTurnEnd()
-    {
-
     }
 }
