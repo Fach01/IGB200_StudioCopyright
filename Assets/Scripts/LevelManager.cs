@@ -6,19 +6,25 @@ using TMPro;
 public class LevelManager : MonoBehaviour
 {
     public GameObject hand;
-    private Card[] activePlannerCards;
     private HandController handController;
 
-    private float budget = 10000;
+    private float budget = 100000;
     public TMP_Text budgetText;
     public TMP_Text utilText;
     public TMP_Text frameworkText;
 
     public int frameworkGoal;
     public int utilGoal;
-
     private int currentFramework = 0;
     private int currentUtil = 0;
+
+    private bool turn = false;
+    public GameObject playButton;
+    public GameObject selectedCard = null;
+    public GameObject cardGlow = null;
+
+    private Vector3[] plannerCardSlots = new Vector3[3];
+    private GameObject[] activePlannerCards = new GameObject[3];
 
     // Start is called before the first frame update
     void Start()
@@ -26,12 +32,47 @@ public class LevelManager : MonoBehaviour
         handController = hand.GetComponent<HandController>();
         budgetText.text = "Budget: " + budget;
         BeginLevel();
+
+        // bad practice but found these through trial and error lol
+        plannerCardSlots[0] = new Vector3(-158f, 47.5f, 120f);
+        plannerCardSlots[1] = new Vector3(-117.5f, 47.5f, 120f);
+        plannerCardSlots[2] = new Vector3(-140f, 4f, 120f);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (turn)
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                // Create a ray from the camera to the point where the mouse clicked
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                RaycastHit hit;
+
+                if (Physics.Raycast(ray, out hit) && hit.collider.CompareTag("Card"))
+                {
+                    if (cardGlow != null)
+                    {
+                        cardGlow.SetActive(false);
+                    }
+                    
+                    selectedCard = hit.collider.gameObject;                    
+                }
+                if (selectedCard != null)
+                {
+                    playButton.SetActive(true);
+                    Transform child = selectedCard.transform.Find("Glow");
+                    if (child != null)
+                    {
+                        cardGlow = child.gameObject;
+                        cardGlow.SetActive(true);
+                    }
+                }
+            }
+
+        }
+
     }
 
     void BeginLevel()
@@ -40,8 +81,9 @@ public class LevelManager : MonoBehaviour
         for (int i = 0; i < 4; i++)
         {
             handController.DrawCard();
+
         }
-        // turn()
+        Turn();
     }
 
     void Turn()
@@ -49,6 +91,8 @@ public class LevelManager : MonoBehaviour
         //for cards in active planner cards
         //get planners ability and enable
         //
+        Debug.Log("starting turn");
+        turn = true;
         
     }
 
@@ -69,17 +113,66 @@ public class LevelManager : MonoBehaviour
         budgetText.text = "Budget: " + budget;
     }
 
-    public void Play(Card card)
+    private bool plannersFull()
     {
-        Spend(card.cost);
-        // if card is planner do planner things
-        if (!card.planner)
+        foreach (GameObject card in activePlannerCards)
         {
-            card.framework += currentFramework;
-            card.utilities += currentUtil;
+            if (card == null)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public void Play(GameObject currentCard)
+    {
+        Card cardDetails = currentCard.GetComponent<CardManager>().card;
+        Spend(cardDetails.cost);
+
+        if (!cardDetails.IsPlanner())
+        {
+
+            currentFramework += cardDetails.framework;
+            currentUtil += cardDetails.utilities;
             frameworkText.text = "Framework: " + currentFramework;
             utilText.text = "Utilities: " + currentUtil;
-
+            handController.DeleteCard(currentCard);
         }
+        else
+        {
+            // if card is planner do planner things
+            if (plannersFull())
+            {
+                Debug.Log("planner cards are full");
+                // one can be discarded, pick between them
+            }
+            else
+            {
+                handController.hand.Remove(currentCard);
+                
+                for (int i = 0; i < activePlannerCards.Length; i++)
+                {
+                    Debug.Log("for loop round " + i);
+                    if (activePlannerCards[i] == null)
+                    {
+                        activePlannerCards[i] = currentCard;
+                        currentCard.transform.position = plannerCardSlots[i];
+                        
+                        break;
+                    }
+                }
+
+                Transform child = currentCard.transform.Find("Glow");
+                if (child != null)
+                {
+                    cardGlow = child.gameObject;
+                    cardGlow.SetActive(false);
+                }
+            }
+            handController.ReorderCards(handController.hand);
+        }
+
+
     }
 }

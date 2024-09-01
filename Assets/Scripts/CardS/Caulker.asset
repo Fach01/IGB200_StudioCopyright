@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Caulker
   m_EditorClassIdentifier: 
   cost: 20000
-  type: Utilities
+  cardType: 2
   name: Caulker
-  description: 
+  description: '-'
   utilities: 2
   framework: 0

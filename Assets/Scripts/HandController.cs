@@ -2,16 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using TMPro;
+using UnityEngine.UI;
 
 public class HandController : MonoBehaviour
 {
     public GameObject cardPrefab;
     public GameObject deckObject;
     private Deck deck;
+    public TMP_Text deckText;
+    public Button drawButton;
 
     private int rowSize = 5;
 
-    private List<GameObject> hand = new List<GameObject> { };
+    public List<GameObject> hand = new List<GameObject> { };
 
     private int rows()
     {
@@ -19,8 +23,7 @@ public class HandController : MonoBehaviour
         {
             return 1;
         }
-        // rows of 5
-        int rows = Mathf.CeilToInt(hand.Count / rowSize);
+        int rows = Mathf.CeilToInt(hand.Count / (float)rowSize);
         if (rows > 0)
         {
             return rows;
@@ -41,47 +44,58 @@ public class HandController : MonoBehaviour
         
     }
 
+    private float CalculatePosX(int posInHand)
+    {
+        //= row == rows ? cardAssets.Length % 4 : 4;
+        int posInRow = posInHand % rowSize;
+        int cardSize = 12; // width of each card with padding
+        float initPosX = 0; // the local position of the first card
+
+        if (posInRow == 0)
+        {
+            return initPosX;
+        }
+        return initPosX + (cardSize * posInRow);
+
+    }
+
     private void InstantiateNewCard(Card card)
     {
-        int numRows = rows();
 
-        int width = 12 * rowSize;
         int rowHeight = 15;
-        float midx = (12f * 3f) / 2f;
-        // x width: 10, y width: 13
+
+        // card size is x width: 10, y width: 13
 
         Vector3 position;
 
         if (hand.Count > 0)
         {
-            int posInHand = hand.Count + 1;
-
-            int rowPos = posInHand % rowSize;
+            int posInHand = hand.Count;
 
             // check for new row 
-            if (rowPos == 1)
+            if (hand.Count != 1 && posInHand % rowSize == 0)
             {
                 //if there is a new row, move everything up by just over height of a card
                 foreach (GameObject obj in hand)
                 {
-                    Vector3 currentPos = obj.transform.position;
-                    currentPos.y = obj.transform.position.y + rowHeight;
-                    obj.transform.position = currentPos;
+                    Vector3 currentPos = obj.transform.localPosition;
+                    currentPos.y = obj.transform.localPosition.y + rowHeight;
+                    obj.transform.localPosition = currentPos;
                 }
             }
             //fix this line:
-            position = new Vector3(width / rowSize * rowPos - midx, 0f, 15f);
+            position = new Vector3(CalculatePosX(posInHand), 0f, 15f);
         }
         else
         {
-            position = new Vector3(width / rowSize * 1 - midx, 0f, 15f);
+            position = new Vector3(CalculatePosX(0), 0f, 15f);
         }
 
-        GameObject newCard = Instantiate(cardPrefab, position, transform.rotation, transform);
+        GameObject newCard = Instantiate(cardPrefab, new Vector3 (0,0,0), transform.rotation, transform);
+        newCard.transform.localPosition = position;
+
         CardManager cardManager = newCard.GetComponent<CardManager>();
-        cardManager.SetCost(card.cost.ToString());
-        cardManager.SetName(card.name);
-        cardManager.SetDescription(card.description);
+        cardManager.SetCard(card);
 
         hand.Add(newCard);
     }
@@ -95,6 +109,44 @@ public class HandController : MonoBehaviour
             {
                 InstantiateNewCard(card);
             }
+        }
+        else
+        {
+            deckText.text = "Out of cards!";
+            drawButton.interactable = false;
+        }
+    }
+
+    public void DeleteCard(GameObject card)
+    {  
+        // remove card from hand
+        for (int i = 0; i < hand.Count;  i++)
+        {
+            if (hand[i] == card)
+            {
+                hand.RemoveAt(i);
+            }
+        }
+
+        Destroy(card);
+
+        ReorderCards(hand);
+        
+
+    }
+
+    public void ReorderCards(List<GameObject> cards)
+    {
+        int rowHeight = 15;
+
+        for (int i = 0; i < cards.Count; i++)
+        {
+
+            int row = Mathf.CeilToInt(i / rowSize);
+            int rowPos = i % rowSize;
+
+            Vector3 position = new Vector3(CalculatePosX(i), rowHeight * row, 15f);
+            hand[i].transform.localPosition = position;
         }
     }
 }

@@ -27,4 +27,19 @@ public class MenuButtons : MonoBehaviour
         levelManager.Spend(10000);
         handController.DrawCard();
     }
+
+    public void OnCancelPlay()
+    {
+        levelManager.selectedCard = null;
+        levelManager.cardGlow.SetActive(false);
+        levelManager.cardGlow = null;
+
+        levelManager.playButton.SetActive(false);
+    }
+
+    public void OnPlay()
+    {
+        levelManager.Play(levelManager.selectedCard);
+        levelManager.playButton.SetActive(false);
+    }
 }

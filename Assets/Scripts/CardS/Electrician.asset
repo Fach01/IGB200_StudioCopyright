@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Electrician
   m_EditorClassIdentifier: 
   cost: 30000
-  type: Utilities
+  cardType: 2
   name: Electrician
-  description: 
+  description: '-'
   utilities: 5
   framework: 0

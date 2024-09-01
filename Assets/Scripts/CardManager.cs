@@ -8,6 +8,7 @@ public class CardManager : MonoBehaviour
     private TMP_Text cost;
     private TMP_Text name;
     private TMP_Text description;
+    public Card card;
 
     private void Awake()
     {
@@ -27,5 +28,13 @@ public class CardManager : MonoBehaviour
     public void SetDescription(string description)
     {
         this.description.text = description;
+    }
+
+    public void SetCard(Card card)
+    {
+        this.card = card;
+        cost.text = card.cost.ToString();
+        name.text = card.name;
+        description.text = card.description;
     }
 }

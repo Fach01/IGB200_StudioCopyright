@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d4abf91e1029cb488ef4e4f8b92543a, type: 3}
   m_Name: Utilities Estimator
   m_EditorClassIdentifier: 
-  cost: 0
-  type: 
-  name: 
-  description: 
+  cost: 30000
+  cardType: 0
+  name: Utilities Estimator
+  description: '-'
   utilities: 0
   framework: 0

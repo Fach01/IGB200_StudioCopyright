@@ -19,11 +19,14 @@ public class Deck : MonoBehaviour
 
     public Card DrawRandomCard()
     {
-        int cardNum = Random.Range(0, (cardDeck.Count - 1));
-        Card card = cardDeck[cardNum];
-        cardDeck.RemoveAt(cardNum);
-        Debug.Log(card);
+        if (cardDeck.Count > 0)
+        {
+            int cardNum = Random.Range(0, (cardDeck.Count - 1));
+            Card card = cardDeck[cardNum];
+            cardDeck.RemoveAt(cardNum);
 
-        return card;
+            return card;
+        }
+        return null;
     }
 }
