@@ -2,16 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class LevelManager : MonoBehaviour
 {
     public GameObject hand;
     private HandController handController;
 
-    private float budget = 100000;
+    public float budget = 300000;
+
     public TMP_Text budgetText;
     public TMP_Text utilText;
     public TMP_Text frameworkText;
+    public GameObject activePlannerMods; 
 
     public int frameworkGoal;
     public int utilGoal;
@@ -20,11 +23,15 @@ public class LevelManager : MonoBehaviour
 
     private bool turn = false;
     public GameObject playButton;
+
+    [HideInInspector]
     public GameObject selectedCard = null;
+    [HideInInspector]
     public GameObject cardGlow = null;
 
     private Vector3[] plannerCardSlots = new Vector3[3];
     private GameObject[] activePlannerCards = new GameObject[3];
+
 
     // Start is called before the first frame update
     void Start()
@@ -158,7 +165,7 @@ public class LevelManager : MonoBehaviour
                     {
                         activePlannerCards[i] = currentCard;
                         currentCard.transform.position = plannerCardSlots[i];
-                        
+                        UpdateTextSlot(i, cardDetails);
                         break;
                     }
                 }
@@ -173,6 +180,23 @@ public class LevelManager : MonoBehaviour
             handController.ReorderCards(handController.hand);
         }
 
-
+    }
+    public void UpdateTextSlot(int slot, Card card)
+    {
+        if (slot >= 3)
+        {
+            Debug.Log("only three slots!");
+        }
+        else
+        {
+            string textSlot = "Text Slot " + slot;
+            Debug.Log("time to add the modifier");
+            Transform textField = activePlannerMods.transform.Find(textSlot);
+            if (textField != null)
+            {
+                Debug.Log("found text field");
+                textField.GetComponent<TextMeshProUGUI>().text = card.description;
+            }
+        }
     }
 }

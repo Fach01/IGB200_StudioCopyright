@@ -18,7 +18,7 @@ public class Card : ScriptableObject
     public string description;
     public int utilities; // amount of utilities recieved from playing the card
     public int framework;
-    // public Ability ability // ability script, can be passive or activated
+    public Ability ability; // ability script, can be passive or activated
 
     public bool IsPlanner()
     {
