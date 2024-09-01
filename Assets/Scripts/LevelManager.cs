@@ -170,6 +170,7 @@ public class LevelManager : MonoBehaviour
                     cardGlow.SetActive(false);
                 }
             }
+            handController.ReorderCards(handController.hand);
         }
 
 

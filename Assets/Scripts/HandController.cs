@@ -130,10 +130,16 @@ public class HandController : MonoBehaviour
 
         Destroy(card);
 
-        // reorder cards
+        ReorderCards(hand);
+        
+
+    }
+
+    public void ReorderCards(List<GameObject> cards)
+    {
         int rowHeight = 15;
 
-        for (int i = 0; i < hand.Count; i++)
+        for (int i = 0; i < cards.Count; i++)
         {
 
             int row = Mathf.CeilToInt(i / rowSize);
@@ -142,6 +148,5 @@ public class HandController : MonoBehaviour
             Vector3 position = new Vector3(CalculatePosX(i), rowHeight * row, 15f);
             hand[i].transform.localPosition = position;
         }
-
     }
 }
