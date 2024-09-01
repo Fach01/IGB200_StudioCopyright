@@ -3024,6 +3024,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   confirmButton: {fileID: 2137011841}
+  levelObj: {fileID: 1201134670}
 --- !u!114 &1212311114
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3220,7 +3221,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1600747623}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1212311113}
+        m_TargetAssemblyTypeName: PlannerComponent, Assembly-CSharp
+        m_MethodName: OnCancel
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1600747623
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4050,7 +4063,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2137011844}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1212311113}
+        m_TargetAssemblyTypeName: PlannerComponent, Assembly-CSharp
+        m_MethodName: OnConfirm
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2137011844
 MonoBehaviour:
   m_ObjectHideFlags: 0
