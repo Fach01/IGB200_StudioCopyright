@@ -14,6 +14,7 @@ public class Surveyor : Ability
     void Start()
     {
         cost = 0;
+        description = "For every Framework card you play, double the output.";
     }
 
     // Update is called once per frame
