@@ -15,7 +15,7 @@ public class HandController : MonoBehaviour
 
     private int rowSize = 5;
 
-    private List<GameObject> hand = new List<GameObject> { };
+    public List<GameObject> hand = new List<GameObject> { };
 
     private int rows()
     {
@@ -52,8 +52,6 @@ public class HandController : MonoBehaviour
         float initPosX = -15; // the local position of the first card
         // Ami: I changed this ^ :) looks great now
 
-        Debug.Log("pos in hand: " + posInHand + " pos in row: " + posInRow);
-
         if (posInRow == 0)
         {
             return initPosX;
@@ -65,9 +63,8 @@ public class HandController : MonoBehaviour
     private void InstantiateNewCard(Card card)
     {
 
-        int width = 12 * rowSize;
         int rowHeight = 15;
-        float midx = (12f * 3f) / 2f;
+
         // card size is x width: 10, y width: 13
 
         Vector3 position;
@@ -97,7 +94,7 @@ public class HandController : MonoBehaviour
 
         GameObject newCard = Instantiate(cardPrefab, new Vector3 (0,0,0), transform.rotation, transform);
         newCard.transform.localPosition = position;
-        Debug.Log(position);
+
         CardManager cardManager = newCard.GetComponent<CardManager>();
         cardManager.SetCard(card);
 
@@ -134,12 +131,16 @@ public class HandController : MonoBehaviour
 
         Destroy(card);
 
-        // reorder cards
-        int width = 12 * rowSize;
-        int rowHeight = 15;
-        float midx = (12f * 3f) / 2f;
+        ReorderCards(hand);
+        
 
-        for (int i = 0; i < hand.Count; i++)
+    }
+
+    public void ReorderCards(List<GameObject> cards)
+    {
+        int rowHeight = 15;
+
+        for (int i = 0; i < cards.Count; i++)
         {
 
             int row = Mathf.CeilToInt(i / rowSize);
@@ -148,6 +149,5 @@ public class HandController : MonoBehaviour
             Vector3 position = new Vector3(CalculatePosX(i), rowHeight * row, 15f);
             hand[i].transform.localPosition = position;
         }
-
     }
 }

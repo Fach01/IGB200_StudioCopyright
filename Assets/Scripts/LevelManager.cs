@@ -6,7 +6,6 @@ using TMPro;
 public class LevelManager : MonoBehaviour
 {
     public GameObject hand;
-    private Card[] activePlannerCards;
     private HandController handController;
 
     private float budget = 100000;
@@ -16,7 +15,6 @@ public class LevelManager : MonoBehaviour
 
     public int frameworkGoal;
     public int utilGoal;
-
     private int currentFramework = 0;
     private int currentUtil = 0;
 
@@ -38,6 +36,8 @@ public class LevelManager : MonoBehaviour
     }
     private int turnnumber;
     private int actionPoints;
+    private Vector3[] plannerCardSlots = new Vector3[3];
+    private GameObject[] activePlannerCards = new GameObject[3];
 
     // Start is called before the first frame update
     void Start()
@@ -45,6 +45,11 @@ public class LevelManager : MonoBehaviour
         handController = hand.GetComponent<HandController>();
         budgetText.text = "Budget: " + budget;
         BeginLevel();
+
+        // bad practice but found these through trial and error lol
+        plannerCardSlots[0] = new Vector3(-158f, 47.5f, 120f);
+        plannerCardSlots[1] = new Vector3(-117.5f, 47.5f, 120f);
+        plannerCardSlots[2] = new Vector3(-140f, 4f, 120f);
     }
 
     // Update is called once per frame
@@ -155,12 +160,23 @@ public class LevelManager : MonoBehaviour
         budgetText.text = "Budget: " + budget;
     }
 
+    private bool plannersFull()
+    {
+        foreach (GameObject card in activePlannerCards)
+        {
+            if (card == null)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
     public void Play(GameObject currentCard)
     {
         Card cardDetails = currentCard.GetComponent<CardManager>().card;
         Spend(cardDetails.cost);
 
-        // if card is planner do planner things
         if (!cardDetails.IsPlanner())
         {
 
@@ -168,9 +184,42 @@ public class LevelManager : MonoBehaviour
             currentUtil += cardDetails.utilities;
             frameworkText.text = "Framework: " + currentFramework;
             utilText.text = "Utilities: " + currentUtil;
-            Debug.Log(currentFramework);
-
+            handController.DeleteCard(currentCard);
         }
-        handController.DeleteCard(currentCard);
+        else
+        {
+            // if card is planner do planner things
+            if (plannersFull())
+            {
+                Debug.Log("planner cards are full");
+                // one can be discarded, pick between them
+            }
+            else
+            {
+                handController.hand.Remove(currentCard);
+                
+                for (int i = 0; i < activePlannerCards.Length; i++)
+                {
+                    Debug.Log("for loop round " + i);
+                    if (activePlannerCards[i] == null)
+                    {
+                        activePlannerCards[i] = currentCard;
+                        currentCard.transform.position = plannerCardSlots[i];
+                        
+                        break;
+                    }
+                }
+
+                Transform child = currentCard.transform.Find("Glow");
+                if (child != null)
+                {
+                    cardGlow = child.gameObject;
+                    cardGlow.SetActive(false);
+                }
+            }
+            handController.ReorderCards(handController.hand);
+        }
+
+
     }
 }
