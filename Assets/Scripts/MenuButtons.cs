@@ -28,6 +28,7 @@ public class MenuButtons : MonoBehaviour
     {
         levelManager.Spend(10000);
         handController.DrawCard();
+        levelManager.Action();
     }
 
     public void OnCancelPlay()

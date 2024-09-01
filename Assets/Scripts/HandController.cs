@@ -156,4 +156,10 @@ public class HandController : MonoBehaviour
             hand[i].transform.localPosition = position;
         }
     }
+
+    public bool DeckEmpty()
+    {
+        if (deck.cardDeck.Count <= 0) return true;
+        return false;
+    }
 }
