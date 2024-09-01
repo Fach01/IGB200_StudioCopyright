@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MenuButtons : MonoBehaviour
@@ -19,7 +17,7 @@ public class MenuButtons : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void OnClickDraw()
@@ -41,5 +39,10 @@ public class MenuButtons : MonoBehaviour
     {
         levelManager.Play(levelManager.selectedCard);
         levelManager.playButton.SetActive(false);
+    }
+
+    public void OnEndTurn()
+    {
+        levelManager.EndPlay();
     }
 }

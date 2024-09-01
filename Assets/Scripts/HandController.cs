@@ -1,8 +1,6 @@
-using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
-using UnityEngine;
 using TMPro;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class HandController : MonoBehaviour
@@ -17,6 +15,9 @@ public class HandController : MonoBehaviour
 
     public List<GameObject> hand = new List<GameObject> { };
 
+    // for action points
+    public GameObject levelManager;
+
     private int rows()
     {
         if (hand.Count <= 0)
@@ -29,7 +30,7 @@ public class HandController : MonoBehaviour
             return rows;
         }
         return 1;
-        
+
     }
 
     // Start is called before the first frame update
@@ -41,7 +42,7 @@ public class HandController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     private float CalculatePosX(int posInHand)
@@ -92,7 +93,7 @@ public class HandController : MonoBehaviour
             position = new Vector3(CalculatePosX(0), 0f, 15f);
         }
 
-        GameObject newCard = Instantiate(cardPrefab, new Vector3 (0,0,0), transform.rotation, transform);
+        GameObject newCard = Instantiate(cardPrefab, new Vector3(0, 0, 0), transform.rotation, transform);
         newCard.transform.localPosition = position;
 
         CardManager cardManager = newCard.GetComponent<CardManager>();
@@ -103,6 +104,11 @@ public class HandController : MonoBehaviour
 
     public void DrawCard()
     {
+        if (levelManager.GetComponent<LevelManager>().AP <= 0)
+        {
+            Debug.Log("No action points!");
+            return;
+        }
         if (deck && deck.cardDeck.Count > 0)
         {
             Card card = deck.DrawRandomCard();
@@ -119,9 +125,9 @@ public class HandController : MonoBehaviour
     }
 
     public void DeleteCard(GameObject card)
-    {  
+    {
         // remove card from hand
-        for (int i = 0; i < hand.Count;  i++)
+        for (int i = 0; i < hand.Count; i++)
         {
             if (hand[i] == card)
             {
@@ -132,7 +138,7 @@ public class HandController : MonoBehaviour
         Destroy(card);
 
         ReorderCards(hand);
-        
+
 
     }
 

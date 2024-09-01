@@ -1,9 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using UnityEditor;
-using Unity.VisualScripting;
-using UnityEngine.UIElements;
+using UnityEngine;
 
 public class CardSpawner : MonoBehaviour
 {
@@ -24,7 +20,8 @@ public class CardSpawner : MonoBehaviour
         float midy = (15f * (rows - 1)) / 2f;
 
 
-        for (int i = 0; i < cardAssets.Length; i++) {
+        for (int i = 0; i < cardAssets.Length; i++)
+        {
             Card cardAsset = (Card)AssetDatabase.LoadAssetAtPath(AssetDatabase.GUIDToAssetPath(cardAssets[i]), typeof(Card));
             // x width: 10, y width: 13
 
@@ -43,6 +40,6 @@ public class CardSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }

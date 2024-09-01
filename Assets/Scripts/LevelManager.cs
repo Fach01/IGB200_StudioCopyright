@@ -1,7 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using TMPro;
+using UnityEngine;
 
 public class LevelManager : MonoBehaviour
 {
@@ -36,8 +34,12 @@ public class LevelManager : MonoBehaviour
     }
     private int turnnumber;
     private int actionPoints;
-    private Vector3[] plannerCardSlots = new Vector3[3];
-    private GameObject[] activePlannerCards = new GameObject[3];
+    // private Vector3[] plannerCardSlots = new Vector3[3];
+    // private GameObject[] activePlannerCards = new GameObject[3];
+
+    public int AP {  get; private set; }
+
+    public GameObject playfield;
 
     // Start is called before the first frame update
     void Start()
@@ -47,9 +49,9 @@ public class LevelManager : MonoBehaviour
         BeginLevel();
 
         // bad practice but found these through trial and error lol
-        plannerCardSlots[0] = new Vector3(-158f, 47.5f, 120f);
+        /* plannerCardSlots[0] = new Vector3(-158f, 47.5f, 120f);
         plannerCardSlots[1] = new Vector3(-117.5f, 47.5f, 120f);
-        plannerCardSlots[2] = new Vector3(-140f, 4f, 120f);
+        plannerCardSlots[2] = new Vector3(-140f, 4f, 120f); */
     }
 
     // Update is called once per frame
@@ -64,7 +66,7 @@ public class LevelManager : MonoBehaviour
                 PlayPhase();
                 break;
             case Phase.Event:
-                // events
+                PlayEvents();
                 break;
             case Phase.End:
                 OnTurnEnd();
@@ -98,6 +100,12 @@ public class LevelManager : MonoBehaviour
         phase = Phase.Play;
     }
 
+    // TODO: move this selection logic to the containers with an event listener
+    /* ^ maybe? i'm thinking like playphase should call a method that handles player input
+     * maybe in the playercontroller or playermanager
+     * then we handle playing or selecting another card there, same with drawing cards
+     * we should be able to call like playermanager.select(card) or something? discuss later
+     */
     void PlayPhase()
     {
         if (Input.GetMouseButtonDown(0))
@@ -128,7 +136,11 @@ public class LevelManager : MonoBehaviour
                 cardGlow.SetActive(true);
             }
         }
-        // phase = Phase.Event;
+    }
+
+    public void EndPlay()
+    {
+        phase = Phase.Event;
     }
 
     private void PlayEvents()
@@ -150,8 +162,14 @@ public class LevelManager : MonoBehaviour
         // Game over
     }
 
+    // TODO: playercontroller for spending money, recieving resources from cards
     public void Spend(float value)
     {
+        if (actionPoints <= 0)
+        {
+            Debug.Log("No action points!");
+            return;
+        }
         budget -= value;
         if (budget <= 0)
         {
@@ -162,20 +180,19 @@ public class LevelManager : MonoBehaviour
 
     private bool plannersFull()
     {
-        foreach (GameObject card in activePlannerCards)
-        {
-            if (card == null)
-            {
-                return false;
-            }
-        }
-        return true;
+        return false;
     }
 
+    // TODO: move to cardmanager
     public void Play(GameObject currentCard)
     {
+
+        actionPoints--;
+
+        // add discarding planner cards
+
         Card cardDetails = currentCard.GetComponent<CardManager>().card;
-        Spend(cardDetails.cost);
+        Spend(cardDetails.cost); // move this to after card validation
 
         if (!cardDetails.IsPlanner())
         {
@@ -188,38 +205,22 @@ public class LevelManager : MonoBehaviour
         }
         else
         {
-            // if card is planner do planner things
-            if (plannersFull())
+            // move glow to card behaviour script
+            Transform child = currentCard.transform.Find("Glow");
+            if (child != null)
             {
-                Debug.Log("planner cards are full");
-                // one can be discarded, pick between them
+                cardGlow = child.gameObject;
+                cardGlow.SetActive(false);
             }
-            else
+
+            if (playfield.GetComponent<PlayFieldManager>().AddCard(currentCard))
             {
                 handController.hand.Remove(currentCard);
-                
-                for (int i = 0; i < activePlannerCards.Length; i++)
-                {
-                    Debug.Log("for loop round " + i);
-                    if (activePlannerCards[i] == null)
-                    {
-                        activePlannerCards[i] = currentCard;
-                        currentCard.transform.position = plannerCardSlots[i];
-                        
-                        break;
-                    }
-                }
-
-                Transform child = currentCard.transform.Find("Glow");
-                if (child != null)
-                {
-                    cardGlow = child.gameObject;
-                    cardGlow.SetActive(false);
-                }
+                // currentCard.transform.SetParent(null, false);
             }
+
+
             handController.ReorderCards(handController.hand);
         }
-
-
     }
 }
