@@ -271,44 +271,12 @@ public class LevelManager : MonoBehaviour
         else
         {
             string textSlot = "Text Slot " + slot;
-            Debug.Log("time to add the modifier");
             Transform textField = activePlannerMods.transform.Find(textSlot);
             if (textField != null)
             {
-                Debug.Log("found text field");
                 textField.GetComponent<TextMeshProUGUI>().text = card.description;
             }
         }
-    }
-
-    public void AddPlannerCard(GameObject newCard, GameObject oldCard)
-    {
-        handController.hand.Remove(newCard);
-
-        for (int i = 0; i < activePlannerCards.Length; i++)
-        {
-            if (activePlannerCards[i] == oldCard)
-            {
-                if (oldCard != null)
-                {
-                    Destroy(oldCard);
-                }
-                Debug.Log(newCard.transform.position);
-                activePlannerCards[i] = newCard;
-                newCard.transform.position = plannerCardSlots[i];
-                Debug.Log(newCard.transform.position);
-                UpdateTextSlot(i, newCard.GetComponent<CardManager>().card);
-                break;
-            }
-        }
-
-        Transform child = newCard.transform.Find("Glow");
-        if (child != null)
-        {
-            cardGlow = child.gameObject;
-            cardGlow.SetActive(false);
-        }
-        handController.ReorderCards(handController.hand);
     }
 
 }

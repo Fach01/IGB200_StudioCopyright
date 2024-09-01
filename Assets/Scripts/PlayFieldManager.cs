@@ -13,6 +13,8 @@ public class PlayFieldManager : MonoBehaviour
 
     }
 
+    public List<GameObject> Cards { get { return cards; } }
+
     private float distance = 24f; // temporary until cardspace
     private void Update()
     {
@@ -32,6 +34,7 @@ public class PlayFieldManager : MonoBehaviour
         Debug.Log(index);
         return cards[index];
     }
+
     public bool AddCard(GameObject card)
     {
         if (cards.Contains(card) || cards.Count >= capacity)
@@ -47,4 +50,19 @@ public class PlayFieldManager : MonoBehaviour
     {
         return cards.Count;
     }
+
+    public bool ReplaceCard(GameObject newCard, GameObject oldCard)
+    {
+        if (cards.Contains(newCard) || !cards.Contains(oldCard))
+        {
+            return false;
+        }
+        cards.Remove(oldCard);
+        Destroy(oldCard);
+        cards.Add(newCard);
+        newCard.transform.SetParent(transform, false);
+        return true;
+    }
+
+
 }

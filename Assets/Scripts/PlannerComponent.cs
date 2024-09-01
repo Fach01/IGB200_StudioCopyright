@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,9 +8,13 @@ public class PlannerComponent : MonoBehaviour
 {
     private GameObject selectedPlanner;
     private GameObject cardGlow;
+
     public GameObject confirmButton;
     public GameObject levelObj;
+    public GameObject playField;
+    public GameObject hand;
     private LevelManager levelManager;
+
     private GameObject newPlannerCard = null;
 
     // Start is called before the first frame update
@@ -40,6 +45,8 @@ public class PlannerComponent : MonoBehaviour
                 {
                     cardGlow.SetActive(false);
                 }
+
+                //potentially loop through planner cards here to make sure this card is in the list
 
                 selectedPlanner = hit.collider.gameObject;
 
@@ -79,11 +86,26 @@ public class PlannerComponent : MonoBehaviour
     public void OnConfirm()
     {
         Destroy(selectedPlanner);
-        levelManager.AddPlannerCard(newPlannerCard, selectedPlanner);
+        if (playField.GetComponent<PlayFieldManager>().ReplaceCard(newPlannerCard, selectedPlanner))
+        {
+            hand.GetComponent<HandController>().hand.Remove(newPlannerCard);
 
-        levelManager.playButton.SetActive(false);
-        levelManager.selectedCard = null;
-        this.gameObject.SetActive(false);
+
+            for (int i = 0; i < 3; i++)
+            {
+                if (playField.GetComponent<PlayFieldManager>().GetCard(i) == newPlannerCard)
+                {
+                    levelManager.UpdateTextSlot(i, newPlannerCard.GetComponent<CardManager>().card);
+                    break;
+                }
+            }
+
+            levelManager.playButton.SetActive(false);
+            levelManager.selectedCard = null;
+            this.gameObject.SetActive(false);
+        }
+
+        
     }
 
 
