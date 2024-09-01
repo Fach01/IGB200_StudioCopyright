@@ -35,13 +35,18 @@ public class LevelManager : MonoBehaviour
         Setup,
         Play,
         Event,
-        End
+        End,
+        GameLoss,
+        GameWin
         // could have an emergency phase here idk, phases need further discussion in general
     }
     private int turnnumber;
     private int actionPoints;
     // private Vector3[] plannerCardSlots = new Vector3[3];
     // private GameObject[] activePlannerCards = new GameObject[3];
+
+    public GameObject GameOver;
+    public GameObject GameWin;
 
     public int AP { get => actionPoints; }
 
@@ -89,7 +94,11 @@ public class LevelManager : MonoBehaviour
             case Phase.End:
                 OnTurnEnd();
                 break;
-            default: // we shouldn't hit this but we can fix it later if we do somehow
+            default: /* we shouldn't hit this but we can fix it later if we do somehow
+                      * now being used for win/loss conditions
+                      */
+                LoseGame();
+                WinGame();
                 break;
         }
         // phaseText.GetComponent<TMP_Text>().text = "turn: " + turnnumber + " phase: " + phase.ToString();
@@ -104,7 +113,10 @@ public class LevelManager : MonoBehaviour
             handController.DrawCard();
 
         }
+        GameOver.SetActive(false);
+        GameWin.SetActive(false);
         phase = Phase.Setup;
+
     }
 
     void StartTurn()
@@ -169,24 +181,35 @@ public class LevelManager : MonoBehaviour
     private void OnTurnEnd()
     {
         // add resources to total, implement later
+        LoseGame();
+        WinGame();
         phase = Phase.Setup;
     }
 
     void LoseGame()
     {
+        if (handController.DeckEmpty() || budget < 0)
+        {
+            GameOver.SetActive(true);
+            phase = Phase.GameLoss;
+        }
         // if deck.size = 0
         // or budget <= 0 
         // Game over
     }
 
+    void WinGame()
+    {
+        if (currentFramework >= frameworkGoal && currentUtil >= utilGoal)
+        {
+            GameWin.SetActive(true);
+            phase = Phase.GameWin;
+        }
+    }
+
     // TODO: playercontroller for spending money, recieving resources from cards
     public void Spend(float value)
     {
-        if (actionPoints <= 0)
-        {
-            Debug.Log("No action points!");
-            return;
-        }
         budget -= value;
         if (budget <= 0)
         {
@@ -203,7 +226,11 @@ public class LevelManager : MonoBehaviour
     // TODO: move to cardmanager
     public void Play(GameObject currentCard)
     {
-
+        if (actionPoints <= 0)
+        {
+            Debug.Log("No action points!");
+            return;
+        }
         actionPoints--;
 
         // add discarding planner cards
@@ -278,7 +305,10 @@ public class LevelManager : MonoBehaviour
             }
         }
     }
-
+    public void Action()
+    {
+        actionPoints -= 1;
+    }
 }
 
 
