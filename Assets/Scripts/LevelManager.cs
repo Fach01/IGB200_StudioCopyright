@@ -14,7 +14,7 @@ public class LevelManager : MonoBehaviour
     public TMP_Text budgetText;
     public TMP_Text utilText;
     public TMP_Text frameworkText;
-    public GameObject activePlannerMods; 
+    
 
     public int frameworkGoal;
     public int utilGoal;
@@ -31,12 +31,23 @@ public class LevelManager : MonoBehaviour
 
     private Vector3[] plannerCardSlots = new Vector3[3];
     private GameObject[] activePlannerCards = new GameObject[3];
+    public GameObject plannerComponents;
+    private GameObject activePlannerMods;
+    private GameObject replacePlannerPanel;
 
+    private void Awake()
+    {
+        handController = hand.GetComponent<HandController>();
+        activePlannerMods = plannerComponents.transform.Find("Planner Modifiers").gameObject;
+        replacePlannerPanel = plannerComponents.transform.Find("Replace Card").gameObject;
+
+        
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        handController = hand.GetComponent<HandController>();
+        replacePlannerPanel.SetActive(false);
         budgetText.text = "Budget: " + budget;
         BeginLevel();
 
