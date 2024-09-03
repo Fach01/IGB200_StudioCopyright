@@ -70,11 +70,6 @@ public class LevelManager : MonoBehaviour
         replacePlannerPanel.SetActive(false);
         budgetText.text = "Budget: " + budget;
         BeginLevel();
-
-        // bad practice but found these through trial and error lol
-        /* plannerCardSlots[0] = new Vector3(-158f, 47.5f, 120f);
-        plannerCardSlots[1] = new Vector3(-117.5f, 47.5f, 120f);
-        plannerCardSlots[2] = new Vector3(-140f, 4f, 120f); */
     }
 
     // Update is called once per frame
@@ -101,7 +96,6 @@ public class LevelManager : MonoBehaviour
                 WinGame();
                 break;
         }
-        // phaseText.GetComponent<TMP_Text>().text = "turn: " + turnnumber + " phase: " + phase.ToString();
     }
 
     void BeginLevel()
@@ -193,9 +187,6 @@ public class LevelManager : MonoBehaviour
             GameOver.SetActive(true);
             phase = Phase.GameLoss;
         }
-        // if deck.size = 0
-        // or budget <= 0 
-        // Game over
     }
 
     void WinGame()
@@ -216,11 +207,6 @@ public class LevelManager : MonoBehaviour
             // game over
         }
         budgetText.text = "Budget: " + budget;
-    }
-
-    private bool plannersFull()
-    {
-        return false;
     }
 
     // TODO: move to cardmanager

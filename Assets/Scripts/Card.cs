@@ -18,6 +18,7 @@ public class Card : ScriptableObject
     public int framework;
     public Ability ability; // ability script, can be passive or activated
 
+
     public bool IsPlanner()
     {
         if (cardType == CardType.Planner)
