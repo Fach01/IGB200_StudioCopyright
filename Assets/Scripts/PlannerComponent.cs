@@ -29,7 +29,7 @@ public class PlannerComponent : MonoBehaviour
     {
         if (newPlannerCard == null)
         {
-            newPlannerCard = levelManager.selectedCard;
+            // newPlannerCard = levelManager.selectedCard;
         }
       
         if (Input.GetMouseButtonDown(0))
@@ -78,8 +78,8 @@ public class PlannerComponent : MonoBehaviour
         
         selectedPlanner = null;
 
-        levelManager.playButton.SetActive(false);
-        levelManager.selectedCard = null;
+        //levelManager.playButton.SetActive(false);
+        //levelManager.selectedCard = null;
         this.gameObject.SetActive(false);
     }
 
@@ -88,20 +88,20 @@ public class PlannerComponent : MonoBehaviour
         Destroy(selectedPlanner);
         if (playField.GetComponent<PlayFieldManager>().ReplaceCard(newPlannerCard, selectedPlanner))
         {
-            hand.GetComponent<HandController>().hand.Remove(newPlannerCard);
+            // hand.GetComponent<HandController>().hand.Remove(newPlannerCard);
 
 
             for (int i = 0; i < 3; i++)
             {
                 if (playField.GetComponent<PlayFieldManager>().GetCard(i) == newPlannerCard)
                 {
-                    levelManager.UpdateTextSlot(i, newPlannerCard.GetComponent<CardManager>().card);
+                    //levelManager.UpdateTextSlot(i, newPlannerCard.GetComponent<CardManager>().card);
                     break;
                 }
             }
 
-            levelManager.playButton.SetActive(false);
-            levelManager.selectedCard = null;
+            //levelManager.playButton.SetActive(false);
+            //levelManager.selectedCard = null;
             this.gameObject.SetActive(false);
         }
 
