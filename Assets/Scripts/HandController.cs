@@ -46,7 +46,9 @@ public class HandController : MonoBehaviour
             float xPosition = (i - (hand.Count - 1) / 2f) * cardWidth;
 
             // TODO: Animate moving the card
-            hand[i].transform.localPosition = new Vector3(xPosition, 0f, 0f);
+            Vector3 localPosition = hand[i].transform.localPosition;
+            localPosition.x = xPosition;
+            hand[i].transform.localPosition = localPosition;
         }
     }
 }

@@ -12,6 +12,7 @@ public class CardManager : MonoBehaviour
     public GameObject m_utilities;
     public GameObject m_frameworks;
     public GameObject m_description;
+    public GameObject m_glow;
     // public Ability m_ability;
 
     private Image m_image;
@@ -24,6 +25,8 @@ public class CardManager : MonoBehaviour
 
     private void Awake()
     {
+        m_glow.SetActive(false);
+
         m_image = m_picture.GetComponent<Image>();
         m_Tcost = m_cost.GetComponent<TMP_Text>();
         m_Tname = m_name.GetComponent<TMP_Text>();
@@ -44,5 +47,10 @@ public class CardManager : MonoBehaviour
         m_Tutilities.text = card.utilities.ToString();
         m_Tframeworks.text = card.frameworks.ToString();
         m_Tdescription.text = card.description;
+    }
+
+    public void Glow(bool glow)
+    {
+        m_glow.SetActive(glow);
     }
 }
