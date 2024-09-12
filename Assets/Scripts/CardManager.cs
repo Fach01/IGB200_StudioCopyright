@@ -12,7 +12,6 @@ public class CardManager : MonoBehaviour
     public GameObject m_utilities;
     public GameObject m_frameworks;
     public GameObject m_description;
-    public GameObject m_glow;
     // public Ability m_ability;
 
     private Image m_image;
@@ -23,10 +22,10 @@ public class CardManager : MonoBehaviour
     private TMP_Text m_Tframeworks;
     private TMP_Text m_Tdescription;
 
+    private GameObject player;
+
     private void Awake()
     {
-        m_glow.SetActive(false);
-
         m_image = m_picture.GetComponent<Image>();
         m_Tcost = m_cost.GetComponent<TMP_Text>();
         m_Tname = m_name.GetComponent<TMP_Text>();
@@ -34,6 +33,8 @@ public class CardManager : MonoBehaviour
         m_Tutilities = m_utilities.GetComponent<TMP_Text>();
         m_Tframeworks = m_frameworks.GetComponent<TMP_Text>();
         m_Tdescription = m_description.GetComponent<TMP_Text>();
+
+        player = GameObject.FindWithTag("Player");
     }
 
     public void SetCard(Card card)
@@ -49,8 +50,13 @@ public class CardManager : MonoBehaviour
         m_Tdescription.text = card.description;
     }
 
-    public void Glow(bool glow)
+    public void SetActiveCard()
     {
-        m_glow.SetActive(glow);
+        player.GetComponent<PlayerController>().SelectCard(gameObject);
+    }
+
+    private void OnDestroy()
+    {
+        // discard animation
     }
 }

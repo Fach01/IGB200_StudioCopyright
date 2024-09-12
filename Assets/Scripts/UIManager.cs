@@ -6,6 +6,8 @@ using UnityEngine;
 [ExecuteAlways]
 public class UIManager : MonoBehaviour
 {
+    public GameObject player;
+
     public GameObject budgetObject;
     public GameObject budgetTurnLoss;
     public GameObject utilities;
@@ -51,5 +53,22 @@ public class UIManager : MonoBehaviour
         TMP_Text budgetText = budgetObject.GetComponent<TMP_Text>();
         float textOffset = budgetText.preferredWidth + 15f;
         budgetTurnLoss.transform.position = new Vector3(budgetObject.transform.position.x + textOffset, budgetObject.transform.position.y - 10f, budgetObject.transform.position.z);
+    }
+
+    public void SetUtilitiesText(string utilitiesText)
+    {
+        TMP_Text utilitiesTextObject = utilities.GetComponent<TMP_Text>();
+        utilitiesTextObject.text = utilitiesText;
+    }
+
+    public void SetFrameworksText(string frameworksText)
+    {
+        TMP_Text frameworksTextObject = frameworks.GetComponent<TMP_Text>();
+        frameworksTextObject.text = frameworksText;
+    }
+
+    public void DiscardCurrentCard()
+    {
+        player.GetComponent<PlayerController>().DiscardCard();
     }
 }

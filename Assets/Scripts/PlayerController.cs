@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     public GameObject levelManager;
     public GameObject hand;
+    public GameObject playField;
 
     public GameObject selectedCard;
 
@@ -35,15 +36,17 @@ public class PlayerController : MonoBehaviour
 
     public void SelectCard(GameObject card)
     {
-        Debug.Log(card);
         if (selectedCard != null)
         {
             selectedCard.transform.Translate(0, -20f, 0);
-            selectedCard.GetComponent<CardManager>().Glow(false);
         }
 
         card.transform.Translate(0, 20f, 0);
-        card.GetComponent<CardManager>().Glow(true);
         selectedCard = card;
+    }
+
+    public void DiscardCard()
+    {
+        hand.GetComponent<HandController>().RemoveCard(selectedCard);
     }
 }

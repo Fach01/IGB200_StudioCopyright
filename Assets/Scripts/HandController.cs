@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class HandController : MonoBehaviour
 {
     public List<GameObject> hand;
-    public GameObject cardPrefab;
 
     float cardWidth = 80f;
 
@@ -34,8 +33,8 @@ public class HandController : MonoBehaviour
 
     public void RemoveCard(GameObject card)
     {
-        // Remove the card from the player's hand
-        // hand.Remove(card);
+        hand.Remove(card);
+        Destroy(card);
     }
 
     public void OrderCards()
