@@ -1,8 +1,9 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class CardManager : MonoBehaviour
+public class CardManager : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public Card m_card;
     public GameObject m_picture;
@@ -53,6 +54,16 @@ public class CardManager : MonoBehaviour
     public void SetActiveCard()
     {
         player.GetComponent<PlayerController>().SelectCard(gameObject);
+
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        transform.Translate(0, 10f, 0);
+    }
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        transform.Translate(0, -10f, 0);
     }
 
     private void OnDestroy()

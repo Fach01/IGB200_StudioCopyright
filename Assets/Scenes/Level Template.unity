@@ -473,7 +473,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelManager: {fileID: 1201134670}
   hand: {fileID: 1862942036}
-  playField: {fileID: 0}
+  playField: {fileID: 1265561410}
   selectedCard: {fileID: 0}
   phase: 0
 --- !u!1 &192750756
@@ -1766,10 +1766,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3126c2730db56ab4aab9a64cf071f608, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  confirmButton: {fileID: 1487357880}
-  levelObj: {fileID: 1201134670}
-  playField: {fileID: 0}
-  hand: {fileID: 0}
 --- !u!114 &572032356
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3285,7 +3281,7 @@ Canvas:
   m_GameObject: {fileID: 1092930099}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 1
+  m_RenderMode: 0
   m_Camera: {fileID: 192750758}
   m_PlaneDistance: 300
   m_PixelPerfect: 1
@@ -3468,6 +3464,7 @@ GameObject:
   - component: {fileID: 1265561413}
   - component: {fileID: 1265561412}
   - component: {fileID: 1265561414}
+  - component: {fileID: 1265561415}
   m_Layer: 5
   m_Name: Play Field
   m_TagString: Untagged
@@ -3576,7 +3573,33 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1265561412}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1265561415}
+        m_TargetAssemblyTypeName: PlayFieldManager, Assembly-CSharp
+        m_MethodName: PlayCurrentCard
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1265561415
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1265561410}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf9b28272a9971f42a8315790bdfa066, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 176488109}
+  cards: []
 --- !u!1 &1266718894
 GameObject:
   m_ObjectHideFlags: 0
@@ -4088,7 +4111,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 140.96906, y: -22.990387}
+  m_AnchoredPosition: {x: 104.224304, y: -19.345795}
   m_SizeDelta: {x: 200, y: 10}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1512175075
@@ -4309,7 +4332,7 @@ MonoBehaviour:
   playField: {fileID: 1265561410}
   discard: {fileID: 396249163}
   hand: {fileID: 1862942036}
-  deck: {fileID: 0}
+  deck: {fileID: 716173656}
   endTurn: {fileID: 914126354}
   replaceCard: {fileID: 572032353}
   win: {fileID: 319837233}

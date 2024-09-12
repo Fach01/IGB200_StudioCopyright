@@ -5,14 +5,13 @@ using UnityEngine.UI;
 
 public class HandController : MonoBehaviour
 {
-    public List<GameObject> hand;
+    public List<GameObject> hand = new();
 
     float cardWidth = 80f;
 
     private void Start()
     {
-        // Initialize the hand
-        hand = new List<GameObject>();
+
     }
 
     private void Update()
@@ -24,6 +23,7 @@ public class HandController : MonoBehaviour
     {
         /* TODO: Animate placing the card in the hand
          * get new card position in hand and move it there
+         * move cards before new card gets added to hand
          */
 
         // Add the card to the player's hand
@@ -31,16 +31,16 @@ public class HandController : MonoBehaviour
         hand.Add(card);
     }
 
-    public void RemoveCard(GameObject card)
-    {
-        hand.Remove(card);
-        Destroy(card);
-    }
-
     public void OrderCards()
     {
         for (int i = 0; i < hand.Count; i++)
         {
+            if (hand[i] == null)
+            {
+                // scuffed fix for destroying cards idk a better fix tbh
+                hand.Remove(hand[i]);
+            }
+
             // Update the card's position
             float xPosition = (i - (hand.Count - 1) / 2f) * cardWidth;
 

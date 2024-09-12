@@ -23,14 +23,14 @@ public class UIManager : MonoBehaviour
     public GameObject lose;
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         
     }
 
     // Update is called once per frame
     // Update is also called when anything in the scene is changed
-    void Update()
+    private void Update()
     {
         // to be called by another script
         UpdateTurnLossPosition();
