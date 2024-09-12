@@ -5,6 +5,7 @@ using static UnityEditor.Experimental.GraphView.Port;
 public class PlayFieldManager : MonoBehaviour
 {
     public GameObject player;
+
     public List<GameObject> cards = new();
 
     private PlayerController playerController;

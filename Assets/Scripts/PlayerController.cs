@@ -6,8 +6,8 @@ public class PlayerController : MonoBehaviour
 {
     public GameObject levelManager;
     public GameObject hand;
-    public GameObject discard;
     public GameObject playField;
+    public GameObject discard;
 
     public GameObject selectedCard;
 
@@ -40,14 +40,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void DrawCard(GameObject card)
-    {
-        // TODO: Check if the player has enough action points to draw a card
-
-        // Add the card to the player's hand
-        hand.GetComponent<HandController>().AddCard(card);
-    }
-
     public void SelectCard(GameObject card)
     {
         if (selectedCard != null)
@@ -56,6 +48,19 @@ public class PlayerController : MonoBehaviour
         }
         card.transform.Translate(0, 20f, 0);
         selectedCard = card;
+    }
+
+    public void PlaySelectedCard()
+    {
+        playField.GetComponent<PlayFieldManager>().PlayCurrentCard();
+    }
+
+    public void DrawCard(GameObject card)
+    {
+        // TODO: Check if the player has enough action points to draw a card
+
+        // Add the card to the player's hand
+        hand.GetComponent<HandController>().AddCard(card);
     }
 
     public void DiscardCard()

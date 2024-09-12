@@ -15,6 +15,8 @@ public class CardManager : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     public GameObject m_description;
     // public Ability m_ability;
 
+    public bool m_active = false;
+
     private Image m_image;
     private TMP_Text m_Tcost;
     private TMP_Text m_Tname;
@@ -53,16 +55,31 @@ public class CardManager : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
     public void SetActiveCard()
     {
+        // add animation of picking it from hand?
         player.GetComponent<PlayerController>().SelectCard(gameObject);
-
+        if (m_active)
+        {
+            transform.Translate(0, -10f, 0);
+            m_active = false;
+        }
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+        if (player.GetComponent<PlayerController>().selectedCard == gameObject)
+        {
+            return;
+        }
+        m_active = true;
         transform.Translate(0, 10f, 0);
     }
     public void OnPointerExit(PointerEventData eventData)
     {
+        if (player.GetComponent<PlayerController>().selectedCard == gameObject)
+        {
+            return;
+        }
+        m_active = false;
         transform.Translate(0, -10f, 0);
     }
 

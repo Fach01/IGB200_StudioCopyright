@@ -7,7 +7,7 @@ public class HandController : MonoBehaviour
 {
     public List<GameObject> hand = new();
 
-    float cardWidth = 80f;
+    private float cardWidth = 80f;
 
     private void Start()
     {
@@ -33,21 +33,47 @@ public class HandController : MonoBehaviour
 
     public void OrderCards()
     {
-        for (int i = 0; i < hand.Count; i++)
+        if (hand.Count <= 4)
         {
-            if (hand[i] == null)
+            for (int i = 0; i < hand.Count; i++)
             {
-                // scuffed fix for destroying cards idk a better fix tbh
-                hand.Remove(hand[i]);
+                if (hand[i] == null)
+                {
+                    // scuffed fix for destroying cards idk a better fix tbh
+                    hand.Remove(hand[i]);
+                    continue;
+                }
+
+                // Update the card's position
+                float xPosition = (i - (hand.Count - 1) / 2f) * cardWidth;
+
+                // TODO: Animate moving the card
+                Vector3 localPosition = hand[i].transform.localPosition;
+                localPosition.x = xPosition;
+                hand[i].transform.localPosition = localPosition;
             }
+        }
+        else
+        {
+            float startPosition = (-transform.GetComponent<RectTransform>().rect.width + cardWidth) / 2f + 1.5f * cardWidth / hand.Count;
+            float step = (transform.GetComponent<RectTransform>().rect.width - cardWidth) / hand.Count;
+            for (int i = 0; i < hand.Count; i++)
+            {
+                if (hand[i] == null)
+                {
+                    // scuffed fix for destroying cards idk a better fix tbh
+                    hand.Remove(hand[i]);
+                    continue;
+                }
 
-            // Update the card's position
-            float xPosition = (i - (hand.Count - 1) / 2f) * cardWidth;
+                // Update the card's position
+                float xPosition = startPosition + i * step;
 
-            // TODO: Animate moving the card
-            Vector3 localPosition = hand[i].transform.localPosition;
-            localPosition.x = xPosition;
-            hand[i].transform.localPosition = localPosition;
+                // TODO: Animate moving the card
+                Vector3 localPosition = hand[i].transform.localPosition;
+                localPosition.x = xPosition;
+                hand[i].transform.localPosition = localPosition;
+            }
         }
     }
 }

@@ -5,25 +5,25 @@ using System.Net.Mail;
 
 public class LevelManager : MonoBehaviour
 {
+    public GameObject player;
     public GameObject uiManager;
-    private UIManager UIManager;
 
     public int startBudget;
-    private int levelBudget;
-    private int turnBudget;
-
     public int utilitiesGoal;
     public int frameworksGoal;
+
+    private PlayerController PlayerController;
+    private UIManager UIManager;
+
+    private int levelBudget;
+    private int turnBudget;
     private int utilitiesCount;
     private int frameworksCount;
 
-    public GameObject player;
-    private PlayerController PlayerController;
-
     void Awake()
     {
-        UIManager = uiManager.GetComponent<UIManager>();
         PlayerController = player.GetComponent<PlayerController>();
+        UIManager = uiManager.GetComponent<UIManager>();
 
         BeginLevel();
     }

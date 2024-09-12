@@ -7,9 +7,9 @@ public class DeckController : MonoBehaviour
     public GameObject player;
     public GameObject cardPrefab;
 
-    private PlayerController PlayerController;
-
     public List<Card> deck;
+
+    private PlayerController PlayerController;
 
     private void Start()
     {
@@ -36,6 +36,5 @@ public class DeckController : MonoBehaviour
 
         // send to playercontroller to handle action points
         PlayerController.DrawCard(newCard);
-        
     }
 }
