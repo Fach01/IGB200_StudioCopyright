@@ -5,295 +5,151 @@ using System.Net.Mail;
 
 public class LevelManager : MonoBehaviour
 {
-    public GameObject hand;
-    private HandController handController;
+    public GameObject player;
+    public GameObject uiManager;
+    public GameObject playField;
+    public GameObject deck;
 
-    public float budget = 300000;
+    public int startBudget;
+    public int utilitiesGoal;
+    public int frameworksGoal;
 
-    public TMP_Text budgetText;
-    public TMP_Text utilText;
-    public TMP_Text frameworkText;
+    private PlayerManager playerManager;
+    private UIManager UIManager;
+    private PlayFieldManager playFieldManager;
 
+    private int levelBudget;
+    private int turnBudget;
+    private int utilitiesCount;
+    private int frameworksCount;
 
-    public int frameworkGoal;
-    public int utilGoal;
-    private int currentFramework = 0;
-    private int currentUtil = 0;
-
-    public GameObject playButton;
-
-    [HideInInspector]
-    public GameObject selectedCard = null;
-    [HideInInspector]
-    public GameObject cardGlow = null;
-
-    // turn/phase stuff
-    public GameObject phaseText;
-    private Phase phase;
-    private enum Phase // play, event, end
-    {
-        Setup,
-        Play,
-        Event,
-        End,
-        GameLoss,
-        GameWin
-        // could have an emergency phase here idk, phases need further discussion in general
-    }
-    private int turnnumber;
-    private int actionPoints;
-    // private Vector3[] plannerCardSlots = new Vector3[3];
-    // private GameObject[] activePlannerCards = new GameObject[3];
-
-    public GameObject GameOver;
-    public GameObject GameWin;
-
-    public int AP { get => actionPoints; }
-
-    public GameObject playfield;
-    public GameObject plannerComponents;
-    private GameObject activePlannerMods;
-    private GameObject replacePlannerPanel;
+    private int turn = 1;
 
     private void Awake()
     {
-        handController = hand.GetComponent<HandController>();
-        activePlannerMods = plannerComponents.transform.Find("Planner Modifiers").gameObject;
-        replacePlannerPanel = plannerComponents.transform.Find("Replace Card").gameObject;
-
-
+        playerManager = player.GetComponent<PlayerManager>();
+        UIManager = uiManager.GetComponent<UIManager>();
+        playFieldManager = playField.GetComponent<PlayFieldManager>();
     }
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        replacePlannerPanel.SetActive(false);
-        budgetText.text = "Budget: " + budget;
         BeginLevel();
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        switch (phase)
+        switch (playerManager.phase)
         {
+            case Phase.PreTurn:
+                PreTurn();
+                break;
             case Phase.Setup:
-                StartTurn();
+                SetupPhase();
                 break;
             case Phase.Play:
                 PlayPhase();
                 break;
             case Phase.Event:
-                PlayEvents();
+                EventPhase();
                 break;
             case Phase.End:
-                OnTurnEnd();
+                EndPhase();
                 break;
-            default: /* we shouldn't hit this but we can fix it later if we do somehow
-                      * now being used for win/loss conditions
-                      */
-                LoseGame();
-                WinGame();
+            default:
                 break;
         }
     }
 
-    void BeginLevel()
+    private void BeginLevel()
     {
-        Debug.Log("begin level called");
-        actionPoints = 4;
+        levelBudget = startBudget;
+        turnBudget = levelBudget;
+
+        utilitiesCount = 0;
+        frameworksCount = 0;
+
         for (int i = 0; i < 4; i++)
         {
-            handController.DrawCard();
-
+            deck.GetComponent<DeckManager>().DrawCard();
         }
-        GameOver.SetActive(false);
-        GameWin.SetActive(false);
-        phase = Phase.Setup;
 
+        UIManager.SetTurnText(turn);
+
+        playerManager.phase = Phase.PreTurn;
     }
 
-    void StartTurn()
+    public void PreTurn()
     {
-        //for cards in active planner cards
-        //get planners ability and enable
-        //
-        Debug.Log("starting turn");
-        // turn = true;
+        turnBudget = levelBudget;
 
-        actionPoints = 2;
-        phase = Phase.Play;
+        playerManager.ResetPlayer();
+        playerManager.phase = Phase.Setup;
     }
 
-    // TODO: move this selection logic to the containers with an event listener
-    /* ^ maybe? i'm thinking like playphase should call a method that handles player input
-     * maybe in the playercontroller or playermanager
-     * then we handle playing or selecting another card there, same with drawing cards
-     * we should be able to call like playermanager.select(card) or something? discuss later
-     */
-    void PlayPhase()
+    public void SetupPhase()
     {
-        if (Input.GetMouseButtonDown(0))
+        // idk if anything even needs to be here
+    }
+
+    public void EndSetupPhase()
+    {
+        playerManager.SelectCard(null);
+        playerManager.phase = Phase.Play;
+    }
+
+    public void PlayPhase()
+    {
+        for (int i = 0; i < playFieldManager.cards.Count; i++)
         {
-            // Create a ray from the camera to the point where the mouse clicked
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-
-            if (Physics.Raycast(ray, out hit) && hit.collider.CompareTag("Card"))
+            if (playFieldManager.cards[i] == null)
             {
-                if (cardGlow != null)
-                {
-                    cardGlow.SetActive(false);
-                }
+                continue;
+            }
+            int cost = playFieldManager.cards[i].GetComponent<CardManager>().m_card.cost;
+            int utilities = playFieldManager.cards[i].GetComponent<CardManager>().m_card.utilities;
+            int frameworks = playFieldManager.cards[i].GetComponent<CardManager>().m_card.frameworks;
 
-                selectedCard = hit.collider.gameObject;
-            }
+            turnBudget -= cost;
+            utilitiesCount += utilities;
+            frameworksCount += frameworks;
         }
-        if (selectedCard != null)
-        {
-            playButton.SetActive(true);
-            Transform child = selectedCard.transform.Find("Glow");
-            if (child != null)
-            {
-                cardGlow = child.gameObject;
-                cardGlow.SetActive(true);
-            }
-        }
+        // TODO: add budged turn loss text animation
+        playerManager.phase = Phase.Event;
     }
 
-    public void EndPlay()
-    {
-        phase = Phase.Event;
-    }
-
-    private void PlayEvents()
+    public void EventPhase()
     {
         // go through events queue
-        phase = Phase.End;
+        playerManager.phase = Phase.End;
     }
 
-    private void OnTurnEnd()
+    public void EndPhase()
     {
-        // add resources to total, implement later
-        LoseGame();
-        WinGame();
-        phase = Phase.Setup;
+        levelBudget = turnBudget;
+        turn += 1;
+
+        UIManager.SetBudgetText(levelBudget.ToString());
+        UIManager.SetUtilitiesText(utilitiesCount.ToString());
+        UIManager.SetFrameworksText(frameworksCount.ToString());
+        UIManager.SetTurnText(turn);
+
+        playerManager.phase = Phase.PreTurn;
     }
 
-    void LoseGame()
+    public void Spend(int cost)
     {
-        if (handController.DeckEmpty() || budget < 0)
-        {
-            GameOver.SetActive(true);
-            phase = Phase.GameLoss;
-        }
+        turnBudget -= cost;
+    }
+    public void AddUtilities(int utilities)
+    {
+        utilitiesCount += utilities;
     }
 
-    void WinGame()
+    public void AddFrameworks(int frameworks)
     {
-        if (currentFramework >= frameworkGoal && currentUtil >= utilGoal)
-        {
-            GameWin.SetActive(true);
-            phase = Phase.GameWin;
-        }
-    }
-
-    // TODO: playercontroller for spending money, recieving resources from cards
-    public void Spend(float value)
-    {
-        budget -= value;
-        if (budget <= 0)
-        {
-            // game over
-        }
-        budgetText.text = "Budget: " + budget;
-    }
-
-    // TODO: move to cardmanager
-    public void Play(GameObject currentCard)
-    {
-        if (actionPoints <= 0)
-        {
-            Debug.Log("No action points!");
-            return;
-        }
-        actionPoints--;
-
-        // add discarding planner cards
-
-        Card cardDetails = currentCard.GetComponent<CardManager>().card;
-        Spend(cardDetails.cost); // move this to after card validation
-
-        if (!cardDetails.IsPlanner())
-        {
-
-            currentFramework += cardDetails.framework;
-            currentUtil += cardDetails.utilities;
-            frameworkText.text = "Framework: " + currentFramework;
-            utilText.text = "Utilities: " + currentUtil;
-            handController.DeleteCard(currentCard);
-            selectedCard = null;
-        }
-        else
-        {
-            // move glow to card behaviour script
-            Transform child = currentCard.transform.Find("Glow");
-            if (child != null)
-            {
-                cardGlow = child.gameObject;
-                cardGlow.SetActive(false);
-            }
-                
-
-            if (playfield.GetComponent<PlayFieldManager>().AddCard(currentCard))
-            {
-                handController.hand.Remove(currentCard);
-                // currentCard.transform.SetParent(null, false);
-
-                int temp = 0;
-
-                for (int i = 0; i < activePlannerMods.transform.childCount; i++)
-                {
-                    if (activePlannerMods.transform.GetChild(i).name.Contains("Text Slot"))
-                    {
-                        Transform textField = activePlannerMods.transform.GetChild(i);
-                        if (playfield.GetComponent<PlayFieldManager>().GetCount() <= temp) continue;
-
-                        Card card = playfield.GetComponent<PlayFieldManager>().GetCard(temp).GetComponent<CardManager>().card;
-                        textField.GetComponent<TextMeshProUGUI>().text = card.description;
-                        temp += 1;
-                    }
-                }
-            }
-            else
-            {
-                GameObject newCard = selectedCard;
-                replacePlannerPanel.SetActive(true);
-            }
-
-            handController.ReorderCards(handController.hand);
-        }
-    }
-   
-    public void UpdateTextSlot(int slot, Card card)
-    {
-        if (slot >= 3)
-        {
-            Debug.Log("only three slots!");
-        }
-        else
-        {
-            string textSlot = "Text Slot " + slot;
-            Transform textField = activePlannerMods.transform.Find(textSlot);
-            if (textField != null)
-            {
-                textField.GetComponent<TextMeshProUGUI>().text = card.description;
-            }
-        }
-    }
-    public void Action()
-    {
-        actionPoints -= 1;
+        frameworksCount += frameworks;
     }
 }
 

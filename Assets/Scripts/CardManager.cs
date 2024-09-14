@@ -1,46 +1,103 @@
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
-public class CardManager : MonoBehaviour
+public class CardManager : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    private TMP_Text cost;
-    private TMP_Text name;
-    private TMP_Text description;
-    public Card card;
+    public Card m_card;
+    public GameObject m_picture;
+    public GameObject m_cost;
+    public GameObject m_name;
+    public GameObject m_type;
+    public GameObject m_utilities;
+    public GameObject m_frameworks;
+    public GameObject m_description;
+    // public Ability m_ability;
+
+    public bool m_active = false;
+
+    private Image m_image;
+    private TMP_Text m_Tcost;
+    private TMP_Text m_Tname;
+    private TMP_Text m_Ttype;
+    private TMP_Text m_Tutilities;
+    private TMP_Text m_Tframeworks;
+    private TMP_Text m_Tdescription;
+
+    private GameObject player;
+    private PlayerManager playerManager;
 
     private void Awake()
     {
-        cost = transform.Find("Cost").GetComponent<TMP_Text>();
-        name = transform.Find("Name").GetComponent<TMP_Text>();
-        description = transform.Find("Description").GetComponent<TMP_Text>();
-    }
+        m_image = m_picture.GetComponent<Image>();
+        m_Tcost = m_cost.GetComponent<TMP_Text>();
+        m_Tname = m_name.GetComponent<TMP_Text>();
+        m_Ttype = m_type.GetComponent<TMP_Text>();
+        m_Tutilities = m_utilities.GetComponent<TMP_Text>();
+        m_Tframeworks = m_frameworks.GetComponent<TMP_Text>();
+        m_Tdescription = m_description.GetComponent<TMP_Text>();
 
-    public void SetCost(string cost)
-    {
-        this.cost.text = cost;
-    }
-    public void SetName(string name)
-    {
-        this.name.text = name;
-    }
-    public void SetDescription(string description)
-    {
-        this.description.text = description;
+        player = GameObject.FindWithTag("Player");
+        playerManager = player.GetComponent<PlayerManager>();
     }
 
     public void SetCard(Card card)
     {
-        this.card = card;
-        cost.text = card.cost.ToString();
-        name.text = card.name;
-        if (card.ability != null)
+        m_card = card;
+
+        m_image.sprite = card.image;
+        m_Tcost.text = card.cost.ToString();
+        m_Tname.text = card.name;
+        m_Ttype.text = card.type.ToString();
+        m_Tutilities.text = card.utilities.ToString();
+        m_Tframeworks.text = card.frameworks.ToString();
+        m_Tdescription.text = card.description;
+    }
+
+    public void SetActiveCard()
+    {
+        // add animation of picking it from hand?
+        playerManager.SelectCard(gameObject);
+        if (m_active)
         {
-            description.text = card.ability.description;
-            card.description = card.ability.description;
+            transform.Translate(0, -10f, 0);
+            m_active = false;
         }
-        else
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        if (playerManager.phase != Phase.Setup)
         {
-            description.text = card.description;
+            return;
         }
+
+        if (playerManager.selectedCard == gameObject)
+        {
+            return;
+        }
+        m_active = true;
+        transform.Translate(0, 10f, 0);
+    }
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        if (playerManager.phase != Phase.Setup)
+        {
+            return;
+        }
+
+        if (playerManager.selectedCard == gameObject)
+        {
+            return;
+        }
+        m_active = false;
+        transform.Translate(0, -10f, 0);
+    }
+
+    private void OnDestroy()
+    {
+        // discard animation
     }
 }

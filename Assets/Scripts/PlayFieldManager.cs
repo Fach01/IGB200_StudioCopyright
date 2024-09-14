@@ -1,68 +1,76 @@
-/* TODO: this file is a temp file */
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Experimental.GraphView.Port;
 
 public class PlayFieldManager : MonoBehaviour
 {
-    [SerializeField]
-    private List<GameObject> cards = new List<GameObject>();
-    private int capacity = 3;
+    public GameObject levelManager;
+
+    public GameObject player;
+
+    public List<GameObject> cards = new();
+
+    private PlayerManager playerController;
+    private int capacity = 5;
 
     private void Start()
     {
+        playerController = player.GetComponent<PlayerManager>();
 
+        for (int i = 0; i < capacity; i++)
+        {
+            cards.Add(null);
+        }
     }
 
-    public List<GameObject> Cards { get { return cards; } }
-
-    private float distance = 24f; // temporary until cardspace
     private void Update()
     {
+    }
+
+    public bool PlayCurrentCard()
+    {
+        GameObject currentCard = playerController.selectedCard;
+
+        if (cards.Contains(currentCard))
+        {
+            return false;
+        }
+
+        bool added = false;
         for (int i = 0; i < cards.Count; i++)
         {
-            GameObject card = cards[i];
+            if (cards[i] == null)
+            {
+                cards[i] = currentCard;
+                currentCard.transform.SetParent(transform, false);
+                playerController.hand.GetComponent<HandManager>().hand.Remove(currentCard);
 
-            float cardPositionX = (cards.Count - 1) * (-distance / 2f) + (i * distance);
-            // Debug.Log(cardPositionX);
-            Vector3 cardPosition = new Vector3(cardPositionX, 0f, 0f) + transform.position;
-            card.transform.position = cardPosition;
+                added = true;
+                break;
+            }
         }
-    }
 
-    public GameObject GetCard(int index)
-    {
-        Debug.Log(index);
-        return cards[index];
-    }
-
-    public bool AddCard(GameObject card)
-    {
-        if (cards.Contains(card) || cards.Count >= capacity)
+        OrderCards();
+        if (currentCard != null)
         {
-            Debug.Log("Cannot play this card!!");
-            return false;
+            currentCard.transform.Translate(0, 20f, 0);
         }
-        cards.Add(card);
-        card.transform.SetParent(transform, false);
-        return true;
-    }
-    public int GetCount()
-    {
-        return cards.Count;
+        return added;
     }
 
-    public bool ReplaceCard(GameObject newCard, GameObject oldCard)
+    public void OrderCards()
     {
-        if (cards.Contains(newCard) || !cards.Contains(oldCard))
+        int steps = 360 / capacity;
+        int offset = 90;
+        for (int i = 0; i < cards.Count; i++)
         {
-            return false;
+            if (cards[i] == null)
+            {
+                continue;
+            }
+            float xPosition = Mathf.Cos(Mathf.Deg2Rad * (steps * i + offset)) * 100;
+            float yPosition = Mathf.Sin(Mathf.Deg2Rad * (steps * i + offset)) * 90 - 8f;
+            cards[i].transform.localPosition = new Vector3(xPosition, yPosition, 0f);
         }
-        cards.Remove(oldCard);
-        Destroy(oldCard);
-        cards.Add(newCard);
-        newCard.transform.SetParent(transform, false);
-        return true;
     }
-
-
 }
