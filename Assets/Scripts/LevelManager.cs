@@ -7,6 +7,7 @@ public class LevelManager : MonoBehaviour
 {
     public GameObject player;
     public GameObject uiManager;
+    public GameObject playField;
     public GameObject deck;
 
     public int startBudget;
@@ -15,16 +16,20 @@ public class LevelManager : MonoBehaviour
 
     private PlayerManager playerManager;
     private UIManager UIManager;
+    private PlayFieldManager playFieldManager;
 
     private int levelBudget;
     private int turnBudget;
     private int utilitiesCount;
     private int frameworksCount;
 
+    private int turn = 1;
+
     private void Awake()
     {
         playerManager = player.GetComponent<PlayerManager>();
         UIManager = uiManager.GetComponent<UIManager>();
+        playFieldManager = playField.GetComponent<PlayFieldManager>();
     }
 
     private void Start()
@@ -69,6 +74,9 @@ public class LevelManager : MonoBehaviour
         {
             deck.GetComponent<DeckManager>().DrawCard();
         }
+
+        UIManager.SetTurnText(turn);
+
         playerManager.phase = Phase.PreTurn;
     }
 
@@ -82,10 +90,32 @@ public class LevelManager : MonoBehaviour
 
     public void SetupPhase()
     {
+        // idk if anything even needs to be here
+    }
+
+    public void EndSetupPhase()
+    {
+        playerManager.SelectCard(null);
+        playerManager.phase = Phase.Play;
     }
 
     public void PlayPhase()
     {
+        for (int i = 0; i < playFieldManager.cards.Count; i++)
+        {
+            if (playFieldManager.cards[i] == null)
+            {
+                continue;
+            }
+            int cost = playFieldManager.cards[i].GetComponent<CardManager>().m_card.cost;
+            int utilities = playFieldManager.cards[i].GetComponent<CardManager>().m_card.utilities;
+            int frameworks = playFieldManager.cards[i].GetComponent<CardManager>().m_card.frameworks;
+
+            turnBudget -= cost;
+            utilitiesCount += utilities;
+            frameworksCount += frameworks;
+        }
+        // TODO: add budged turn loss text animation
         playerManager.phase = Phase.Event;
     }
 
@@ -97,7 +127,29 @@ public class LevelManager : MonoBehaviour
 
     public void EndPhase()
     {
-        playerManager.phase = Phase.Setup;
+        levelBudget = turnBudget;
+        turn += 1;
+
+        UIManager.SetBudgetText(levelBudget.ToString());
+        UIManager.SetUtilitiesText(utilitiesCount.ToString());
+        UIManager.SetFrameworksText(frameworksCount.ToString());
+        UIManager.SetTurnText(turn);
+
+        playerManager.phase = Phase.PreTurn;
+    }
+
+    public void Spend(int cost)
+    {
+        turnBudget -= cost;
+    }
+    public void AddUtilities(int utilities)
+    {
+        utilitiesCount += utilities;
+    }
+
+    public void AddFrameworks(int frameworks)
+    {
+        frameworksCount += frameworks;
     }
 }
 

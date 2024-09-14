@@ -27,26 +27,35 @@ public class PlayFieldManager : MonoBehaviour
     {
     }
 
-    public void PlayCurrentCard()
+    public bool PlayCurrentCard()
     {
         GameObject currentCard = playerController.selectedCard;
-        currentCard.transform.SetParent(transform, false);
 
         if (cards.Contains(currentCard))
         {
-            return;
+            return false;
         }
 
+        bool added = false;
         for (int i = 0; i < cards.Count; i++)
         {
             if (cards[i] == null)
             {
                 cards[i] = currentCard;
+                currentCard.transform.SetParent(transform, false);
                 playerController.hand.GetComponent<HandManager>().hand.Remove(currentCard);
+
+                added = true;
                 break;
             }
         }
+
         OrderCards();
+        if (currentCard != null)
+        {
+            currentCard.transform.Translate(0, 20f, 0);
+        }
+        return added;
     }
 
     public void OrderCards()

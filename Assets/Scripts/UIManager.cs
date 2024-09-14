@@ -11,6 +11,7 @@ public class UIManager : MonoBehaviour
     public GameObject budgetObject;
     public GameObject budgetTurnLoss;
     public GameObject phase;
+    public GameObject turn;
     public GameObject utilities;
     public GameObject frameworks;
     public GameObject buildingPlane;
@@ -34,14 +35,14 @@ public class UIManager : MonoBehaviour
     // Update is also called when anything in the scene is changed
     private void Update()
     {
-        // to be called by another script
-        UpdateTurnLossPosition();
     }
 
     public void SetBudgetText(string budget)
     {
         TMP_Text budgetText = budgetObject.GetComponent<TMP_Text>();
         budgetText.text = "Budget: " + budget;
+
+        UpdateTurnLossPosition();
     }
 
     public void SetBudgetTurnLossText(string budget)
@@ -54,17 +55,23 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public void SetPhaseText(Phase phase)
-    {
-        TMP_Text phaseText = this.phase.GetComponent<TMP_Text>();
-        phaseText.text = "Phase: " + phase.ToString();
-    }
-
     public void UpdateTurnLossPosition()
     {
         TMP_Text budgetText = budgetObject.GetComponent<TMP_Text>();
         float textOffset = budgetText.preferredWidth + 15f;
         budgetTurnLoss.transform.position = new Vector3(budgetObject.transform.position.x + textOffset, budgetObject.transform.position.y - 10f, budgetObject.transform.position.z);
+    }
+
+    public void SetPhaseText(Phase phase)
+    {
+        TMP_Text phaseText = this.phase.GetComponent<TMP_Text>();
+        phaseText.text = "Phase: " + phase.ToString();
+    }
+    
+    public void SetTurnText(int turn)
+    {
+        TMP_Text turnText = this.turn.GetComponent<TMP_Text>();
+        turnText.text = "Turn: " + turn;
     }
 
     public void SetUtilitiesText(string utilitiesText)
