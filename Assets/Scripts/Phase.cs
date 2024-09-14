@@ -1,5 +1,6 @@
 public enum Phase // play, event, end
 {
+    PreTurn,
     Setup,
     Play,
     Event,

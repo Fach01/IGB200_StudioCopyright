@@ -1,4 +1,5 @@
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -26,6 +27,7 @@ public class CardManager : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     private TMP_Text m_Tdescription;
 
     private GameObject player;
+    private PlayerManager playerManager;
 
     private void Awake()
     {
@@ -38,6 +40,7 @@ public class CardManager : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         m_Tdescription = m_description.GetComponent<TMP_Text>();
 
         player = GameObject.FindWithTag("Player");
+        playerManager = player.GetComponent<PlayerManager>();
     }
 
     public void SetCard(Card card)
@@ -56,7 +59,7 @@ public class CardManager : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     public void SetActiveCard()
     {
         // add animation of picking it from hand?
-        player.GetComponent<PlayerController>().SelectCard(gameObject);
+        playerManager.SelectCard(gameObject);
         if (m_active)
         {
             transform.Translate(0, -10f, 0);
@@ -66,7 +69,12 @@ public class CardManager : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if (player.GetComponent<PlayerController>().selectedCard == gameObject)
+        if (playerManager.phase != Phase.Setup)
+        {
+            return;
+        }
+
+        if (playerManager.selectedCard == gameObject)
         {
             return;
         }
@@ -75,7 +83,12 @@ public class CardManager : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     }
     public void OnPointerExit(PointerEventData eventData)
     {
-        if (player.GetComponent<PlayerController>().selectedCard == gameObject)
+        if (playerManager.phase != Phase.Setup)
+        {
+            return;
+        }
+
+        if (playerManager.selectedCard == gameObject)
         {
             return;
         }

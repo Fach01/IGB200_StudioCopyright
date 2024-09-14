@@ -10,14 +10,16 @@ public class UIManager : MonoBehaviour
 
     public GameObject budgetObject;
     public GameObject budgetTurnLoss;
+    public GameObject phase;
     public GameObject utilities;
     public GameObject frameworks;
     public GameObject buildingPlane;
     public GameObject playField;
-    public GameObject discard;
     public GameObject hand;
+    public GameObject discard;
     public GameObject deck;
     public GameObject endTurn;
+    public GameObject actionPoints;
     public GameObject replaceCard;
     public GameObject win;
     public GameObject lose;
@@ -39,13 +41,23 @@ public class UIManager : MonoBehaviour
     public void SetBudgetText(string budget)
     {
         TMP_Text budgetText = budgetObject.GetComponent<TMP_Text>();
-        budgetText.text = budget;
+        budgetText.text = "Budget: " + budget;
     }
 
     public void SetBudgetTurnLossText(string budget)
     {
         TMP_Text budgetText = budgetTurnLoss.GetComponent<TMP_Text>();
         budgetText.text = budget;
+        if (!budgetText.text.Contains("-"))
+        {
+            budgetText.text = "+" + budgetText.text;
+        }
+    }
+
+    public void SetPhaseText(Phase phase)
+    {
+        TMP_Text phaseText = this.phase.GetComponent<TMP_Text>();
+        phaseText.text = "Phase: " + phase.ToString();
     }
 
     public void UpdateTurnLossPosition()
@@ -58,17 +70,18 @@ public class UIManager : MonoBehaviour
     public void SetUtilitiesText(string utilitiesText)
     {
         TMP_Text utilitiesTextObject = utilities.GetComponent<TMP_Text>();
-        utilitiesTextObject.text = utilitiesText;
+        utilitiesTextObject.text = "Utilities: " + utilitiesText;
     }
 
     public void SetFrameworksText(string frameworksText)
     {
         TMP_Text frameworksTextObject = frameworks.GetComponent<TMP_Text>();
-        frameworksTextObject.text = frameworksText;
+        frameworksTextObject.text = "Frameworks: " + frameworksText;
     }
 
-    public void DiscardCurrentCard()
+    public void SetActionPointsText(string actionPointsText)
     {
-        player.GetComponent<PlayerController>().DiscardCard();
+        TMP_Text actionPointsTextObject = actionPoints.GetComponent<TMP_Text>();
+        actionPointsTextObject.text = actionPointsText;
     }
 }

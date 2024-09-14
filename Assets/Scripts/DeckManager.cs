@@ -2,18 +2,21 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class DeckController : MonoBehaviour
+public class DeckManager : MonoBehaviour
 {
+    public GameObject levelManager;
+
     public GameObject player;
+
     public GameObject cardPrefab;
 
     public List<Card> deck;
 
-    private PlayerController PlayerController;
+    private PlayerManager PlayerManager;
 
     private void Start()
     {
-        PlayerController = player.GetComponent<PlayerController>();
+        PlayerManager = player.GetComponent<PlayerManager>();
     }
 
     // picks a random card from the deck and moves it to the player's hand
@@ -35,6 +38,6 @@ public class DeckController : MonoBehaviour
         // TODO: Animate picking up the card
 
         // send to playercontroller to handle action points
-        PlayerController.DrawCard(newCard);
+        PlayerManager.DrawCard(newCard);
     }
 }

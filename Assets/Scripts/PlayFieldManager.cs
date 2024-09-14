@@ -4,16 +4,18 @@ using static UnityEditor.Experimental.GraphView.Port;
 
 public class PlayFieldManager : MonoBehaviour
 {
+    public GameObject levelManager;
+
     public GameObject player;
 
     public List<GameObject> cards = new();
 
-    private PlayerController playerController;
+    private PlayerManager playerController;
     private int capacity = 5;
 
     private void Start()
     {
-        playerController = player.GetComponent<PlayerController>();
+        playerController = player.GetComponent<PlayerManager>();
 
         for (int i = 0; i < capacity; i++)
         {
@@ -30,12 +32,17 @@ public class PlayFieldManager : MonoBehaviour
         GameObject currentCard = playerController.selectedCard;
         currentCard.transform.SetParent(transform, false);
 
+        if (cards.Contains(currentCard))
+        {
+            return;
+        }
+
         for (int i = 0; i < cards.Count; i++)
         {
             if (cards[i] == null)
             {
                 cards[i] = currentCard;
-                playerController.hand.GetComponent<HandController>().hand.Remove(currentCard);
+                playerController.hand.GetComponent<HandManager>().hand.Remove(currentCard);
                 break;
             }
         }

@@ -7,12 +7,13 @@ public class LevelManager : MonoBehaviour
 {
     public GameObject player;
     public GameObject uiManager;
+    public GameObject deck;
 
     public int startBudget;
     public int utilitiesGoal;
     public int frameworksGoal;
 
-    private PlayerController PlayerController;
+    private PlayerManager playerManager;
     private UIManager UIManager;
 
     private int levelBudget;
@@ -20,65 +21,83 @@ public class LevelManager : MonoBehaviour
     private int utilitiesCount;
     private int frameworksCount;
 
-    void Awake()
+    private void Awake()
     {
-        PlayerController = player.GetComponent<PlayerController>();
+        playerManager = player.GetComponent<PlayerManager>();
         UIManager = uiManager.GetComponent<UIManager>();
+    }
 
+    private void Start()
+    {
         BeginLevel();
     }
 
-    
-    void BeginLevel()
-    {
-        levelBudget = startBudget;
-        turnBudget = levelBudget;
-        utilitiesCount = 0;
-        frameworksCount = 0;
-        PlayerController.phase = Phase.Setup;
-    }
-
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        switch (PlayerController.phase)
+        switch (playerManager.phase)
         {
+            case Phase.PreTurn:
+                PreTurn();
+                break;
             case Phase.Setup:
-                StartTurn();
+                SetupPhase();
                 break;
             case Phase.Play:
                 PlayPhase();
                 break;
             case Phase.Event:
-                PlayEvents();
+                EventPhase();
                 break;
             case Phase.End:
-                OnTurnEnd();
+                EndPhase();
                 break;
             default:
                 break;
         }
     }
 
-    public void StartTurn()
+    private void BeginLevel()
     {
-        PlayerController.phase = Phase.Play;
+        levelBudget = startBudget;
+        turnBudget = levelBudget;
+
+        utilitiesCount = 0;
+        frameworksCount = 0;
+
+        for (int i = 0; i < 4; i++)
+        {
+            deck.GetComponent<DeckManager>().DrawCard();
+        }
+        playerManager.phase = Phase.PreTurn;
+    }
+
+    public void PreTurn()
+    {
+        turnBudget = levelBudget;
+
+        playerManager.ResetPlayer();
+        playerManager.phase = Phase.Setup;
+    }
+
+    public void SetupPhase()
+    {
     }
 
     public void PlayPhase()
     {
-        PlayerController.phase = Phase.Event;
+        playerManager.phase = Phase.Event;
     }
 
-    public void PlayEvents()
+    public void EventPhase()
     {
         // go through events queue
-        PlayerController.phase = Phase.End;
+        playerManager.phase = Phase.End;
     }
 
-    public void OnTurnEnd()
+    public void EndPhase()
     {
-        PlayerController.phase = Phase.Setup;
+        playerManager.phase = Phase.Setup;
     }
 }
 

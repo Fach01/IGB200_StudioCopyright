@@ -3,8 +3,10 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HandController : MonoBehaviour
+public class HandManager : MonoBehaviour
 {
+    public GameObject levelManager;
+
     public List<GameObject> hand = new();
 
     private float cardWidth = 80f;
