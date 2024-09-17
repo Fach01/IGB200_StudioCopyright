@@ -13,8 +13,11 @@ MonoBehaviour:
   m_Name: Caulker
   m_EditorClassIdentifier: 
   cost: 20000
-  cardType: 2
+  image: {fileID: 0}
   name: Caulker
+  type: 2
   description: '-'
   utilities: 2
-  framework: 0
+  frameworks: 0
+  abilityName: 
+  abilityCost: 0
