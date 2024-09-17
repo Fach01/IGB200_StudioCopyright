@@ -5,7 +5,10 @@ using UnityEngine.UI;
 
 public class Flush : BuilderAbility
 {
-    public override void ActivateAbility(PlayerManager playerManager)
+    public override string Description {set{value = desc;} get{return desc;}}
+    public string desc = "Discard 1 card, draw 2";
+
+public override void ActivateAbility(PlayerManager playerManager)
     {
         playerManager.playField.GetComponent<Button>().interactable = false;
         int numDraw = 2;
@@ -18,7 +21,6 @@ public class Flush : BuilderAbility
     {
         while (playerManager.selectedCard == null)
         {
-            Debug.Log("Waiting...");
             yield return null;
         }
 

@@ -20,4 +20,4 @@ MonoBehaviour:
   utilities: 5
   frameworks: 0
   abilityName: Flush
-  abilityCost: 0
+  abilityCost: 5000

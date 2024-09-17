@@ -56,9 +56,9 @@ public class PlayFieldManager : MonoBehaviour
 
         Card cardDetails = currentCard.GetComponent<CardManager>().m_card;
 
-        if (cardDetails.type != CardType.Planner)
+        if (cardDetails.type != CardType.Planner && cardDetails.ability != null)
         {
-            currentCard.transform.position = new Vector3(80f, 220f, 0);
+            currentCard.transform.position = new Vector3(150f, 400f, 0);
             playAbility.SetActive(true);
             playAbility.GetComponent<AbilityUI>().SetCard(cardDetails);
         }

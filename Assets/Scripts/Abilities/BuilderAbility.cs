@@ -4,9 +4,7 @@ using UnityEngine;
 
 public abstract class BuilderAbility : MonoBehaviour, IAbility
 {
-    public int Cost { get; set; }
-
-    public string Description { get; set; }
+    public abstract string Description { get; set; }
 
     public abstract void ActivateAbility(PlayerManager playerManager);
 }
