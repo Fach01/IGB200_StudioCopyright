@@ -6,12 +6,21 @@ using TMPro;
 public class AbilityUI : MonoBehaviour
 {
     public GameObject playField;
+    public GameObject player;
     public TMP_Text text;
+
+    private Card card = null;
 
     public void OnPlayAbility()
     {
-        // activate ability
-        Debug.Log("ability!");
+        if (card != null && card.ability != null)
+        {
+            card.ability.ActivateAbility(player.GetComponent<PlayerManager>());
+        }
+        else
+        {
+            Debug.Log("oh no");
+        }
         playField.GetComponent<PlayFieldManager>().OrderCards();
         this.gameObject.SetActive(false);
     }
@@ -23,8 +32,9 @@ public class AbilityUI : MonoBehaviour
 
     }
 
-    public void SetText(Card card)
+    public void SetCard(Card currentCard)
     {
+        card = currentCard;
         text.text = $"Play {card.abilityName} for {card.abilityCost}?";
     }
     

@@ -28,6 +28,7 @@ public class CardManager : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
     private GameObject player;
     private PlayerManager playerManager;
+    private AbilityManager abilityManager;
 
     private void Awake()
     {
@@ -41,6 +42,7 @@ public class CardManager : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
         player = GameObject.FindWithTag("Player");
         playerManager = player.GetComponent<PlayerManager>();
+        abilityManager = GameObject.Find("Ability Manager").GetComponent<AbilityManager>();
     }
 
     public void SetCard(Card card)
@@ -54,6 +56,9 @@ public class CardManager : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         m_Tutilities.text = card.utilities.ToString();
         m_Tframeworks.text = card.frameworks.ToString();
         m_Tdescription.text = card.description;
+
+        card.ability = abilityManager.AssignAbility(card.abilityName);
+        // TODO make description what its meant 2 be
     }
 
     public void SetActiveCard()

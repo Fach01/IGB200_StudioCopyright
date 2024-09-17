@@ -60,7 +60,7 @@ public class PlayFieldManager : MonoBehaviour
         {
             currentCard.transform.position = new Vector3(80f, 220f, 0);
             playAbility.SetActive(true);
-            playAbility.GetComponent<AbilityUI>().SetText(cardDetails);
+            playAbility.GetComponent<AbilityUI>().SetCard(cardDetails);
         }
         else
         {

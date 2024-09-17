@@ -4,17 +4,31 @@ using UnityEngine;
 
 public class AbilityManager : MonoBehaviour
 {
-    private List<IAbility> Abilities = new List<IAbility>();
+    private List<IAbility> abilities = new List<IAbility>();
 
-    void Start()
+    void Awake()
     {
-
+        foreach (Transform child in this.transform)
+        {
+            IAbility ability = child.GetComponent<IAbility>();
+            if (ability != null)
+            {
+                abilities.Add(ability);
+                Debug.Log(ability);
+            }
+        }
     }
 
     public IAbility AssignAbility(string abilityName)
     {
-        //if ability name is in list
-        //return ability
+        foreach (IAbility ability in abilities)
+        {
+            if(ability.GetType().Name.ToLower() == abilityName.ToLower())
+            {
+                return ability;
+            }
+        }
+        Debug.Log("Could not find Ability");
         return null;
     }
 
