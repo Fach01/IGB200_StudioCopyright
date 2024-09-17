@@ -8,5 +8,5 @@ public abstract class BuilderAbility : MonoBehaviour, IAbility
 
     public string Description { get; set; }
 
-    public abstract void ActivateAbility();
+    public abstract void ActivateAbility(PlayerManager playerManager);
 }

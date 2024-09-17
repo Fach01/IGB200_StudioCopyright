@@ -2,17 +2,32 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Flush : MonoBehaviour
+public class Flush : BuilderAbility
 {
-    // Start is called before the first frame update
-    void Start()
+    public override void ActivateAbility(PlayerManager playerManager)
     {
-        
+        GameObject cardChosen = null;
+        int numDraw = 2;
+        StartCoroutine(SelectCard(null, playerManager, numDraw));
     }
 
-    // Update is called once per frame
-    void Update()
+    private IEnumerator SelectCard(GameObject cardChosen, PlayerManager playerManager, int numDraw)
     {
-        
+        while (cardChosen == null)
+        {
+            if (playerManager.selectedCard != null)
+            {
+                if (Input.GetKeyDown("Enter"))
+                {
+                    cardChosen = playerManager.selectedCard;
+                    playerManager.DiscardCard();
+
+                    for (int i = 0; i < numDraw; i++) {
+                        playerManager.deck.GetComponent<DeckManager>().DrawCard();
+                    }
+                }
+                yield return null;
+            }
+        }
     }
 }
