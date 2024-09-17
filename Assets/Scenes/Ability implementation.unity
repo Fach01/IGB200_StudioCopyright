@@ -1943,8 +1943,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 716173658}
-        m_TargetAssemblyTypeName: Deck, Assembly-CSharp
-        m_MethodName: DrawCard
+        m_TargetAssemblyTypeName: DeckManager, Assembly-CSharp
+        m_MethodName: OnClickDraw
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
