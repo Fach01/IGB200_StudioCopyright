@@ -13,8 +13,11 @@ MonoBehaviour:
   m_Name: Plumber
   m_EditorClassIdentifier: 
   cost: 20000
-  cardType: 2
+  image: {fileID: 0}
   name: Plumber
+  type: 2
   description: '-'
   utilities: 5
-  framework: 0
+  frameworks: 0
+  abilityName: Flush
+  abilityCost: 0
