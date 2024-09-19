@@ -33,6 +33,11 @@ public class HandManager : MonoBehaviour
         hand.Add(card);
     }
 
+    public bool SearchForCard(GameObject card)
+    {
+        return hand.Contains(card);
+    }
+
     public void OrderCards()
     {
         if (hand.Count <= 4)

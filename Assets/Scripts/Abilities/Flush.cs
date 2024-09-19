@@ -26,6 +26,10 @@ public override void ActivateAbility(PlayerManager playerManager)
 
         if (playerManager.selectedCard != null)
         {
+            if (playerManager.hand.GetComponent<HandManager>().SearchForCard(playerManager.selectedCard))
+            {
+                yield return null;
+            }
             Destroy(playerManager.selectedCard);
 
 
