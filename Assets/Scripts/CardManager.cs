@@ -44,7 +44,7 @@ public class CardManager : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         m_Tdescription = m_description.GetComponent<TMP_Text>();
 
         player = GameObject.FindWithTag("Player");
-        playerManager = player.GetComponent<PlayerManager>();
+        playerManager = player.GetComponent<PlayerManager>()
 
         cardanimator = this.GetComponent<Animator>();
         abilityManager = GameObject.Find("Ability Manager").GetComponent<AbilityManager>();

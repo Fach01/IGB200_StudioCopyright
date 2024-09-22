@@ -26,13 +26,13 @@ public class UIManager : MonoBehaviour
     public GameObject win;
     public GameObject lose;
 
-    public GameObject EndTurnAnimation;
-    public int tempBudget = 0;
-    public int tempFramework = 0;
-    public int tempUtilities = 0;
-    public TMP_Text Budget;
-    public TMP_Text Framework;
-    public TMP_Text Utilities;
+    //public GameObject EndTurnAnimation;
+    //public int tempBudget = 0;
+    //public int tempFramework = 0;
+    //public int tempUtilities = 0;
+    //public TMP_Text Budget;
+    //public TMP_Text Framework;
+    //public TMP_Text Utilities;
     // Start is called before the first frame update
     private void Start()
     {

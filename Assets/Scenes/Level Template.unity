@@ -1138,8 +1138,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   musicSounds: []
   sfxSounds: []
-  musicSource: {fileID: 0}
-  sfxSource: {fileID: 0}
+  musicSource: {fileID: 594719355}
+  sfxSource: {fileID: 1479076824}
   musicV: 0
   SFXV: 0
 --- !u!4 &294105829
@@ -4622,8 +4622,8 @@ MonoBehaviour:
   startBudget: 300000
   utilitiesGoal: 15
   frameworksGoal: 20
-  win: {fileID: 319837233}
-  lose: {fileID: 1266718894}
+  win: {fileID: 0}
+  lose: {fileID: 0}
 --- !u!4 &1201134672
 Transform:
   m_ObjectHideFlags: 0
@@ -4842,10 +4842,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf9b28272a9971f42a8315790bdfa066, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelManager: {fileID: 0}
+  levelManager: {fileID: 1201134670}
   player: {fileID: 176488109}
   cards: []
-  playAbility: {fileID: 789807332}
+  playAbility: {fileID: 958162640}
 --- !u!1 &1266718894
 GameObject:
   m_ObjectHideFlags: 0
@@ -6161,6 +6161,13 @@ MonoBehaviour:
   replaceCard: {fileID: 572032353}
   win: {fileID: 319837233}
   lose: {fileID: 1266718894}
+  EndTurnAnimation: {fileID: 0}
+  tempBudget: 0
+  tempFramework: 0
+  tempUtilities: 0
+  Budget: {fileID: 0}
+  Framework: {fileID: 0}
+  Utilities: {fileID: 0}
 --- !u!1 &1862942036
 GameObject:
   m_ObjectHideFlags: 0
@@ -6252,6 +6259,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelManager: {fileID: 0}
   hand: []
+  inAnimation: 0
 --- !u!1 &2034677666
 GameObject:
   m_ObjectHideFlags: 0
