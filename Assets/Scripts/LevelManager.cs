@@ -2,6 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Net.Mail;
+using UnityEngine.Playables;
 
 public class LevelManager : MonoBehaviour
 {
@@ -106,12 +107,26 @@ public class LevelManager : MonoBehaviour
 
     public void PlayPhase()
     {
+        UIManager.EndTurnAnimation.SetActive(true);
+        // animation will play at the start of the play phase to high light all cards in play
         for (int i = 0; i < playFieldManager.cards.Count; i++)
         {
             if (playFieldManager.cards[i] == null)
             {
                 continue;
             }
+            playFieldManager.cards[i].GetComponent<CardManager>().cardanimator.SetBool("Add Resource", true);
+
+        }
+        //then the tallying of all the resources 
+            for (int i = 0; i < playFieldManager.cards.Count; i++)
+        {
+            if (playFieldManager.cards[i] == null)
+            {
+                continue;
+            }
+            //card animation plays
+            
             int cost = playFieldManager.cards[i].GetComponent<CardManager>().m_card.cost;
             int utilities = playFieldManager.cards[i].GetComponent<CardManager>().m_card.utilities;
             int frameworks = playFieldManager.cards[i].GetComponent<CardManager>().m_card.frameworks;
@@ -152,7 +167,6 @@ public class LevelManager : MonoBehaviour
     {
         levelBudget = turnBudget;
         turn += 1;
-
         UIManager.SetBudgetText(levelBudget.ToString());
         UIManager.SetUtilitiesText(utilitiesCount.ToString());
         UIManager.SetFrameworksText(frameworksCount.ToString());

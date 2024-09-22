@@ -1042,7 +1042,9 @@ GameObject:
   - component: {fileID: 7610664994471293433}
   - component: {fileID: 6640946585071109945}
   - component: {fileID: 4798922814387829388}
+  - component: {fileID: -3206015304324103614}
   - component: {fileID: 3434329577269264974}
+  - component: {fileID: 4628520126595079682}
   m_Layer: 5
   m_Name: CardButton
   m_TagString: Untagged
@@ -1174,6 +1176,20 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &-3206015304324103614
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5862813643101496642}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3754b0d58456b344590c4340eed8cdc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 4628520126595079682}
+  parameter: Highlighted
 --- !u!114 &3434329577269264974
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1195,6 +1211,28 @@ MonoBehaviour:
   m_frameworks: {fileID: 5276792045792349304}
   m_description: {fileID: 2546510180191457987}
   m_active: 0
+  cardanimator: {fileID: 0}
+--- !u!95 &4628520126595079682
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5862813643101496642}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 60d9fd027e7b2c7448df70dc6c8d069a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 1
+  m_ApplyRootMotion: 1
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &6745449864735657605
 GameObject:
   m_ObjectHideFlags: 0
