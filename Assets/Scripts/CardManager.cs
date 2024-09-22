@@ -29,6 +29,7 @@ public class CardManager : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
     private GameObject player;
     private PlayerManager playerManager;
+    private AbilityManager abilityManager;
 
     public Animator cardanimator;
 
@@ -43,9 +44,10 @@ public class CardManager : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         m_Tdescription = m_description.GetComponent<TMP_Text>();
 
         player = GameObject.FindWithTag("Player");
-        playerManager = player.GetComponent<PlayerManager>();
+        playerManager = player.GetComponent<PlayerManager>()
 
         cardanimator = this.GetComponent<Animator>();
+        abilityManager = GameObject.Find("Ability Manager").GetComponent<AbilityManager>();
     }
 
     public void SetCard(Card card)
@@ -59,6 +61,13 @@ public class CardManager : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         m_Tutilities.text = card.utilities.ToString();
         m_Tframeworks.text = card.frameworks.ToString();
         m_Tdescription.text = card.description;
+
+        card.ability = abilityManager.AssignAbility(card.abilityName);
+        // TODO make description what its meant 2 be
+        if (card.ability != null)
+        {
+            m_Tdescription.text = $"{card.abilityName} {card.abilityCost} - {card.ability.Description}";
+        }
     }
     public void SetActiveCard()
     {

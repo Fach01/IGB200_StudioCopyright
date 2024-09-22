@@ -13,8 +13,11 @@ MonoBehaviour:
   m_Name: Electrician
   m_EditorClassIdentifier: 
   cost: 30000
-  cardType: 2
+  image: {fileID: 0}
   name: Electrician
+  type: 2
   description: '-'
   utilities: 5
-  framework: 0
+  frameworks: 0
+  abilityName: 
+  abilityCost: 0

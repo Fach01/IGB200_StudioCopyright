@@ -13,8 +13,11 @@ MonoBehaviour:
   m_Name: Architect
   m_EditorClassIdentifier: 
   cost: 20000
-  cardType: 1
+  image: {fileID: 0}
   name: Architect
+  type: 1
   description: '-'
   utilities: 0
-  framework: 1
+  frameworks: 1
+  abilityName: 
+  abilityCost: 0

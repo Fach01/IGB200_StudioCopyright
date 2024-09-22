@@ -26,6 +26,9 @@ public class LevelManager : MonoBehaviour
 
     private int turn = 1;
 
+    public GameObject win;
+    public GameObject lose;
+
     private void Awake()
     {
         playerManager = player.GetComponent<PlayerManager>();
@@ -77,6 +80,7 @@ public class LevelManager : MonoBehaviour
         }
 
         UIManager.SetTurnText(turn);
+        UIManager.SetBudgetText(levelBudget.ToString());
 
         playerManager.phase = Phase.PreTurn;
     }
@@ -96,6 +100,7 @@ public class LevelManager : MonoBehaviour
 
     public void EndSetupPhase()
     {
+        
         playerManager.SelectCard(null);
         playerManager.phase = Phase.Play;
     }
@@ -129,9 +134,27 @@ public class LevelManager : MonoBehaviour
             turnBudget -= cost;
             utilitiesCount += utilities;
             frameworksCount += frameworks;
+
+            
         }
         // TODO: add budged turn loss text animation
+
+        UIManager.SetBudgetText(turnBudget.ToString());
+        UIManager.SetUtilitiesText(utilitiesCount.ToString());
+        UIManager.SetFrameworksText(frameworksCount.ToString());
+
+        if (utilitiesCount >= utilitiesGoal && frameworksCount >= frameworksGoal)
+        {
+            win.SetActive(true);
+        }
+        else if (turnBudget <= 0) 
+        {
+             lose.SetActive(true);
+        }
+
         playerManager.phase = Phase.Event;
+
+        
     }
 
     public void EventPhase()

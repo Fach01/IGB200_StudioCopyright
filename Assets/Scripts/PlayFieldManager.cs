@@ -13,8 +13,12 @@ public class PlayFieldManager : MonoBehaviour
     private PlayerManager playerController;
     private int capacity = 5;
 
+    public GameObject playAbility;
+
     private void Start()
     {
+        playAbility.SetActive(false);
+
         playerController = player.GetComponent<PlayerManager>();
 
         for (int i = 0; i < capacity; i++)
@@ -50,12 +54,24 @@ public class PlayFieldManager : MonoBehaviour
             }
         }
 
-        OrderCards();
-        if (currentCard != null)
+        Card cardDetails = currentCard.GetComponent<CardManager>().m_card;
+
+        if (cardDetails.type != CardType.Planner && cardDetails.ability != null)
         {
-            currentCard.transform.Translate(0, 20f, 0);
+            currentCard.transform.position = new Vector3(150f, 400f, 0);
+            playAbility.SetActive(true);
+            playAbility.GetComponent<AbilityUI>().SetCard(cardDetails);
         }
-        return added;
+        else
+        {
+            OrderCards();
+            if (currentCard != null)
+            {
+                currentCard.transform.Translate(0, 20f, 0);
+            }
+        }
+
+        return added; 
     }
 
     public void OrderCards()

@@ -37,7 +37,15 @@ public class DeckManager : MonoBehaviour
 
         // TODO: Animate picking up the card
 
-        // send to playercontroller to handle action points
+        
         PlayerManager.DrawCard(newCard);
+    }
+
+    public void OnClickDraw()
+    {
+        DrawCard();
+        // send to playercontroller to handle action points
+        PlayerManager.DecreaseActionPoints();
+
     }
 }

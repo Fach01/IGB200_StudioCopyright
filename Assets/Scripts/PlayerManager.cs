@@ -74,7 +74,7 @@ public class PlayerManager : MonoBehaviour
         }
         if (card != null)
         {
-            card.transform.Translate(0, 20f, 0);
+            card.transform.Translate(0, 20f, 0f);
         }
         selectedCard = card;
         cardSelected = true;
@@ -96,14 +96,19 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
-    public void DrawCard(GameObject card)
+    public void DecreaseActionPoints()
     {
-        // Add the card to the player's hand
+
         if (actionPoints > 0 && phase != Phase.Play && phase != Phase.Event && phase != Phase.End)
         {
             actionPoints -= 1;
-            hand.GetComponent<HandManager>().AddCard(card);
+            
         }
+    }
+
+    public void DrawCard(GameObject card)
+    {
+        hand.GetComponent<HandManager>().AddCard(card);
     }
 
     public void DiscardCard()

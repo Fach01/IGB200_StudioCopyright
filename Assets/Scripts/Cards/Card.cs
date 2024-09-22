@@ -10,6 +10,10 @@ public class Card : ScriptableObject
     public string description;
     public int utilities; // amount of utilities recieved from playing the card
     public int frameworks;
-    public Ability ability; // ability script, can be passive or activated
+    public string abilityName;
+    public int abilityCost;
+
+    [HideInInspector]
+    public IAbility ability; // ability script, can be passive or activated
 
 }

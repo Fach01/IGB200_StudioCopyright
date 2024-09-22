@@ -13,8 +13,11 @@ MonoBehaviour:
   m_Name: Utilities Estimator
   m_EditorClassIdentifier: 
   cost: 30000
-  cardType: 0
+  image: {fileID: 0}
   name: Utilities Estimator
+  type: 2
   description: '-'
-  utilities: 0
-  framework: 0
+  utilities: 5
+  frameworks: 0
+  abilityName: 
+  abilityCost: 0

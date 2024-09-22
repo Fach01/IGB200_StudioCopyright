@@ -640,7 +640,7 @@ GameObject:
   - component: {fileID: 6249243757543390904}
   - component: {fileID: 39953585456857488}
   m_Layer: 5
-  m_Name: Frameworks Value
+  m_Name: 'Frameworks '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -774,7 +774,7 @@ GameObject:
   - component: {fileID: 6807223258792715847}
   - component: {fileID: 7171795422434978085}
   m_Layer: 5
-  m_Name: Frameworks
+  m_Name: Frameworks Value
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1208,7 +1208,7 @@ MonoBehaviour:
   m_name: {fileID: 1757733059434463131}
   m_type: {fileID: 5536405888853420313}
   m_utilities: {fileID: 6745449864735657605}
-  m_frameworks: {fileID: 4796065478988068332}
+  m_frameworks: {fileID: 5276792045792349304}
   m_description: {fileID: 2546510180191457987}
   m_active: 0
   cardanimator: {fileID: 0}

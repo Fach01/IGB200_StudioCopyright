@@ -15,8 +15,9 @@ MonoBehaviour:
   cost: 30000
   image: {fileID: 21300000, guid: 24ed43db644d50b4e90940a9dc8c5681, type: 3}
   name: Bricklayer
-  type: 0
-  description: '-'
+  type: 1
+  description: qwggqiweyoqiwueqiowejuqowiewqiwuegqwuieiqwge
   utilities: 0
-  frameworks: 0
-  ability: {fileID: 0}
+  frameworks: 10
+  abilityName: Foundation
+  abilityCost: 30000

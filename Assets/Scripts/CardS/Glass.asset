@@ -13,8 +13,11 @@ MonoBehaviour:
   m_Name: Glass
   m_EditorClassIdentifier: 
   cost: 30000
-  cardType: 1
+  image: {fileID: 0}
   name: Glass
+  type: 1
   description: '-'
   utilities: 0
-  framework: 5
+  frameworks: 5
+  abilityName: 
+  abilityCost: 0
