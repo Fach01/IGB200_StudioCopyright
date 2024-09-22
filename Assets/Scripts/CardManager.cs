@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -29,6 +30,8 @@ public class CardManager : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     private GameObject player;
     private PlayerManager playerManager;
 
+    public Animator cardanimator;
+
     private void Awake()
     {
         m_image = m_picture.GetComponent<Image>();
@@ -41,6 +44,8 @@ public class CardManager : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
         player = GameObject.FindWithTag("Player");
         playerManager = player.GetComponent<PlayerManager>();
+
+        cardanimator = this.GetComponent<Animator>();
     }
 
     public void SetCard(Card card)
@@ -55,7 +60,6 @@ public class CardManager : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         m_Tframeworks.text = card.frameworks.ToString();
         m_Tdescription.text = card.description;
     }
-
     public void SetActiveCard()
     {
         // add animation of picking it from hand?
@@ -78,8 +82,10 @@ public class CardManager : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         {
             return;
         }
-        m_active = true;
         transform.Translate(0, 10f, 0);
+        m_active = true;
+
+
     }
     public void OnPointerExit(PointerEventData eventData)
     {
@@ -92,10 +98,15 @@ public class CardManager : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         {
             return;
         }
-        m_active = false;
         transform.Translate(0, -10f, 0);
+        m_active = false;
+
     }
 
+    public void EndAnimation(string parameter)
+    {
+        cardanimator.SetBool(parameter, false);
+    }
     private void OnDestroy()
     {
         // discard animation
