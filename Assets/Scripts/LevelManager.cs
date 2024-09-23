@@ -3,6 +3,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Net.Mail;
 using UnityEngine.Playables;
+using System.Collections;
+using UnityEditor.Animations;
 
 public class LevelManager : MonoBehaviour
 {
@@ -28,6 +30,12 @@ public class LevelManager : MonoBehaviour
 
     public GameObject win;
     public GameObject lose;
+
+    [Header("Animation Stuff")]
+    public int tempBudget;
+    public int tempFrames;
+    public int tempUtil;
+
 
     private void Awake()
     {
@@ -107,41 +115,11 @@ public class LevelManager : MonoBehaviour
 
     public void PlayPhase()
     {
-        UIManager.EndTurnAnimation.SetActive(true);
-        // animation will play at the start of the play phase to high light all cards in play
-        for (int i = 0; i < playFieldManager.cards.Count; i++)
-        {
-            if (playFieldManager.cards[i] == null)
-            {
-                continue;
-            }
-            playFieldManager.cards[i].GetComponent<CardManager>().cardanimator.SetBool("Add Resource", true);
 
-        }
-        //then the tallying of all the resources 
-            for (int i = 0; i < playFieldManager.cards.Count; i++)
-        {
-            if (playFieldManager.cards[i] == null)
-            {
-                continue;
-            }
-            //card animation plays
-            
-            int cost = playFieldManager.cards[i].GetComponent<CardManager>().m_card.cost;
-            int utilities = playFieldManager.cards[i].GetComponent<CardManager>().m_card.utilities;
-            int frameworks = playFieldManager.cards[i].GetComponent<CardManager>().m_card.frameworks;
-
-            turnBudget -= cost;
-            utilitiesCount += utilities;
-            frameworksCount += frameworks;
-
-            
-        }
+        StartCoroutine(PlayPhaseAnimation());
         // TODO: add budged turn loss text animation
 
-        UIManager.SetBudgetText(turnBudget.ToString());
-        UIManager.SetUtilitiesText(utilitiesCount.ToString());
-        UIManager.SetFrameworksText(frameworksCount.ToString());
+        
 
         if (utilitiesCount >= utilitiesGoal && frameworksCount >= frameworksGoal)
         {
@@ -187,6 +165,97 @@ public class LevelManager : MonoBehaviour
     public void AddFrameworks(int frameworks)
     {
         frameworksCount += frameworks;
+    }
+    
+    IEnumerator PlayPhaseAnimation()
+    {
+        // animation will play at the start of the play phase to show all cards in play
+        for (int i = 0; i < playFieldManager.cards.Count; i++)
+        {
+
+            if (playFieldManager.cards[i] == null)
+            {
+                //set the temporary pools as equal to 0 then play the the tally gains and losses animation
+               
+
+                StartCoroutine(TallyGainsAndLosses());
+                UIManager.EndTurnAnimation.SetActive(true);
+                yield break;
+            }
+            playFieldManager.cards[i].GetComponent<CardManager>().cardanimator.SetBool("Add Resource", true);
+            yield return new WaitForSeconds(.2f);
+        }
+    }
+    IEnumerator TallyGainsAndLosses()
+    {
+        // animation will play at the start of the play phase to show all cards in play
+        for (int i = 0; i < playFieldManager.cards.Count; i++)
+        {
+            yield return new WaitForSeconds(1f);
+
+
+            UIManager.EndTurnAnimation.GetComponent<Animator>().SetBool("Gives Frames",false);
+
+            if (playFieldManager.cards[i] == null)
+            {
+                UIManager.EndTurnAnimation.SetActive(false);
+
+                turnBudget -= tempBudget;
+                utilitiesCount += tempUtil;
+                frameworksCount += tempFrames;
+
+                ResetTempPools();
+
+                UIManager.SetBudgetText(turnBudget.ToString());
+                UIManager.SetUtilitiesText(utilitiesCount.ToString());
+                UIManager.SetFrameworksText(frameworksCount.ToString());
+                
+                yield break;
+            }
+            //card animation plays
+
+            int cost = playFieldManager.cards[i].GetComponent<CardManager>().m_card.cost;
+            int utilities = playFieldManager.cards[i].GetComponent<CardManager>().m_card.utilities;
+            int frameworks = playFieldManager.cards[i].GetComponent<CardManager>().m_card.frameworks;
+
+            // if the card gives utitlities or frameworks an animation will play
+
+            tempBudget -= cost;
+            tempUtil += utilities;
+            tempFrames += frameworks;
+
+            UIManager.DisplayTemporaryBudget(tempBudget);
+            UIManager.DisplayTemporaryFramework(tempUtil);
+            UIManager.DisplayTemporaryUtilities(tempFrames);
+
+            if (utilities > 0)
+            {
+                Debug.Log(utilities);
+                UIManager.EndTurnAnimation.GetComponent<Animator>().SetBool("Gives Frames", true);
+
+            }
+
+            if (frameworks > 0)
+            {
+                //Debug.Log(frameworks);
+                UIManager.EndTurnAnimation.GetComponent<Animator>().SetBool("Gives Util", true);
+
+            }
+            yield return new WaitForSeconds(0.1f);
+            UIManager.EndTurnAnimation.GetComponent<Animator>().SetBool("Gives Util", false);
+            UIManager.EndTurnAnimation.GetComponent<Animator>().SetBool("Gives Frames", false);
+        }
+    }
+    public void ResetTempPools()
+    {
+        tempBudget = 0;
+        tempUtil = 0;
+        tempFrames = 0;
+
+        UIManager.DisplayTemporaryBudget(tempBudget);
+        UIManager.DisplayTemporaryFramework(tempUtil);
+        UIManager.DisplayTemporaryUtilities(tempFrames);
+
     }
 }
 

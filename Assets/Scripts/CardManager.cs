@@ -32,6 +32,7 @@ public class CardManager : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     private AbilityManager abilityManager;
 
     public Animator cardanimator;
+    public bool inanimation = false;
 
     private void Awake()
     {
@@ -44,7 +45,7 @@ public class CardManager : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         m_Tdescription = m_description.GetComponent<TMP_Text>();
 
         player = GameObject.FindWithTag("Player");
-        playerManager = player.GetComponent<PlayerManager>()
+        playerManager = player.GetComponent<PlayerManager>();
 
         cardanimator = this.GetComponent<Animator>();
         abilityManager = GameObject.Find("Ability Manager").GetComponent<AbilityManager>();
@@ -111,10 +112,14 @@ public class CardManager : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         m_active = false;
 
     }
-
+    public void EnterAnimation()
+    {
+        inanimation = true;
+    }
     public void EndAnimation(string parameter)
     {
         cardanimator.SetBool(parameter, false);
+        inanimation = false;
     }
     private void OnDestroy()
     {

@@ -26,13 +26,11 @@ public class UIManager : MonoBehaviour
     public GameObject win;
     public GameObject lose;
 
-    //public GameObject EndTurnAnimation;
-    //public int tempBudget = 0;
-    //public int tempFramework = 0;
-    //public int tempUtilities = 0;
-    //public TMP_Text Budget;
-    //public TMP_Text Framework;
-    //public TMP_Text Utilities;
+    public GameObject EndTurnAnimation;
+
+    public TMP_Text Budget;
+    public TMP_Text Framework;
+    public TMP_Text Utilities;
     // Start is called before the first frame update
     private void Start()
     {
@@ -103,26 +101,18 @@ public class UIManager : MonoBehaviour
     
     public void DisplayTemporaryBudget(int Loss)
     {
-        tempBudget += Loss;
-        string BudgetLoss = tempBudget.ToString();
+        string BudgetLoss = Loss.ToString();
         Budget.text = BudgetLoss;
     }
     public void DisplayTemporaryFramework(int Gain)
     {
-        tempFramework += Gain;
-        string FrameGain = tempFramework.ToString();
+        string FrameGain = Gain.ToString();
         Framework.text = FrameGain;
     }
     public void DisplayTemporaryUtilities(int Gain)
     {
-        tempUtilities += Gain;
-        string UtilGain = tempUtilities.ToString();
+        string UtilGain = Gain.ToString();
         Utilities.text = UtilGain;
     }
-    public void ResetTemp()
-    {
-        tempBudget = 0;
-        tempFramework = 0;
-        tempUtilities = 0;  
-    }
+
 }
