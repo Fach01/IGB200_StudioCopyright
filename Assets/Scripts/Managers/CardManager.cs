@@ -32,6 +32,7 @@ public class CardManager : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     private AbilityManager abilityManager;
 
     public Animator cardanimator;
+    private Transform Orientation;
     public bool inanimation = false;
 
     private void Awake()
@@ -49,6 +50,8 @@ public class CardManager : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
         cardanimator = this.GetComponent<Animator>();
         abilityManager = GameObject.Find("Ability Manager").GetComponent<AbilityManager>();
+
+        Orientation = this.transform;
     }
 
     public void SetCard(Card card)
@@ -120,6 +123,10 @@ public class CardManager : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     {
         cardanimator.SetBool(parameter, false);
         inanimation = false;
+    }
+    public void ResetOrientation()
+    {
+        this.transform.rotation = Orientation.rotation;
     }
     private void OnDestroy()
     {
