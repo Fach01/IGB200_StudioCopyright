@@ -19,17 +19,14 @@ public override void ActivateAbility(PlayerManager playerManager)
     //TODO check whether the card being played is still activated and if thats the issue
     IEnumerator SelectCard(PlayerManager playerManager, int numDraw)
     {
-        while (playerManager.selectedCard == null)
+        while (playerManager.selectedCard == null || !playerManager.hand.GetComponent<HandManager>().SearchForCard(playerManager.selectedCard))
         {
             yield return null;
         }
 
         if (playerManager.selectedCard != null)
         {
-            if (playerManager.hand.GetComponent<HandManager>().SearchForCard(playerManager.selectedCard))
-            {
-                yield return null;
-            }
+            
             Destroy(playerManager.selectedCard);
 
 

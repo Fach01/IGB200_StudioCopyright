@@ -27,14 +27,8 @@ public class PlayFieldManager : MonoBehaviour
         }
     }
 
-    private void Update()
+    public bool AddCard(GameObject currentCard)
     {
-    }
-
-    public bool PlayCurrentCard()
-    {
-        GameObject currentCard = playerController.selectedCard;
-
         if (cards.Contains(currentCard))
         {
             return false;
@@ -53,25 +47,43 @@ public class PlayFieldManager : MonoBehaviour
                 break;
             }
         }
+        return added;
+    }
 
-        Card cardDetails = currentCard.GetComponent<CardManager>().m_card;
+    public bool PlayCurrentCard(GameObject currentCard)
+    {
 
-        if (cardDetails.type != CardType.Planner && cardDetails.ability != null)
-        {
-            currentCard.transform.position = new Vector3(150f, 400f, 0);
-            playAbility.SetActive(true);
-            playAbility.GetComponent<AbilityUI>().SetCard(cardDetails);
-        }
-        else
-        {
-            OrderCards();
-            if (currentCard != null)
+        if (AddCard(currentCard)) {
+            Card cardDetails = currentCard.GetComponent<CardManager>().m_card;
+
+            if (cardDetails.type != CardType.Planner && cardDetails.ability != null)
             {
-                currentCard.transform.Translate(0, 20f, 0);
+                currentCard.transform.position = new Vector3(150f, 400f, 0);
+                playAbility.SetActive(true);
+                playAbility.GetComponent<AbilityUI>().SetCard(cardDetails);
             }
+            else
+            {
+                OrderCards();
+                if (currentCard != null)
+                {
+                    currentCard.transform.Translate(0, 20f, 0);
+                }
+            }
+            return true;
         }
 
-        return added; 
+        return false; 
+    }
+
+    public bool MoveCardToHand(GameObject card) {
+        if (cards.Contains(card))
+        {
+            cards.Remove(card);
+            playerController.hand.GetComponent<HandManager>().AddCard(card);
+            return true;
+        }
+        return false;
     }
 
     public void OrderCards()

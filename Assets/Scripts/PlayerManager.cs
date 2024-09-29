@@ -88,7 +88,7 @@ public class PlayerManager : MonoBehaviour
         }
         if (actionPoints > 0 && phase == Phase.Setup)
         {
-            if (playField.GetComponent<PlayFieldManager>().PlayCurrentCard())
+            if (playField.GetComponent<PlayFieldManager>().PlayCurrentCard(selectedCard))
             {
                 actionPoints -= 1;
             }

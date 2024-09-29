@@ -21,8 +21,10 @@ public class AbilityUI : MonoBehaviour
         {
             Debug.Log("oh no");
         }
-        playField.GetComponent<PlayFieldManager>().OrderCards();
-        this.gameObject.SetActive(false);
+        //deactivate buttons
+
+        //playField.GetComponent<PlayFieldManager>().OrderCards();
+        //this.gameObject.SetActive(false);
     }
 
     public void OnPlayCard()
