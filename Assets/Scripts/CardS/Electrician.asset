@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Electrician
   m_EditorClassIdentifier: 
   cost: 30000
-  image: {fileID: 0}
+  image: {fileID: 21300000, guid: 47fc099a7faab814b84c01266dbf49af, type: 3}
   name: Electrician
   type: 2
   description: '-'
