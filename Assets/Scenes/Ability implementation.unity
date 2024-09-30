@@ -1701,6 +1701,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 511643078}
   m_CullTransparentMesh: 1
+--- !u!1 &632087787
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 632087788}
+  - component: {fileID: 632087789}
+  m_Layer: 0
+  m_Name: Zap
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &632087788
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 632087787}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1394728856}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &632087789
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 632087787}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3092ea210beeafe4283e7c394ef5e922, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  desc: Switch any card on the field with one from your hand.
 --- !u!1 &652634257
 GameObject:
   m_ObjectHideFlags: 0
@@ -1887,16 +1932,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9c2d8e0c6fb8cd4dbe7858a61607a63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelManager: {fileID: 0}
+  levelManager: {fileID: 1201134670}
   player: {fileID: 176488109}
   cardPrefab: {fileID: 5862813643101496642, guid: 1acc8e753cd31794f814db0ee06f2ec9, type: 3}
   deck:
   - {fileID: 11400000, guid: c1214dc01243473489033ddfc0941e92, type: 2}
-  - {fileID: 11400000, guid: c1214dc01243473489033ddfc0941e92, type: 2}
-  - {fileID: 11400000, guid: c1214dc01243473489033ddfc0941e92, type: 2}
+  - {fileID: 11400000, guid: 69a0cccc92ae0604ea08d2e795f062ba, type: 2}
+  - {fileID: 11400000, guid: 69a0cccc92ae0604ea08d2e795f062ba, type: 2}
   - {fileID: 11400000, guid: ff4f2a4a7dfcd1f4e9fc33131e0380ce, type: 2}
   - {fileID: 11400000, guid: 8c8e2c913d4da8b4fa39795954481033, type: 2}
-  - {fileID: 11400000, guid: 70e7d7dab499529418ab6f6616ebbe8c, type: 2}
+  - {fileID: 11400000, guid: 69a0cccc92ae0604ea08d2e795f062ba, type: 2}
   - {fileID: 11400000, guid: 37ebd51ff740af84a9b028c13c3b53ad, type: 2}
   - {fileID: 11400000, guid: ff4f2a4a7dfcd1f4e9fc33131e0380ce, type: 2}
   - {fileID: 11400000, guid: 37ebd51ff740af84a9b028c13c3b53ad, type: 2}
@@ -2958,7 +3003,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playField: {fileID: 1265561410}
   player: {fileID: 176488109}
+  hand: {fileID: 1862942036}
   text: {fileID: 461792613}
+  playAbilityButton: {fileID: 1630463699}
+  playCardButton: {fileID: 1264922571}
 --- !u!1 &1264922569
 GameObject:
   m_ObjectHideFlags: 0
@@ -3362,6 +3410,7 @@ Transform:
   m_Children:
   - {fileID: 161217774}
   - {fileID: 70141521}
+  - {fileID: 632087788}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1394728857

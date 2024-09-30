@@ -32,6 +32,11 @@ public class HandManager : MonoBehaviour
         
     }
 
+    public bool SearchForCard(GameObject card)
+    {
+        return hand.Contains(card);
+    }
+
     public void OrderCards()
     {
         if (hand.Count <= 4)
@@ -76,6 +81,18 @@ public class HandManager : MonoBehaviour
                 Vector3 localPosition = hand[i].transform.localPosition;
                 localPosition.x = xPosition;
                 hand[i].transform.localPosition = localPosition;
+            }
+        }
+    }
+
+    public void ToggleActivateHand(bool activate)
+    {
+        foreach (GameObject card in hand)
+        {
+            Button cardButton = card.GetComponent<Button>();
+            if (cardButton != null)
+            {
+                cardButton.interactable = activate;
             }
         }
     }

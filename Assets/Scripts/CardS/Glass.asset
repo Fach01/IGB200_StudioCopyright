@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Glass
   m_EditorClassIdentifier: 
   cost: 30000
-  image: {fileID: 0}
+  image: {fileID: 21300000, guid: daef8f26820e516448cac2cc1df44e52, type: 3}
   name: Glass
   type: 1
   description: '-'
