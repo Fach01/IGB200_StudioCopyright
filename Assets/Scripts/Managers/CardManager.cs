@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -30,6 +31,10 @@ public class CardManager : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     private PlayerManager playerManager;
     private AbilityManager abilityManager;
 
+    public Animator cardanimator;
+    private Transform Orientation;
+    public bool inanimation = false;
+
     private void Awake()
     {
         m_image = m_picture.GetComponent<Image>();
@@ -42,7 +47,11 @@ public class CardManager : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
         player = GameObject.FindWithTag("Player");
         playerManager = player.GetComponent<PlayerManager>();
+
+        cardanimator = this.GetComponent<Animator>();
         abilityManager = GameObject.Find("Ability Manager").GetComponent<AbilityManager>();
+
+        Orientation = this.transform;
     }
 
     public void SetCard(Card card)
@@ -64,7 +73,6 @@ public class CardManager : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
             m_Tdescription.text = $"{card.abilityName} {card.abilityCost} - {card.ability.Description}";
         }
     }
-
     public void SetActiveCard()
     {
         // add animation of picking it from hand?
@@ -87,8 +95,10 @@ public class CardManager : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         {
             return;
         }
-        m_active = true;
         transform.Translate(0, 10f, 0);
+        m_active = true;
+
+
     }
     public void OnPointerExit(PointerEventData eventData)
     {
@@ -101,10 +111,23 @@ public class CardManager : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         {
             return;
         }
-        m_active = false;
         transform.Translate(0, -10f, 0);
-    }
+        m_active = false;
 
+    }
+    public void EnterAnimation()
+    {
+        inanimation = true;
+    }
+    public void EndAnimation(string parameter)
+    {
+        cardanimator.SetBool(parameter, false);
+        inanimation = false;
+    }
+    public void ResetOrientation()
+    {
+        this.transform.rotation = Orientation.rotation;
+    }
     private void OnDestroy()
     {
         // discard animation

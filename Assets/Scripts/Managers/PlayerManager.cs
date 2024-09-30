@@ -88,7 +88,7 @@ public class PlayerManager : MonoBehaviour
         }
         if (actionPoints > 0 && phase == Phase.Setup)
         {
-            if (playField.GetComponent<PlayFieldManager>().PlayCurrentCard())
+            if (playField.GetComponent<PlayFieldManager>().PlayCurrentCard(selectedCard))
             {
                 actionPoints -= 1;
             }
@@ -96,14 +96,16 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
-    public void DecreaseActionPoints()
+    public bool DecreaseActionPoints()
     {
 
         if (actionPoints > 0 && phase != Phase.Play && phase != Phase.Event && phase != Phase.End)
         {
             actionPoints -= 1;
+            return true;
             
         }
+        return false;
     }
 
     public void DrawCard(GameObject card)

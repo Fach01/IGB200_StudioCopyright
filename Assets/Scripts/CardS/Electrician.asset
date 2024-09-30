@@ -19,5 +19,5 @@ MonoBehaviour:
   description: '-'
   utilities: 5
   frameworks: 0
-  abilityName: 
-  abilityCost: 0
+  abilityName: Zap
+  abilityCost: 10000

@@ -10,11 +10,7 @@ public class HandManager : MonoBehaviour
     public List<GameObject> hand = new();
 
     private float cardWidth = 80f;
-
-    private void Start()
-    {
-
-    }
+    public bool inAnimation = false;
 
     private void Update()
     {
@@ -23,14 +19,22 @@ public class HandManager : MonoBehaviour
 
     public void AddCard(GameObject card)
     {
+
         /* TODO: Animate placing the card in the hand
          * get new card position in hand and move it there
          * move cards before new card gets added to hand
          */
 
         // Add the card to the player's hand
+        card.GetComponent<CardManager>().cardanimator.SetBool("Initiate", true); // Plays the Intro animation for the cards
         card.transform.SetParent(transform, false);
         hand.Add(card);
+        
+    }
+
+    public bool SearchForCard(GameObject card)
+    {
+        return hand.Contains(card);
     }
 
     public void OrderCards()
@@ -47,6 +51,7 @@ public class HandManager : MonoBehaviour
                 }
 
                 // Update the card's position
+
                 float xPosition = (i - (hand.Count - 1) / 2f) * cardWidth;
 
                 // TODO: Animate moving the card
@@ -55,7 +60,8 @@ public class HandManager : MonoBehaviour
                 hand[i].transform.localPosition = localPosition;
             }
         }
-        else
+
+        else 
         {
             float startPosition = (-transform.GetComponent<RectTransform>().rect.width + cardWidth) / 2f + 1.5f * cardWidth / hand.Count;
             float step = (transform.GetComponent<RectTransform>().rect.width - cardWidth) / hand.Count;
@@ -67,7 +73,7 @@ public class HandManager : MonoBehaviour
                     hand.Remove(hand[i]);
                     continue;
                 }
-
+                
                 // Update the card's position
                 float xPosition = startPosition + i * step;
 
@@ -75,6 +81,18 @@ public class HandManager : MonoBehaviour
                 Vector3 localPosition = hand[i].transform.localPosition;
                 localPosition.x = xPosition;
                 hand[i].transform.localPosition = localPosition;
+            }
+        }
+    }
+
+    public void ToggleActivateHand(bool activate)
+    {
+        foreach (GameObject card in hand)
+        {
+            Button cardButton = card.GetComponent<Button>();
+            if (cardButton != null)
+            {
+                cardButton.interactable = activate;
             }
         }
     }
