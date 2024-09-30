@@ -83,4 +83,16 @@ public class HandManager : MonoBehaviour
             }
         }
     }
+
+    public void ToggleActivateHand(bool activate)
+    {
+        foreach (GameObject card in hand)
+        {
+            Button cardButton = card.GetComponent<Button>();
+            if (cardButton != null)
+            {
+                cardButton.interactable = activate;
+            }
+        }
+    }
 }

@@ -33,6 +33,7 @@ public class AbilityUI : MonoBehaviour
 
     public void OnPlayCard()
     {
+        // TODO: toggle hand on
         playField.GetComponent<PlayFieldManager>().OrderCards();
         this.gameObject.SetActive(false);
 
@@ -47,6 +48,7 @@ public class AbilityUI : MonoBehaviour
 
     public void PlayingAbility()
     {
+        // TODO: toggle hand on
         text.text = card.ability.Description + "\n" + defaultText;
 
         //disable buttons
@@ -57,6 +59,7 @@ public class AbilityUI : MonoBehaviour
 
     public void Reset()
     {
+
         playAbilityButton.gameObject.SetActive(true);
         playCardButton.gameObject.SetActive(true);
 

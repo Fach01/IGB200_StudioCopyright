@@ -60,6 +60,7 @@ public class PlayFieldManager : MonoBehaviour
             {
                 currentCard.transform.position = new Vector3(150f, 400f, 0);
                 playAbility.SetActive(true);
+                // TODO: toggle hand off
                 playAbility.GetComponent<AbilityUI>().SetCard(cardDetails);
             }
             else
