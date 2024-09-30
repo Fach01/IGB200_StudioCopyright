@@ -1932,7 +1932,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9c2d8e0c6fb8cd4dbe7858a61607a63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelManager: {fileID: 0}
+  levelManager: {fileID: 1201134670}
   player: {fileID: 176488109}
   cardPrefab: {fileID: 5862813643101496642, guid: 1acc8e753cd31794f814db0ee06f2ec9, type: 3}
   deck:
@@ -3003,6 +3003,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playField: {fileID: 1265561410}
   player: {fileID: 176488109}
+  hand: {fileID: 1862942036}
   text: {fileID: 461792613}
   playAbilityButton: {fileID: 1630463699}
   playCardButton: {fileID: 1264922571}

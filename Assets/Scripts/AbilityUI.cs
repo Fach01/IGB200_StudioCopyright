@@ -8,6 +8,7 @@ public class AbilityUI : MonoBehaviour
 {
     public GameObject playField;
     public GameObject player;
+    public GameObject hand;
     public TMP_Text text;
 
     public Button playAbilityButton;
@@ -33,7 +34,9 @@ public class AbilityUI : MonoBehaviour
 
     public void OnPlayCard()
     {
-        // TODO: toggle hand on
+        // toggle hand on
+        hand.GetComponent<HandManager>().ToggleActivateHand(true);
+
         playField.GetComponent<PlayFieldManager>().OrderCards();
         this.gameObject.SetActive(false);
 
@@ -41,6 +44,9 @@ public class AbilityUI : MonoBehaviour
 
     public void SetCard(Card currentCard)
     {
+        // toggle hand off
+        hand.GetComponent<HandManager>().ToggleActivateHand(false);
+
         card = currentCard;
         text.text = $"Play {card.abilityName} for {card.abilityCost}?";
         
@@ -48,7 +54,8 @@ public class AbilityUI : MonoBehaviour
 
     public void PlayingAbility()
     {
-        // TODO: toggle hand on
+        // toggle hand on
+        hand.GetComponent<HandManager>().ToggleActivateHand(true);
         text.text = card.ability.Description + "\n" + defaultText;
 
         //disable buttons

@@ -43,9 +43,12 @@ public class DeckManager : MonoBehaviour
 
     public void OnClickDraw()
     {
-        DrawCard();
-        // send to playercontroller to handle action points
-        PlayerManager.DecreaseActionPoints();
-
+        // check action points
+        if (PlayerManager.DecreaseActionPoints())
+        {
+            DrawCard();
+            levelManager.GetComponent<LevelManager>().Spend(10000);
+        }
+        // TODO: handle alternate
     }
 }
