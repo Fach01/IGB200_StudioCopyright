@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 public class Zap : BuilderAbility
@@ -8,13 +9,18 @@ public class Zap : BuilderAbility
     public override string Description { set { value = desc; } get { return desc; } }
     public string desc = "wow!";
 
-    public override void ActivateAbility(PlayerManager playerManager)
+    public override void ActivateAbility(PlayerManager playerManager, GameObject AbilityUI)
     {
-        Debug.Log("Wooowww foundation");
+        if(playerManager.playField.GetComponent<PlayFieldManager>().cards.Count == 0)
+        {
+            // cant complete this - handle
+        }
+        playerManager.playField.GetComponent<Button>().interactable = false;
+        StartCoroutine(SelectCards(playerManager, false, null, null, AbilityUI));
     }
 
 
-    IEnumerator SelectCards(PlayerManager playerManager, bool confirmed, GameObject chosenHandCard, GameObject chosenPlayedCard)
+    IEnumerator SelectCards(PlayerManager playerManager, bool confirmed, GameObject chosenHandCard, GameObject chosenPlayedCard, GameObject AbilityUI)
     {
         // select one card from hand and one from playfield, then swap them
 
@@ -53,7 +59,8 @@ public class Zap : BuilderAbility
         playerManager.playField.GetComponent<PlayFieldManager>().OrderCards();
 
 
-        //adjust UI stuff
+        playerManager.playField.GetComponent<Button>().interactable = true;
+        AbilityUI.GetComponent<AbilityUI>().Reset();
 
         yield break;
     }

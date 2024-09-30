@@ -6,5 +6,5 @@ public abstract class BuilderAbility : MonoBehaviour, IAbility
 {
     public abstract string Description { get; set; }
 
-    public abstract void ActivateAbility(PlayerManager playerManager);
+    public abstract void ActivateAbility(PlayerManager playerManager, GameObject AbilityUI);
 }
