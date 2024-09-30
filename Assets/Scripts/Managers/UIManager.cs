@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [ExecuteAlways]
@@ -25,6 +26,11 @@ public class UIManager : MonoBehaviour
     public GameObject win;
     public GameObject lose;
 
+    public GameObject EndTurnAnimation;
+
+    public TMP_Text Budget;
+    public TMP_Text Framework;
+    public TMP_Text Utilities;
     // Start is called before the first frame update
     private void Start()
     {
@@ -89,6 +95,24 @@ public class UIManager : MonoBehaviour
     public void SetActionPointsText(string actionPointsText)
     {
         TMP_Text actionPointsTextObject = actionPoints.GetComponent<TMP_Text>();
-        actionPointsTextObject.text = actionPointsText;
+        actionPointsTextObject.text = actionPointsText + "/2";
     }
+    // the following 3 methods will display each increase and decrease of the budget at the end of the round 
+    
+    public void DisplayTemporaryBudget(int Loss)
+    {
+        string BudgetLoss = Loss.ToString();
+        Budget.text = BudgetLoss;
+    }
+    public void DisplayTemporaryFramework(int Gain)
+    {
+        string FrameGain = Gain.ToString();
+        Framework.text = FrameGain;
+    }
+    public void DisplayTemporaryUtilities(int Gain)
+    {
+        string UtilGain = Gain.ToString();
+        Utilities.text = UtilGain;
+    }
+
 }
