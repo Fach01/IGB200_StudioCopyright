@@ -84,7 +84,7 @@ public class LevelManager : MonoBehaviour
 
         for (int i = 0; i < 4; i++)
         {
-            deck.GetComponent<DeckManager>().DrawCard();
+            playerManager.DrawCard();
         }
 
         UIManager.SetTurnText(turn);
