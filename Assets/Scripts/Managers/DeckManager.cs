@@ -20,11 +20,11 @@ public class DeckManager : MonoBehaviour
     }
 
     // picks a random card from the deck and moves it to the player's hand
-    public void DrawCard()
+    public GameObject DrawCard()
     {
         if (deck.Count <= 0)
         {
-            return;
+            return null;
         }
 
         // create a new card from a random card in the deck and set the card's values
@@ -35,10 +35,18 @@ public class DeckManager : MonoBehaviour
 
         deck.Remove(randomCard);
 
-        // TODO: Animate picking up the card
+        return newCard;
 
-        
-        PlayerManager.DrawCard(newCard);
+        // TODO: Animate picking up the card
+ 
+    }
+
+    // return an instantiated card to the deck
+    public void AddCardToDeck(GameObject cardObject)
+    {
+        Card card = cardObject.GetComponent<CardManager>().m_card;
+        deck.Add(card);
+        Destroy(cardObject);
     }
 
     public void OnClickDraw()
@@ -46,7 +54,7 @@ public class DeckManager : MonoBehaviour
         // check action points
         if (PlayerManager.DecreaseActionPoints())
         {
-            DrawCard();
+            PlayerManager.DrawCard();
             levelManager.GetComponent<LevelManager>().Spend(10000);
         }
         // TODO: handle alternate

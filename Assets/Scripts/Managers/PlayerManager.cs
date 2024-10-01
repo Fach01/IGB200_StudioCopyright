@@ -108,8 +108,9 @@ public class PlayerManager : MonoBehaviour
         return false;
     }
 
-    public void DrawCard(GameObject card)
+    public void DrawCard()
     {
+        GameObject card = deck.GetComponent<DeckManager>().DrawCard();
         hand.GetComponent<HandManager>().AddCard(card);
     }
 
