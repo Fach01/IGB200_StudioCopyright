@@ -5835,7 +5835,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1414144146}
   m_CullTransparentMesh: 1
-<<<<<<< Updated upstream
 --- !u!1 &1432327378
 GameObject:
   m_ObjectHideFlags: 0
@@ -5971,8 +5970,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1432327378}
   m_CullTransparentMesh: 1
-=======
->>>>>>> Stashed changes
 --- !u!1 &1485012869
 GameObject:
   m_ObjectHideFlags: 0
@@ -6392,11 +6389,7 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
-<<<<<<< Updated upstream
 --- !u!224 &1599359997
-=======
---- !u!224 &1591016230
->>>>>>> Stashed changes
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -7266,7 +7259,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelManager: {fileID: 0}
-  abilityManager: {fileID: 0}
   hand: []
   inAnimation: 0
 --- !u!1 &2034677666
@@ -7537,63 +7529,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2064756155}
   m_CullTransparentMesh: 1
---- !u!1001 &4692060774042546433
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4547845632711483098, guid: 5381c1a5e7c01f8428d9827b3d551480, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 843.36
-      objectReference: {fileID: 0}
-    - target: {fileID: 4547845632711483098, guid: 5381c1a5e7c01f8428d9827b3d551480, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 533.3705
-      objectReference: {fileID: 0}
-    - target: {fileID: 4547845632711483098, guid: 5381c1a5e7c01f8428d9827b3d551480, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 870.32336
-      objectReference: {fileID: 0}
-    - target: {fileID: 4547845632711483098, guid: 5381c1a5e7c01f8428d9827b3d551480, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4547845632711483098, guid: 5381c1a5e7c01f8428d9827b3d551480, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4547845632711483098, guid: 5381c1a5e7c01f8428d9827b3d551480, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4547845632711483098, guid: 5381c1a5e7c01f8428d9827b3d551480, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4547845632711483098, guid: 5381c1a5e7c01f8428d9827b3d551480, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4547845632711483098, guid: 5381c1a5e7c01f8428d9827b3d551480, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4547845632711483098, guid: 5381c1a5e7c01f8428d9827b3d551480, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6048492614516113774, guid: 5381c1a5e7c01f8428d9827b3d551480, type: 3}
-      propertyPath: m_Name
-      value: AudioManager
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 5381c1a5e7c01f8428d9827b3d551480, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -7606,8 +7541,4 @@ SceneRoots:
   - {fileID: 1092930103}
   - {fileID: 27604698}
   - {fileID: 958162642}
-<<<<<<< Updated upstream
   - {fileID: 379041952}
-=======
-  - {fileID: 4692060774042546433}
->>>>>>> Stashed changes
