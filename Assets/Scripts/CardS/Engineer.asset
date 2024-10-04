@@ -13,8 +13,11 @@ MonoBehaviour:
   m_Name: Engineer
   m_EditorClassIdentifier: 
   cost: 20000
-  cardType: 0
+  image: {fileID: 0}
   name: Engineer
+  background: {fileID: 21300000, guid: cb4bc47e95493be4ea23b71e948c4130, type: 3}
+  type: 0
   description: '-'
-  utilities: 0
-  framework: 0
+  resource: 0
+  abilityName: 
+  abilityCost: 0

@@ -13,8 +13,11 @@ MonoBehaviour:
   m_Name: Manager
   m_EditorClassIdentifier: 
   cost: 40000
-  cardType: 0
+  image: {fileID: 0}
   name: Manager
-  description: Convert any material to another at a ratio 2:1
-  utilities: 0
-  framework: 0
+  background: {fileID: 21300000, guid: cb4bc47e95493be4ea23b71e948c4130, type: 3}
+  type: 0
+  description: Convert any material to another at a ratio 1:1
+  resource: 0
+  abilityName: 
+  abilityCost: 0

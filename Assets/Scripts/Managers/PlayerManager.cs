@@ -110,6 +110,7 @@ public class PlayerManager : MonoBehaviour
 
     public void DrawCard()
     {
+        AudioManager.instance.PlaySFX("Pickup Card");
         GameObject card = deck.GetComponent<DeckManager>().DrawCard();
         hand.GetComponent<HandManager>().AddCard(card);
     }

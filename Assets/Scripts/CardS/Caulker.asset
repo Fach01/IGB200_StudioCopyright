@@ -15,9 +15,9 @@ MonoBehaviour:
   cost: 20000
   image: {fileID: 0}
   name: Caulker
+  background: {fileID: 21300000, guid: 3a046cd99c55ee941a1f7516de0467d2, type: 3}
   type: 2
-  description: '-'
-  utilities: 2
-  frameworks: 0
-  abilityName: 
-  abilityCost: 0
+  description: 
+  resource: 2
+  abilityName: Flush
+  abilityCost: 30000

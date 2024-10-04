@@ -15,9 +15,9 @@ MonoBehaviour:
   cost: 30000
   image: {fileID: 0}
   name: Utilities Estimator
+  background: {fileID: 21300000, guid: 3a046cd99c55ee941a1f7516de0467d2, type: 3}
   type: 2
   description: '-'
-  utilities: 5
-  frameworks: 0
-  abilityName: 
-  abilityCost: 0
+  resource: 5
+  abilityName: Farsight
+  abilityCost: 10000

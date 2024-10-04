@@ -46,7 +46,7 @@ public class UIManager : MonoBehaviour
     public void SetBudgetText(string budget)
     {
         TMP_Text budgetText = budgetObject.GetComponent<TMP_Text>();
-        budgetText.text = "Budget: " + budget;
+        budgetText.text = "Budget: " + Constants.convertBigNumber(budget);
 
         UpdateTurnLossPosition();
     }
@@ -57,7 +57,7 @@ public class UIManager : MonoBehaviour
         budgetText.text = budget;
         if (!budgetText.text.Contains("-"))
         {
-            budgetText.text = "+" + budgetText.text;
+            budgetText.text = "+" + Constants.convertBigNumber(budgetText.text);
         }
     }
 
@@ -83,13 +83,13 @@ public class UIManager : MonoBehaviour
     public void SetUtilitiesText(string utilitiesText)
     {
         TMP_Text utilitiesTextObject = utilities.GetComponent<TMP_Text>();
-        utilitiesTextObject.text = "Utilities: " + utilitiesText;
+        utilitiesTextObject.text = "Utilities: " + Constants.convertBigNumber(utilitiesText);
     }
 
     public void SetFrameworksText(string frameworksText)
     {
         TMP_Text frameworksTextObject = frameworks.GetComponent<TMP_Text>();
-        frameworksTextObject.text = "Frameworks: " + frameworksText;
+        frameworksTextObject.text = "Frameworks: " + Constants.convertBigNumber(frameworksText);
     }
 
     public void SetActionPointsText(string actionPointsText)

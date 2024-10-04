@@ -13,8 +13,11 @@ MonoBehaviour:
   m_Name: Council Permit
   m_EditorClassIdentifier: 
   cost: 30000
-  cardType: 0
+  image: {fileID: 0}
   name: Council Permit
+  background: {fileID: 21300000, guid: cb4bc47e95493be4ea23b71e948c4130, type: 3}
+  type: 0
   description: Cards and abilities you play are all $10,000 cheaper
-  utilities: 0
-  framework: 0
+  resource: 0
+  abilityName: 
+  abilityCost: 0

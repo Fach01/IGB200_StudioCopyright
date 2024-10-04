@@ -15,9 +15,9 @@ MonoBehaviour:
   cost: 20000
   image: {fileID: 0}
   name: Architect
+  background: {fileID: 21300000, guid: 8c7457d87ff87df47a6d33ced078bc3e, type: 3}
   type: 1
   description: '-'
-  utilities: 0
-  frameworks: 1
+  resource: 3
   abilityName: 
   abilityCost: 0

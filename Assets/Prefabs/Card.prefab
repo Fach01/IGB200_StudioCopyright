@@ -5559,7 +5559,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6771638719704024fa7c125b5f2a973c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  card: {fileID: 0}
+  m_card: {fileID: 0}
+  m_picture: {fileID: 0}
+  m_background: {fileID: 0}
+  m_cost: {fileID: 0}
+  m_name: {fileID: 0}
+  m_type: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_description: {fileID: 0}
+  m_active: 0
+  cardanimator: {fileID: 0}
+  inanimation: 0
 --- !u!1 &7267841482849774094
 GameObject:
   m_ObjectHideFlags: 0

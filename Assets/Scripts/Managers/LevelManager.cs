@@ -98,6 +98,8 @@ public class LevelManager : MonoBehaviour
     {
         turnBudget = levelBudget;
 
+        if(turn != 1) playerManager.DrawCard(); // if its not the very first round draw a card
+
         playerManager.ResetPlayer();
         playerManager.phase = Phase.Setup;
     }
@@ -116,23 +118,18 @@ public class LevelManager : MonoBehaviour
 
     public void PlayPhase()
     {
-
         StartCoroutine(PlayPhaseAnimation());
-        // TODO: add budged turn loss text animation
-
 
         if (utilitiesCount >= utilitiesGoal && frameworksCount >= frameworksGoal)
         {
             win.SetActive(true);
         }
-        else if (turnBudget <= 0) 
+        else if (turnBudget <= 0)
         {
-             lose.SetActive(true);
+            lose.SetActive(true);
         }
 
         playerManager.phase = Phase.Event;
-
-        
     }
 
     public void EventPhase()
@@ -179,10 +176,6 @@ public class LevelManager : MonoBehaviour
 
             if (playFieldManager.cards[i] == null)
             {
-                // open Set EndTurnAnimation to active then wait for entry animation
-                UIManager.EndTurnAnimation.SetActive(true);
-                yield return new WaitForSeconds(0.3f);
-
                 //then start the tallying of the gains and losses
                 StartCoroutine(TallyGainsAndLosses());
 
@@ -194,6 +187,9 @@ public class LevelManager : MonoBehaviour
     }
     IEnumerator TallyGainsAndLosses()
     {
+        // open EndTurnAnimation 
+        UIManager.EndTurnAnimation.SetActive(true);
+        UIManager.EndTurnAnimation.GetComponent<Animator>().SetBool("Entry", true);
         for (int i = 0; i < playFieldManager.cards.Count; i++)
         {
             yield return new WaitForSeconds(1f); // waits at the start to keep consistent timing
@@ -203,8 +199,7 @@ public class LevelManager : MonoBehaviour
                 //after animation deactivate EndTurnPanel
                 UIManager.EndTurnAnimation.GetComponent<Animator>().SetBool("Exit", true);
 
-                //waits for exit animation to play before resuming with the rest of the code
-                yield return new WaitForSeconds(1f);
+                yield return new WaitForSeconds(0.5f);
 
                 //apply changes in budge frames and utilities
                 turnBudget -= tempBudget;
@@ -217,35 +212,39 @@ public class LevelManager : MonoBehaviour
                 UIManager.SetBudgetText(turnBudget.ToString()); 
                 UIManager.SetUtilitiesText(utilitiesCount.ToString());
                 UIManager.SetFrameworksText(frameworksCount.ToString());
-                
+
                 yield break;
             }
 
             int cost = playFieldManager.cards[i].GetComponent<CardManager>().m_card.cost;
-            int utilities = playFieldManager.cards[i].GetComponent<CardManager>().m_card.utilities;
-            int frameworks = playFieldManager.cards[i].GetComponent<CardManager>().m_card.frameworks;
+            int resource = playFieldManager.cards[i].GetComponent<CardManager>().m_card.resource;
+            CardType cardType = playFieldManager.cards[i].GetComponent<CardManager>().m_card.type;
 
             tempBudget -= cost;
-            tempUtil += utilities;
-            tempFrames += frameworks;
+
+            if (cardType == CardType.Utilities) tempUtil += resource;
+            else if (cardType == CardType.Framework) tempFrames += resource;
+
 
             UIManager.DisplayTemporaryBudget(tempBudget);
             UIManager.DisplayTemporaryUtilities(tempUtil);
             UIManager.DisplayTemporaryFramework(tempFrames);
 
             // if the card gives utilities or frameworks an animation will play
-            if (utilities > 0)
+            if ( cardType == CardType.Utilities && resource > 0)
             {
-                Debug.Log("utilities:" + utilities);
-                UIManager.EndTurnAnimation.GetComponent<Animator>().SetBool("Gives Util", true); 
+                Debug.Log("Utilities:" + resource);
+                UIManager.EndTurnAnimation.GetComponent<Animator>().SetBool("Gives Util", true);
+                AudioManager.instance.PlaySFX("Add Resource");
                
 
             }
 
-            if (frameworks > 0)
+            if (cardType == CardType.Framework && resource > 0)
             {
-                Debug.Log("Frameworks:" + frameworks);
+                Debug.Log("Frameworks:" + resource);
                 UIManager.EndTurnAnimation.GetComponent<Animator>().SetBool("Gives Frames", true);
+                AudioManager.instance.PlaySFX("Add Resource");
 
             }
 
