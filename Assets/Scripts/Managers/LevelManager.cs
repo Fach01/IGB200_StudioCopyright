@@ -50,6 +50,7 @@ public class LevelManager : MonoBehaviour
     {
         if (level == level.level2) startBudget += buildingManager.BudgetPoolLevel1;
         if (level == level.level3) startBudget += buildingManager.BudgetPoolLevel2 + buildingManager.BudgetPoolLevel1;
+        AudioManager.instance.PlayMusic("LevelMusic");
         BeginLevel();
     }
 
