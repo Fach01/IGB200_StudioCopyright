@@ -81,12 +81,13 @@ public class LevelManager : MonoBehaviour
 
         utilitiesCount = 0;
         frameworksCount = 0;
+        
+        AudioManager.instance.PlaySFX("Shuffle");
 
         for (int i = 0; i < 4; i++)
         {
             playerManager.DrawCard();
         }
-
         UIManager.SetTurnText(turn);
         UIManager.SetBudgetText(levelBudget.ToString());
 
@@ -165,7 +166,11 @@ public class LevelManager : MonoBehaviour
     {
         frameworksCount += frameworks;
     }
-    
+    IEnumerator DrawCards()
+    {
+
+       yield return null;
+    }
     IEnumerator PlayPhaseAnimation()
     {
         // animation will play at the start of the play phase to show all cards in play
@@ -242,11 +247,6 @@ public class LevelManager : MonoBehaviour
                 Debug.Log("Frameworks:" + frameworks);
                 UIManager.EndTurnAnimation.GetComponent<Animator>().SetBool("Gives Frames", true);
 
-            }
-
-            if (tempUtil > 5)
-            {
-                
             }
 
             //wait for 0.05 seconds to turn off animation to stop looping

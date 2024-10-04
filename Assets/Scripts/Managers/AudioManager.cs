@@ -12,8 +12,8 @@ public class AudioManager : MonoBehaviour
     //link Audiosources that will play music and/or sound effects
     public AudioSource musicSource, sfxSource;
 
-    public float musicV;
-    public float SFXV;
+    public float musicV = 100;
+    public float SFXV = 100;
     // Start is called before the first frame update
     private void Awake()
     {

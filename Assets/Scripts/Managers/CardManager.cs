@@ -95,6 +95,7 @@ public class CardManager : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         {
             return;
         }
+        AudioManager.instance.PlaySFX("Hover Card");
         transform.Translate(0, 10f, 0);
         m_active = true;
 
