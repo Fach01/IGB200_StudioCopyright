@@ -5,9 +5,11 @@ using System.Net.Mail;
 using UnityEngine.Playables;
 using System.Collections;
 using UnityEditor.Animations;
-
+using System.Linq;
 public class LevelManager : MonoBehaviour
 {
+    public BuildingManager buildingManager;
+    public level level;
     public GameObject player;
     public GameObject uiManager;
     public GameObject playField;
@@ -46,6 +48,8 @@ public class LevelManager : MonoBehaviour
 
     private void Start()
     {
+        if (level == level.level2) startBudget += buildingManager.BudgetPoolLevel1;
+        if (level == level.level3) startBudget += buildingManager.BudgetPoolLevel2 + buildingManager.BudgetPoolLevel1;
         BeginLevel();
     }
 
@@ -122,6 +126,7 @@ public class LevelManager : MonoBehaviour
 
         if (utilitiesCount >= utilitiesGoal && frameworksCount >= frameworksGoal)
         {
+            GameManager.instance.UnlockNextLevel();
             win.SetActive(true);
         }
         else if (turnBudget <= 0)
@@ -162,6 +167,11 @@ public class LevelManager : MonoBehaviour
     public void AddFrameworks(int frameworks)
     {
         frameworksCount += frameworks;
+    }
+    private void UpdateBuildingBudgetPool(int budget)
+    {
+        if (level == level.level1) { PlayerPrefs.SetInt(buildingManager.buildingname + "level1", budget); }
+        else if (level == level.level2) { PlayerPrefs.SetInt(buildingManager.buildingname + "level2", budget); }
     }
     IEnumerator DrawCards()
     {

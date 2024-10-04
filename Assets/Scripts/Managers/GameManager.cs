@@ -5,6 +5,30 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public int nextSceneLoad;
+
+    public static GameManager instance;
+    public void Start()
+    {
+
+    }
+    public void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            DestroyImmediate(gameObject);
+        }
+        nextSceneLoad = SceneManager.GetActiveScene().buildIndex + 1;
+    }
+    public void UnlockNextLevel() 
+    {
+        PlayerPrefs.SetInt("LevelAt", nextSceneLoad);
+    }
     public void ChangeScene(string sceneName)
     {
         try
@@ -15,6 +39,11 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log("Check Scene name is correct and in build");
         }
+    }
+    public void ChangeScene(int sceneNumber)
+    {
+        SceneManager.LoadScene(sceneNumber);
+  
     }
     public void Quit()
     {
