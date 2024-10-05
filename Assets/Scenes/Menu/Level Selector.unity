@@ -402,6 +402,7 @@ GameObject:
   m_Component:
   - component: {fileID: 132965150}
   - component: {fileID: 132965149}
+  - component: {fileID: 132965151}
   m_Layer: 0
   m_Name: MenuManager
   m_TagString: Untagged
@@ -436,6 +437,25 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &132965151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 132965148}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 624e2229128e08c4c934360a66f7e112, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lvlButtons:
+  - {fileID: 1894498399}
+  - {fileID: 927720962}
+  - {fileID: 1154168822}
+  - {fileID: 783070825}
+  - {fileID: 698023268}
+  - {fileID: 975453385}
 --- !u!1001 &241094395
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3104,35 +3124,8 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 8506903052954709057, guid: 5fb88f85fb9d500419c672180da56489, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1526888443}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5fb88f85fb9d500419c672180da56489, type: 3}
---- !u!1 &1526888442 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8506903052954709057, guid: 5fb88f85fb9d500419c672180da56489, type: 3}
-  m_PrefabInstance: {fileID: 1526888441}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1526888443
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1526888442}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 624e2229128e08c4c934360a66f7e112, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lvlButtons:
-  - {fileID: 1894498399}
-  - {fileID: 927720962}
-  - {fileID: 1154168822}
-  - {fileID: 783070825}
-  - {fileID: 698023268}
-  - {fileID: 975453385}
 --- !u!1 &1549533129
 GameObject:
   m_ObjectHideFlags: 0

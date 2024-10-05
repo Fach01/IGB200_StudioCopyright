@@ -4,7 +4,6 @@ using UnityEngine.UI;
 using System.Net.Mail;
 using UnityEngine.Playables;
 using System.Collections;
-using UnityEditor.Animations;
 using System.Linq;
 public class LevelManager : MonoBehaviour
 {
