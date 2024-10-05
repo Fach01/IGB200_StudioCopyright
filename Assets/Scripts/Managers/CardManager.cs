@@ -110,7 +110,7 @@ public class CardManager : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         {
             return;
         }
-        transform.Translate(0, -20f, 0);
+        transform.Translate(0, -30f, 0);
         m_active = false;
 
     }

@@ -72,6 +72,10 @@ public class AudioManager : MonoBehaviour
             sfxSource.Play();
         }
     }
+    public void StopSFX()
+    {
+        sfxSource.Stop();
+    }
     public void ToggleMusic()
     {
 

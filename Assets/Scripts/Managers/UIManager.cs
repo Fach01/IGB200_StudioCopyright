@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -27,6 +28,9 @@ public class UIManager : MonoBehaviour
     public GameObject lose;
 
     public GameObject EndTurnAnimation;
+
+    public GameObject? Tutorial; 
+    public TMP_Text? tutorialText;
 
     public TMP_Text Budget;
     public TMP_Text Framework;
@@ -114,5 +118,8 @@ public class UIManager : MonoBehaviour
         string UtilGain = Gain.ToString();
         Utilities.text = UtilGain;
     }
-
+    public void TutorialActive(string tutText)
+    {
+        tutorialText.text = tutText;
+    }
 }
