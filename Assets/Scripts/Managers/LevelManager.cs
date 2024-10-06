@@ -21,6 +21,7 @@ public class LevelManager : MonoBehaviour
     private PlayerManager playerManager;
     private UIManager UIManager;
     private PlayFieldManager playFieldManager;
+    private EventManager eventManager;
 
     private int levelBudget;
     private int turnBudget;
@@ -43,6 +44,7 @@ public class LevelManager : MonoBehaviour
         playerManager = player.GetComponent<PlayerManager>();
         UIManager = uiManager.GetComponent<UIManager>();
         playFieldManager = playField.GetComponent<PlayFieldManager>();
+        eventManager = GetComponent<EventManager>();
     }
 
     private void Start()
@@ -101,7 +103,7 @@ public class LevelManager : MonoBehaviour
     {
         turnBudget = levelBudget;
 
-        if(turn != 1) playerManager.DrawCard(); // if its not the very first round draw a card
+        if(turn != 1) playerManager.DrawXCards(1); // if its not the very first round draw a card
 
         playerManager.ResetPlayer();
         playerManager.phase = Phase.Setup;
@@ -121,7 +123,10 @@ public class LevelManager : MonoBehaviour
 
     public void PlayPhase()
     {
-        StartCoroutine(PlayPhaseAnimation());
+        if (!tallied && !tallying)
+            StartCoroutine(PlayPhaseAnimation());
+        if (!eop && tallied)
+            StartCoroutine(EndOfPlay());
 
         if (utilitiesCount >= utilitiesGoal && frameworksCount >= frameworksGoal)
         {
@@ -133,7 +138,6 @@ public class LevelManager : MonoBehaviour
             lose.SetActive(true);
         }
 
-        playerManager.phase = Phase.Event;
     }
 
     public void EventPhase()
@@ -152,6 +156,7 @@ public class LevelManager : MonoBehaviour
         UIManager.SetTurnText(turn);
 
         playerManager.phase = Phase.PreTurn;
+        tallied = false;
     }
 
     public void Spend(int cost)
@@ -172,17 +177,15 @@ public class LevelManager : MonoBehaviour
         if (level == level.level1) { PlayerPrefs.SetInt(buildingManager.buildingname + "level1", budget); }
         else if (level == level.level2) { PlayerPrefs.SetInt(buildingManager.buildingname + "level2", budget); }
     }
-    IEnumerator DrawCards()
-    {
-
-       yield return null;
-    }
+    private bool tallied = false;
+    private bool tallying = false;
     IEnumerator PlayPhaseAnimation()
     {
+        tallied = false;
+        tallying = true;
         // animation will play at the start of the play phase to show all cards in play
         for (int i = 0; i < playFieldManager.cards.Count; i++)
         {
-
             if (playFieldManager.cards[i] == null)
             {
                 //then start the tallying of the gains and losses
@@ -196,6 +199,7 @@ public class LevelManager : MonoBehaviour
     }
     IEnumerator TallyGainsAndLosses()
     {
+
         // open EndTurnAnimation 
         UIManager.EndTurnAnimation.SetActive(true);
         UIManager.EndTurnAnimation.GetComponent<Animator>().SetBool("Entry", true);
@@ -210,18 +214,8 @@ public class LevelManager : MonoBehaviour
 
                 yield return new WaitForSeconds(0.5f);
 
-                //apply changes in budge frames and utilities
-                turnBudget -= tempBudget;
-                utilitiesCount += tempUtil;
-                frameworksCount += tempFrames;
-
-                ResetTempPools(); // reset the temporary pools
-
-                // Displays changes to the UI
-                UIManager.SetBudgetText(turnBudget.ToString()); 
-                UIManager.SetUtilitiesText(utilitiesCount.ToString());
-                UIManager.SetFrameworksText(frameworksCount.ToString());
-
+                tallied = true;
+                tallying = false;
                 yield break;
             }
 
@@ -236,7 +230,9 @@ public class LevelManager : MonoBehaviour
 
 
             UIManager.DisplayTemporaryBudget(tempBudget);
+            yield return new WaitForSeconds(0.5f);
             UIManager.DisplayTemporaryUtilities(tempUtil);
+            yield return new WaitForSeconds(0.5f);
             UIManager.DisplayTemporaryFramework(tempFrames);
 
             // if the card gives utilities or frameworks an animation will play
@@ -253,7 +249,7 @@ public class LevelManager : MonoBehaviour
             {
                 Debug.Log("Frameworks:" + resource);
                 UIManager.EndTurnAnimation.GetComponent<Animator>().SetBool("Gives Frames", true);
-                AudioManager.instance.PlaySFX("Add Resource");
+                // AudioManager.instance.PlaySFX("Add Resource");
 
             }
 
@@ -262,6 +258,29 @@ public class LevelManager : MonoBehaviour
             UIManager.EndTurnAnimation.GetComponent<Animator>().SetBool("Gives Util", false);
             UIManager.EndTurnAnimation.GetComponent<Animator>().SetBool("Gives Frames", false);
         }
+    }
+
+    private bool eop = false;
+    public IEnumerator EndOfPlay()
+    {
+        eop = true;
+        //apply changes in budge frames and utilities
+        turnBudget -= tempBudget;
+        utilitiesCount += tempUtil;
+        frameworksCount += tempFrames;
+
+        ResetTempPools(); // reset the temporary pools
+
+        // Displays changes to the UI
+        UIManager.SetBudgetText(turnBudget.ToString());
+        yield return new WaitForSeconds(0.5f);
+        UIManager.SetUtilitiesText(utilitiesCount.ToString());
+        yield return new WaitForSeconds(0.5f);
+        UIManager.SetFrameworksText(frameworksCount.ToString());
+        yield return new WaitForSeconds(0.5f);
+
+        playerManager.phase = Phase.Event;
+        eop = false;
     }
     public void ResetTempPools()
     {

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748171, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4588,6 +4588,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1201134672}
   - component: {fileID: 1201134671}
+  - component: {fileID: 1201134673}
   m_Layer: 0
   m_Name: Level Manager
   m_TagString: Untagged
@@ -4607,6 +4608,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 847c95e843814a84b9b76265a9603976, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buildingManager: {fileID: 0}
+  level: 0
   player: {fileID: 176488109}
   uiManager: {fileID: 1844002240}
   playField: {fileID: 1265561410}
@@ -4634,6 +4637,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1201134673
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1201134670}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bd9346e7889d0b45a40e26c99f5a48e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1205169223
 GameObject:
   m_ObjectHideFlags: 0
@@ -6916,6 +6931,8 @@ MonoBehaviour:
   win: {fileID: 319837233}
   lose: {fileID: 1266718894}
   EndTurnAnimation: {fileID: 930240007}
+  Tutorial: {fileID: 0}
+  tutorialText: {fileID: 0}
   Budget: {fileID: 1702985495}
   Framework: {fileID: 1267313476}
   Utilities: {fileID: 1412286549}
