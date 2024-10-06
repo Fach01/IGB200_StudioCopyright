@@ -35,6 +35,8 @@ public class CardManager : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     private Transform Orientation;
     public bool inanimation = false;
 
+    public bool sick;
+
     private void Awake()
     {
         m_image = m_picture.GetComponent<Image>();
@@ -51,6 +53,7 @@ public class CardManager : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         abilityManager = GameObject.Find("Ability Manager").GetComponent<AbilityManager>();
 
         Orientation = this.transform;
+        sick = false;
     }
 
     public void SetCard(Card card)
@@ -130,5 +133,19 @@ public class CardManager : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     private void OnDestroy()
     {
         // discard animation
+    }
+
+    private void Update()
+    {
+        if (sick)
+        {
+            m_image.color = new Color(0.5f, 0.5f, 0.5f, 0.6f);
+            GetComponent<Button>().interactable = false;
+        }
+        else
+        {
+            m_image.color = new Color(1f, 1f, 1f, 1f);
+            GetComponent<Button>().interactable = true;
+        }
     }
 }

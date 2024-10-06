@@ -1,4 +1,6 @@
 public enum GameEvent
 {
-    flood,
+    None,
+    Flood,
+    SickDay
 }

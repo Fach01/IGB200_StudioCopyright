@@ -5529,7 +5529,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 1
+  m_PresetInfoIsWorld: 0
 --- !u!114 &4946212456898717985
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5565,11 +5565,12 @@ MonoBehaviour:
   m_cost: {fileID: 0}
   m_name: {fileID: 0}
   m_type: {fileID: 0}
-  m_Resource: {fileID: 0}
+  m_resource: {fileID: 0}
   m_description: {fileID: 0}
   m_active: 0
   cardanimator: {fileID: 0}
   inanimation: 0
+  sick: 0
 --- !u!1 &7267841482849774094
 GameObject:
   m_ObjectHideFlags: 0

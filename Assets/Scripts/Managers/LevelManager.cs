@@ -101,6 +101,7 @@ public class LevelManager : MonoBehaviour
 
     public void PreTurn()
     {
+
         turnBudget = levelBudget;
 
         if(turn != 1) playerManager.DrawXCards(1); // if its not the very first round draw a card
@@ -116,7 +117,6 @@ public class LevelManager : MonoBehaviour
 
     public void EndSetupPhase()
     {
-        
         playerManager.SelectCard(null);
         playerManager.phase = Phase.Play;
     }
@@ -142,8 +142,25 @@ public class LevelManager : MonoBehaviour
 
     public void EventPhase()
     {
-        // go through events queue
-        playerManager.phase = Phase.End;
+        if (!eventManager.eventActive)
+        {
+            for (int i = 0; i < playFieldManager.cards.Count; i++)
+            {
+                if (playFieldManager.cards[i] == null) continue;
+                CardManager cardManager = playFieldManager.cards[i].GetComponent<CardManager>();
+                if (cardManager.sick)
+                {
+                    cardManager.sick = false;
+                }
+            }
+
+            var chance = Random.Range(0f, 1f);
+            if (chance > 0.75f)
+            {
+                eventManager.nextEvent = chance > 0.9f ? GameEvent.Flood : GameEvent.SickDay;
+            }
+            eventManager.PlayEvent();
+        }
     }
 
     public void EndPhase()
@@ -193,6 +210,10 @@ public class LevelManager : MonoBehaviour
 
                 yield break;
             }
+            if (playFieldManager.cards[i].GetComponent<CardManager>().sick)
+            {
+                continue;
+            }
             playFieldManager.cards[i].GetComponent<CardManager>().cardanimator.SetBool("Add Resource", true);
             yield return new WaitForSeconds(.2f); 
         }
@@ -217,6 +238,11 @@ public class LevelManager : MonoBehaviour
                 tallied = true;
                 tallying = false;
                 yield break;
+            }
+
+            if (playFieldManager.cards[i].GetComponent<CardManager>().sick)
+            {
+                continue;
             }
 
             int cost = playFieldManager.cards[i].GetComponent<CardManager>().m_card.cost;
