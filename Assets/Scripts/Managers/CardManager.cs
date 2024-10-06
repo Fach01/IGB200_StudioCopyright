@@ -15,7 +15,6 @@ public class CardManager : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     public GameObject m_type;
     public GameObject m_resource;
     public GameObject m_description;
-    // public Ability m_ability;
 
     public bool m_active = false;
 
@@ -101,6 +100,11 @@ public class CardManager : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         m_active = true;
 
 
+    }
+
+    public void Descale()
+    {
+        cardanimator.SetBool("Highlighted", false);
     }
     public void OnPointerExit(PointerEventData eventData)
     {

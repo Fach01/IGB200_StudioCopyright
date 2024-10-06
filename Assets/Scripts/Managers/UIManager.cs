@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
+using UnityEngine.UI;
 using UnityEngine;
 
 [ExecuteAlways]
@@ -28,6 +29,12 @@ public class UIManager : MonoBehaviour
     public GameObject lose;
 
     public GameObject EndTurnAnimation;
+
+    public GameObject CardInfo;
+    public TMP_Text CardDescription;
+
+
+    public List<Sprite> buildingimages;
 
     public GameObject? Tutorial; 
     public TMP_Text? tutorialText;
@@ -77,7 +84,7 @@ public class UIManager : MonoBehaviour
         TMP_Text phaseText = this.phase.GetComponent<TMP_Text>();
         phaseText.text = "Phase: " + phase.ToString();
     }
-    
+   
     public void SetTurnText(int turn)
     {
         TMP_Text turnText = this.turn.GetComponent<TMP_Text>();
@@ -121,5 +128,23 @@ public class UIManager : MonoBehaviour
     public void TutorialActive(string tutText)
     {
         tutorialText.text = tutText;
+    }
+    public void ChangePlane(Sprite developmentStage)
+    {
+        buildingPlane.GetComponent<Image>().sprite = developmentStage;
+    }
+    public void HighlightCard(GameObject Cards)
+    {
+        CardInfo.SetActive(true);
+ 
+        Card carddetails = Cards.GetComponent<CardManager>().m_card;
+        CardDescription.text = $"Ability Cost: {carddetails.abilityCost}\n" +
+            $"Ability Name: {carddetails.abilityName}\n" +
+            $"Ability Description: {carddetails.ability.Description}";
+
+    }
+    public void DeHighlightCard()
+    {
+        CardInfo.SetActive(false);
     }
 }

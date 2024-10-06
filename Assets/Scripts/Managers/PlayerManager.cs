@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -22,7 +24,8 @@ public class PlayerManager : MonoBehaviour
     private int actionPoints = 2;
     private bool cardSelected = false;
 
-    private GameObject clickedButton;
+    public GameObject clickedButton {get;private set;}
+
 
     private void Awake()
     {
@@ -47,16 +50,21 @@ public class PlayerManager : MonoBehaviour
         // called after ui buttons are clicked
         HandleMouseEvents();
     }
-
     private void HandleMouseEvents()
     {
+        if (Input.GetMouseButtonDown(1) && selectedCard != null)
+        {
+            UIManager.HighlightCard(selectedCard);
+
+        }
         if (Input.GetMouseButtonUp(0))
         {
-            if (clickedButton == null && !cardSelected)
+            if (clickedButton != null && !cardSelected)
             {
                 SelectCard(null);
             }
         }
+
         cardSelected = false;
         clickedButton = null;
     }
@@ -65,7 +73,6 @@ public class PlayerManager : MonoBehaviour
     {
         clickedButton = clickedObject;
     }
-
     public void SelectCard(GameObject card)
     {
         if (selectedCard != null)
