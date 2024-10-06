@@ -115,6 +115,15 @@ public class PlayerManager : MonoBehaviour
         hand.GetComponent<HandManager>().AddCard(card);
     }
 
+    public IEnumerator DrawXCards(int x)
+    {
+        for (int i = 0; i < x; i++)
+        {
+            DrawCard();
+            yield return new WaitForSeconds(0.5f);
+        }
+    }
+
     public void DiscardCard()
     {
         /* TODO: Animate removing the card from the hand

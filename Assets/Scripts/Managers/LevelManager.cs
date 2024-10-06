@@ -88,10 +88,9 @@ public class LevelManager : MonoBehaviour
         
         AudioManager.instance.PlaySFX("Shuffle");
 
-        for (int i = 0; i < 4; i++)
-        {
-            playerManager.DrawCard();
-        }
+        // for (int i = 0; i < 4; i++) { playerManager.DrawCard(); }
+        StartCoroutine(playerManager.DrawXCards(4));
+
         UIManager.SetTurnText(turn);
         UIManager.SetBudgetText(levelBudget.ToString());
 
