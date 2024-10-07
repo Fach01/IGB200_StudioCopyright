@@ -30,7 +30,11 @@ public class GameManager : MonoBehaviour
     }
     public void UnlockNextLevel() 
     {
-        PlayerPrefs.SetInt("LevelAt", nextSceneLoad);
+        if (nextSceneLoad > PlayerPrefs.GetInt("LevelAt"))
+        {
+            PlayerPrefs.SetInt("LevelAt", nextSceneLoad);
+        }
+        
     }
     public void ChangeScene(string sceneName)
     {
@@ -52,7 +56,7 @@ public class GameManager : MonoBehaviour
     }
     public IEnumerator Transitionout(string sceneName)
     {
-        Foreground.SetActive(true);
+        Foreground.SetActive(true);     
         Color c = Foreground.GetComponent<Image>().color;
         c.a = 0;
         Foreground.GetComponent<Image>().color = c;

@@ -59,7 +59,10 @@ public class UIManager : MonoBehaviour
     private void Update()
     {
     }
-
+    public void ChangeScene(string sceneName)
+    {
+        GameManager.instance.ChangeScene(sceneName);
+    }
     public void SetBudgetText(string budget)
     {
         TMP_Text budgetText = budgetObject.GetComponent<TMP_Text>();
