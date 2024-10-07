@@ -8,12 +8,14 @@ using System;
 public class Tutorialentryscene : Tutorial
 {
     public TMP_Text text;
-    private List<string> lineNames;
+    public List<string> lineNames;
     private int linenumber = 0;
+    public GameObject Fade;
 
-    // Start is called before the first frame update
-    void Start()
+    public void Awake()
     {
+        GameManager.instance.Foreground = Fade;
+        StartCoroutine(GameManager.instance.TransitionIn());
         StartCoroutine(PlayVoiceLine(lineNames[linenumber]));
     }
 
@@ -34,16 +36,24 @@ public class Tutorialentryscene : Tutorial
         AudioManager.instance.PlaySFX(voiceLine);
         text.text = newtext;
 
-        if (voiceLine != null) { yield return new WaitUntil(() => AudioManager.instance.sfxSource.isPlaying == false); }
+        if (voiceLine != "") { yield return new WaitUntil(() => AudioManager.instance.sfxSource.isPlaying == false); }
         else { yield return new WaitForSeconds(3f); }
 
         EndText();
     }
     public new void EndText()
     {
-        isVoiceLinePlaying = false;
-        if(linenumber < lineNames.Count) { StartCoroutine(PlayVoiceLine(lineNames[linenumber]));}
-        else { GameManager.instance.ChangeScene("Tutorial 1"); }
+        base.EndText();
+        if(linenumber < lineNames.Count)
+        {
+
+            StartCoroutine(PlayVoiceLine(lineNames[linenumber]));
+        }
+        else 
+        {
+
+            GameManager.instance.ChangeScene("Tutorial 1"); 
+        }
         
     }
 }

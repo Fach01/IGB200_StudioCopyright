@@ -33,6 +33,8 @@ public class LevelManager : MonoBehaviour
     public GameObject win;
     public GameObject lose;
 
+    public GameObject tutorial;
+
     [Header("Animation Stuff")]
     public int tempBudget;
     public int tempFrames;
@@ -81,6 +83,8 @@ public class LevelManager : MonoBehaviour
 
     private void BeginLevel()
     {
+
+
         levelBudget = startBudget;
         turnBudget = levelBudget;
 
@@ -224,7 +228,6 @@ public class LevelManager : MonoBehaviour
     {
         // open EndTurnAnimation 
         UIManager.EndTurnAnimation.SetActive(true);
-        UIManager.EndTurnAnimation.GetComponent<Animator>().SetBool("Entry", true);
         for (int i = 0; i < playFieldManager.cards.Count; i++)
         {
             yield return new WaitForSeconds(1f); // waits at the start to keep consistent timing
@@ -251,7 +254,8 @@ public class LevelManager : MonoBehaviour
                 if (utilitiesCount >= utilitiesGoal && frameworksCount >= frameworksGoal)
                 {
                     GameManager.instance.UnlockNextLevel();
-                    win.SetActive(true);
+
+                    if(tutorial == null) win.SetActive(true);
                 }
                 else if (turnBudget <= 0)
                 {

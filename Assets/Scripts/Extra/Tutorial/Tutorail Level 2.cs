@@ -6,7 +6,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TutorailLevel1 : Tutorial
+public class TutorailLevel2 : Tutorial
 {
     public List<string> lineNamesStartText;
     public List<string> lineNamesJack;
@@ -199,20 +199,17 @@ public class TutorailLevel1 : Tutorial
     }
     private void Stage7()
     {
-        UI.Tutorial.SetActive(true);
         if (!coroutineplaying) linenumber = 0;
 
         if (isVoiceLinePlaying == true) return;
 
         isVoiceLinePlaying = true;
-        coroutineplaying = true;
 
         if (linenumber <= lineNamesEnd.Count - 1)
         {
             Debug.Log(linenumber);
 
             StartCoroutine(PlayVoiceLine(lineNamesEnd[linenumber]));
-            
             linenumber++;
 
         }
@@ -221,7 +218,6 @@ public class TutorailLevel1 : Tutorial
             UI.Tutorial.SetActive(false);
             levelManager.win.SetActive(true);
         }
-
     }
 
     public new IEnumerator PlayVoiceLine(string name)

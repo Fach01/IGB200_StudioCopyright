@@ -32,6 +32,7 @@ public class UIManager : MonoBehaviour
 
     public GameObject CardInfo;
     public TMP_Text CardDescription;
+    public GameObject Fade;
 
 
     public List<Sprite> buildingimages;
@@ -45,7 +46,12 @@ public class UIManager : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-        
+
+    }
+    private void Awake()
+    {
+        GameManager.instance.Foreground = Fade;
+        StartCoroutine(GameManager.instance.TransitionIn());
     }
 
     // Update is called once per frame
