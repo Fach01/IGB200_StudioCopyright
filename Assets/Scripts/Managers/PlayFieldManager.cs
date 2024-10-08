@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayFieldManager : MonoBehaviour
 {
@@ -99,6 +100,18 @@ public class PlayFieldManager : MonoBehaviour
             float xPosition = Mathf.Cos(Mathf.Deg2Rad * (steps * i + offset)) * 100;
             float yPosition = Mathf.Sin(Mathf.Deg2Rad * (steps * i + offset)) * 90 - 8f;
             cards[i].transform.localPosition = new Vector3(xPosition, yPosition, 0f);
+        }
+    }
+
+    public void ToggleActivatePlayfield(bool activate)
+    {
+        foreach (GameObject card in cards)
+        {
+            Button cardButton = card.GetComponent<Button>();
+            if (cardButton != null)
+            {
+                cardButton.interactable = activate;
+            }
         }
     }
 }
