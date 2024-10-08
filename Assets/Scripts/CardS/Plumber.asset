@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Plumber
   m_EditorClassIdentifier: 
   cost: 20000
-  image: {fileID: 0}
+  image: {fileID: 21300000, guid: b580384fe96b5b64d83ab91c8f78e305, type: 3}
   name: Plumber
   background: {fileID: 21300000, guid: 3a046cd99c55ee941a1f7516de0467d2, type: 3}
   type: 2
