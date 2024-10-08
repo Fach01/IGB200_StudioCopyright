@@ -30,6 +30,7 @@ public class CardManager : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     private PlayerManager playerManager;
     private AbilityManager abilityManager;
 
+    private int originalIndex;
     public Animator cardanimator;
     private Transform Orientation;
     public bool inanimation = false;
@@ -86,6 +87,7 @@ public class CardManager : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+        originalIndex = transform.GetSiblingIndex();
         if (playerManager.phase != Phase.Setup)
         {
             return;
@@ -96,7 +98,8 @@ public class CardManager : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
             return;
         }
         AudioManager.instance.PlaySFX("Hover Card");
-        transform.Translate(0, 30f, 0);
+        transform.Translate(0, 30f, 0f);
+        transform.SetAsLastSibling();
         m_active = true;
 
 
@@ -118,6 +121,7 @@ public class CardManager : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
             return;
         }
         transform.Translate(0, -30f, 0);
+        transform.SetSiblingIndex(originalIndex);
         m_active = false;
 
     }
