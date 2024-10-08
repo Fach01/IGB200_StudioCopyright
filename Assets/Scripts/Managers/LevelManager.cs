@@ -13,6 +13,7 @@ public class LevelManager : MonoBehaviour
     public GameObject uiManager;
     public GameObject playField;
     public GameObject deck;
+    public bool levelEvents;
     public EventManager eventManager;
 
     public int startBudget;
@@ -135,6 +136,7 @@ public class LevelManager : MonoBehaviour
 
     public void EventPhase()
     {
+        if (!levelEvents) { return; }
         if (!eventManager.eventActive)
         {
             for (int i = 0; i < playFieldManager.cards.Count; i++)

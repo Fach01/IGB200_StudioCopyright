@@ -30,6 +30,10 @@ public class UIManager : MonoBehaviour
 
     public GameObject EndTurnAnimation;
 
+    public TMP_Text Budget;
+    public TMP_Text Framework;
+    public TMP_Text Utilities;
+
     public GameObject CardInfo;
     public TMP_Text CardDescription;
     public GameObject Fade;
@@ -40,9 +44,6 @@ public class UIManager : MonoBehaviour
     public GameObject? Tutorial; 
     public TMP_Text? tutorialText;
 
-    public TMP_Text Budget;
-    public TMP_Text Framework;
-    public TMP_Text Utilities;
     // Start is called before the first frame update
     private void Start()
     {
