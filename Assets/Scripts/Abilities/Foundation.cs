@@ -10,9 +10,16 @@ public class Foundation : BuilderAbility
 
     public override void ActivateAbility(PlayerManager playerManager, GameObject AbilityUI)
     {
-        AbilityUI.GetComponent<AbilityUI>().SetAbilityInfo();
-        playerManager.playField.GetComponent<Button>().interactable = false;
-        StartCoroutine(FreePlay(playerManager, false, null, AbilityUI));
+        if (playerManager.hand.GetComponent<HandManager>().hand.Count <= 0)
+        {
+            AbilityUI.GetComponent<AbilityUI>().SetText("Hand is empty! Press enter to continue.");
+            StartCoroutine(AbilityUI.GetComponent<AbilityUI>().WaitForConfirm(false));
+        } else
+        {
+            AbilityUI.GetComponent<AbilityUI>().SetAbilityInfo();
+            playerManager.playField.GetComponent<Button>().interactable = false;
+            StartCoroutine(FreePlay(playerManager, false, null, AbilityUI));
+        } 
     }
 
     IEnumerator FreePlay(PlayerManager playerManager, bool confirmed, GameObject chosenCard, GameObject AbilityUI)
