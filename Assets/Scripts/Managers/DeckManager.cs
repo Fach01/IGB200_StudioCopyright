@@ -57,8 +57,6 @@ public class DeckManager : MonoBehaviour
 
         deck.Remove(randomCard);
 
-        Debug.Log("Deck says:" + newCard);
-
         return newCard;
 
         // TODO: Animate picking up the card

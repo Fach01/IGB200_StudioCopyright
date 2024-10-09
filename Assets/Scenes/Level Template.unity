@@ -395,6 +395,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 939027910569712450, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
   m_PrefabInstance: {fileID: 2615599408837001023}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1050966253 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4891717804967882780, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
+  m_PrefabInstance: {fileID: 2615599408837001023}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1201134670 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 547991925744222384, guid: 7c208aa2d33faf6449f0a6db8b17f823, type: 3}
@@ -555,6 +566,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1749422233 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1207060274054396247, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
+  m_PrefabInstance: {fileID: 2615599408837001023}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1761934612 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3189424245582187719, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
@@ -627,6 +643,10 @@ PrefabInstance:
       propertyPath: sickDayPrompt
       value: 
       objectReference: {fileID: 155100453}
+    - target: {fileID: 4413125689673993254, guid: 7c208aa2d33faf6449f0a6db8b17f823, type: 3}
+      propertyPath: deckSnapshot
+      value: 
+      objectReference: {fileID: 1749422233}
     - target: {fileID: 5872605249764963331, guid: 7c208aa2d33faf6449f0a6db8b17f823, type: 3}
       propertyPath: win
       value: 
@@ -829,6 +849,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: ChangeScene
       objectReference: {fileID: 0}
+    - target: {fileID: 1207060274054396247, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1738617665585924199, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
       propertyPath: player
       value: 
@@ -998,6 +1022,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8710777138512432751, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
+      propertyPath: label
+      value: 
+      objectReference: {fileID: 1050966253}
+    - target: {fileID: 8710777138512432751, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 176488109}
@@ -1005,6 +1033,26 @@ PrefabInstance:
       propertyPath: levelManager
       value: 
       objectReference: {fileID: 1201134670}
+    - target: {fileID: 8710777138512432751, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
+      propertyPath: deck.Array.size
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 8710777138512432751, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
+      propertyPath: deck.Array.data[8]
+      value: 
+      objectReference: {fileID: 11400000, guid: 70e7d7dab499529418ab6f6616ebbe8c, type: 2}
+    - target: {fileID: 8710777138512432751, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
+      propertyPath: deck.Array.data[9]
+      value: 
+      objectReference: {fileID: 11400000, guid: 70e7d7dab499529418ab6f6616ebbe8c, type: 2}
+    - target: {fileID: 8710777138512432751, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
+      propertyPath: deck.Array.data[10]
+      value: 
+      objectReference: {fileID: 11400000, guid: 70e7d7dab499529418ab6f6616ebbe8c, type: 2}
+    - target: {fileID: 8710777138512432751, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
+      propertyPath: deck.Array.data[11]
+      value: 
+      objectReference: {fileID: 11400000, guid: 70e7d7dab499529418ab6f6616ebbe8c, type: 2}
     - target: {fileID: 9010714049027543117, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
       propertyPath: levelManager
       value: 

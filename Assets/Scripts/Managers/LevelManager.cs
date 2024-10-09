@@ -136,7 +136,9 @@ public class LevelManager : MonoBehaviour
 
     public void EventPhase()
     {
-        if (!levelEvents) { return; }
+        if (!levelEvents) {
+            playerManager.phase = Phase.End;
+            return; }
         if (!eventManager.eventActive)
         {
             for (int i = 0; i < playFieldManager.cards.Count; i++)
