@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class DeckManager : MonoBehaviour
 {
@@ -10,15 +12,33 @@ public class DeckManager : MonoBehaviour
 
     public GameObject cardPrefab;
 
+    public TMP_Text label;
+
     public List<Card> deck;
 
     private PlayerManager PlayerManager;
+    private bool outOfCards;
 
     private void Start()
     {
         PlayerManager = player.GetComponent<PlayerManager>();
     }
 
+    private void Update()
+    {
+        if (!outOfCards && deck.Count <= 0)
+        {
+            outOfCards = true;
+            GetComponent<Button>().interactable = false;
+            label.text = "Deck is empty!";
+        } 
+        else if (outOfCards && deck.Count > 0)
+        {
+            outOfCards = false;
+            GetComponent<Button>().interactable = true;
+            label.text = "Deck\n($10,000)";
+        }
+    }
 
     // picks a random card from the deck and moves it to the player's hand
     public GameObject DrawCard()
