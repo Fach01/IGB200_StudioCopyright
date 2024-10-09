@@ -383,6 +383,10 @@ PrefabInstance:
       propertyPath: Foreground
       value: 
       objectReference: {fileID: 980334164}
+    - target: {fileID: 3410410126516686711, guid: 7c208aa2d33faf6449f0a6db8b17f823, type: 3}
+      propertyPath: deck
+      value: 
+      objectReference: {fileID: 1845914426}
     - target: {fileID: 3651989695097228048, guid: 7c208aa2d33faf6449f0a6db8b17f823, type: 3}
       propertyPath: buildingname
       value: World 1
@@ -703,6 +707,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6711733532319278865, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1377044011}
     - target: {fileID: 6847297923303256296, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
       value: 2

@@ -11,7 +11,8 @@ public class Zap : BuilderAbility
 
     public override void ActivateAbility(PlayerManager playerManager, GameObject AbilityUI)
     {
-        if(playerManager.playField.GetComponent<PlayFieldManager>().cards.Count == 0)
+        AbilityUI.GetComponent<AbilityUI>().SetAbilityInfo();
+        if (playerManager.playField.GetComponent<PlayFieldManager>().cards.Count == 0)
         {
             // cant complete this - handle
         }

@@ -10,6 +10,7 @@ public class Foundation : BuilderAbility
 
     public override void ActivateAbility(PlayerManager playerManager, GameObject AbilityUI)
     {
+        AbilityUI.GetComponent<AbilityUI>().SetAbilityInfo();
         playerManager.playField.GetComponent<Button>().interactable = false;
         StartCoroutine(FreePlay(playerManager, false, null, AbilityUI));
     }

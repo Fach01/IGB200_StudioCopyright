@@ -19,9 +19,11 @@ public class DeckManager : MonoBehaviour
         PlayerManager = player.GetComponent<PlayerManager>();
     }
 
+
     // picks a random card from the deck and moves it to the player's hand
     public GameObject DrawCard()
     {
+        
         if (deck.Count <= 0)
         {
             return null;
@@ -34,6 +36,8 @@ public class DeckManager : MonoBehaviour
         newCard.GetComponent<CardManager>().SetCard(randomCard);
 
         deck.Remove(randomCard);
+
+        Debug.Log("Deck says:" + newCard);
 
         return newCard;
 

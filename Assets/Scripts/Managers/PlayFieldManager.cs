@@ -107,10 +107,13 @@ public class PlayFieldManager : MonoBehaviour
     {
         foreach (GameObject card in cards)
         {
-            Button cardButton = card.GetComponent<Button>();
-            if (cardButton != null)
+            if (card != null)
             {
-                cardButton.interactable = activate;
+                Button cardButton = card.GetComponent<Button>();
+                if (cardButton != null)
+                {
+                    cardButton.interactable = activate;
+                }
             }
         }
     }

@@ -25,7 +25,7 @@ public class HandManager : MonoBehaviour
          * get new card position in hand and move it there
          * move cards before new card gets added to hand
          */
-
+        Debug.Log("Hand says:" + card);
         // Add the card to the player's hand
         AudioManager.instance.PlaySFX("Pickup Card");
         card.GetComponent<CardManager>().cardanimator.SetBool("Initiate", true); // Plays the Intro animation for the cards

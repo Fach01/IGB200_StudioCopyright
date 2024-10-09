@@ -12,6 +12,7 @@ public class Farsight : BuilderAbility
 
     public override void ActivateAbility(PlayerManager playerManager, GameObject AbilityUI)
     {
+        AbilityUI.GetComponent<AbilityUI>().SetAbilityInfo();
         deckSnapshot.SetActive(true);
         DeckSnapshot snapshotManager = deckSnapshot.GetComponent<DeckSnapshot>();
 
