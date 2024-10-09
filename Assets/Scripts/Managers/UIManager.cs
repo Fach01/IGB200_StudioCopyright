@@ -30,8 +30,13 @@ public class UIManager : MonoBehaviour
 
     public GameObject EndTurnAnimation;
 
+    public TMP_Text Budget;
+    public TMP_Text Framework;
+    public TMP_Text Utilities;
+
     public GameObject CardInfo;
     public TMP_Text CardDescription;
+    public GameObject Fade;
 
 
     public List<Sprite> buildingimages;
@@ -39,13 +44,15 @@ public class UIManager : MonoBehaviour
     public GameObject? Tutorial; 
     public TMP_Text? tutorialText;
 
-    public TMP_Text Budget;
-    public TMP_Text Framework;
-    public TMP_Text Utilities;
     // Start is called before the first frame update
     private void Start()
     {
-        
+
+    }
+    private void Awake()
+    {
+        GameManager.instance.Foreground = Fade;
+        StartCoroutine(GameManager.instance.TransitionIn());
     }
 
     // Update is called once per frame
@@ -53,7 +60,10 @@ public class UIManager : MonoBehaviour
     private void Update()
     {
     }
-
+    public void ChangeScene(string sceneName)
+    {
+        GameManager.instance.ChangeScene(sceneName);
+    }
     public void SetBudgetText(string budget)
     {
         TMP_Text budgetText = budgetObject.GetComponent<TMP_Text>();

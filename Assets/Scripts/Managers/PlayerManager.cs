@@ -95,6 +95,10 @@ public class PlayerManager : MonoBehaviour
         }
         if (actionPoints > 0 && phase == Phase.Setup)
         {
+            if (levelManager.GetComponent<LevelManager>().tutorial != null)
+            {
+                levelManager.GetComponent<LevelManager>().tutorial.GetComponent<Tutorial>().Goal = playField;
+            }
             if (playField.GetComponent<PlayFieldManager>().PlayCurrentCard(selectedCard))
             {
                 actionPoints -= 1;
