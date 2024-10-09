@@ -85,5 +85,21 @@ public class AbilityUI : MonoBehaviour
         Debug.Log("yippee");
         text.text = newText;
     }
-    
+
+    public IEnumerator WaitForConfirm(bool confirmed)
+    {
+        while (!confirmed)
+        {
+            if (Input.GetKeyDown(KeyCode.Return))
+            {
+                confirmed = true;
+            }
+            yield return null;
+        }
+
+        playField.GetComponent<Button>().interactable = true;
+        Reset();
+        yield break;
+    }
+
 }

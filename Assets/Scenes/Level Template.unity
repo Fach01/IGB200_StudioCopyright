@@ -644,6 +644,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 155100453}
     - target: {fileID: 4413125689673993254, guid: 7c208aa2d33faf6449f0a6db8b17f823, type: 3}
+      propertyPath: deck
+      value: 
+      objectReference: {fileID: 716173656}
+    - target: {fileID: 4413125689673993254, guid: 7c208aa2d33faf6449f0a6db8b17f823, type: 3}
       propertyPath: deckSnapshot
       value: 
       objectReference: {fileID: 1749422233}

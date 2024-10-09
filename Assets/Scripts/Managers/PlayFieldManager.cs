@@ -117,4 +117,29 @@ public class PlayFieldManager : MonoBehaviour
             }
         }
     }
+
+    public bool IsEmpty()
+    {
+        foreach(GameObject card in cards)
+        {
+            if (card != null)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public int Size()
+    {
+        int size = 0;
+        foreach (GameObject card in cards)
+        {
+            if (card != null)
+            {
+                size += 1;
+            }
+        }
+        return size;
+    }
 }

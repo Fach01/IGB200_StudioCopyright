@@ -11,13 +11,23 @@ public class Zap : BuilderAbility
 
     public override void ActivateAbility(PlayerManager playerManager, GameObject AbilityUI)
     {
-        AbilityUI.GetComponent<AbilityUI>().SetAbilityInfo();
-        if (playerManager.playField.GetComponent<PlayFieldManager>().cards.Count == 0)
+        
+        if (playerManager.playField.GetComponent<PlayFieldManager>().Size() <= 1)
         {
-            // cant complete this - handle
+            AbilityUI.GetComponent<AbilityUI>().SetText("Playfield is empty! Press enter to continue.");
+            StartCoroutine(AbilityUI.GetComponent<AbilityUI>().WaitForConfirm(false));
         }
-        playerManager.playField.GetComponent<Button>().interactable = false;
-        StartCoroutine(SelectCards(playerManager, false, null, null, AbilityUI));
+        else if (playerManager.hand.GetComponent<HandManager>().hand.Count <= 0)
+        {
+            AbilityUI.GetComponent<AbilityUI>().SetText("Hand is empty! Press enter to continue.");
+            StartCoroutine(AbilityUI.GetComponent<AbilityUI>().WaitForConfirm(false));
+        }
+        else
+        {
+            AbilityUI.GetComponent<AbilityUI>().SetAbilityInfo();
+            playerManager.playField.GetComponent<Button>().interactable = false;
+            StartCoroutine(SelectCards(playerManager, false, null, null, AbilityUI));
+        } 
     }
 
 
@@ -63,6 +73,22 @@ public class Zap : BuilderAbility
         playerManager.playField.GetComponent<Button>().interactable = true;
         AbilityUI.GetComponent<AbilityUI>().Reset();
 
+        yield break;
+    }
+
+    IEnumerator WaitForConfirm(bool confirmed, PlayerManager playerManager, GameObject AbilityUI)
+    {
+        while (!confirmed)
+        {
+            if (Input.GetKeyDown(KeyCode.Return))
+            {
+                confirmed = true;
+            }
+            yield return null;
+        }
+
+        playerManager.playField.GetComponent<Button>().interactable = true;
+        AbilityUI.GetComponent<AbilityUI>().Reset();
         yield break;
     }
 }
