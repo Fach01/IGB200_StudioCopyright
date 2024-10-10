@@ -240,7 +240,7 @@ public class TutorailLevel1 : Tutorial
 
         if (voiceLine != "") { yield return new WaitUntil(() => AudioManager.instance.sfxSource.isPlaying == false); }
 
-        else { yield return new WaitForSeconds(3f); }
+        else { yield return new WaitForSeconds(5f); }
 
         EndText();
 

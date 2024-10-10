@@ -30,7 +30,7 @@ public class DeckManager : MonoBehaviour
         {
             outOfCards = true;
             GetComponent<Button>().interactable = false;
-            label.text = "Deck is empty!";
+            label.text = "Deck is empty!";  
         } 
         else if (outOfCards && deck.Count > 0)
         {

@@ -8,42 +8,25 @@ using UnityEngine.UI;
 
 public class TutorailLevel2 : Tutorial
 {
-    public List<string> lineNamesStartText;
-    public List<string> lineNamesJack;
-    public List<string> lineNamesAlex;
-    public List<string> lineNamesEnd;
+    private bool drawtutplayed = false;
 
-    private int linenumber = 0;
-    private int tutorialsequence = 1;
-
-    public GameObject Playfield;
-    public GameObject CardOnly;
+    private bool line1played = false;
+    private bool line2played = false;
 
     private new void Update()
     {
         base.Update();
-        switch (tutorialsequence)
-        {
-            case 1:
-                StartTutorial(); break;
-            case 2:
-                Stage2();
-                break;
-            case 3:
-                Stage3();
-                break;
-            case 4:
-                Stage4();
-                break;
-            case 5:
-                Stage5();
-                break;
-            case 6: Stage3(); break;
-            case 7: Stage6(); break;
-            case 8: Stage7(); break;
-            case 9: ; break;
-        }
 
+        if (playerManager.selectedCard != null)
+        {
+            string ability = playerManager.selectedCard.GetComponent<CardManager>().m_card.abilityName;
+            if (ability == "Farsight" && !line1played) { Farsight(); line1played = true; }
+            else if (ability == "Foundation" && !line2played) { Foundation(); line2played = true; }
+        }
+        if (playerManager.phase == Phase.Setup && levelManager.turn != 1)
+        {
+            Draw();
+        }
     }
 
     void Start()
@@ -54,174 +37,28 @@ public class TutorailLevel2 : Tutorial
     }
     private void StartTutorial()
     {
-        if (isVoiceLinePlaying == true) return;
-
-        isVoiceLinePlaying = true;
-        
-        if (linenumber <= lineNamesStartText.Count - 1)
-        {
-            Debug.Log(linenumber);
-
-            StartCoroutine(PlayVoiceLine(lineNamesStartText[linenumber]));
-            linenumber++;
-
-        }
-        else
-        {
-            tutorialsequence = 2;
-            UI.Tutorial.SetActive(false); 
-        }
-
-
+        StartCoroutine(PlayVoiceLine("Start"));
     }
-    
-    private void Stage2()
+    public void Farsight()
     {
-        Goal = playerManager.selectedCard;
-        if (Objective == Goal && coroutineplaying == true)
-        {
-            StopAllCoroutines();
-            Goal = null;
-            coroutineplaying = false;
-            tutorialsequence = 3;
-            return;
-        }
-        if (coroutineplaying == true) return;
-
-        coroutineplaying = true;
-        handActive = true;
-        foreach(GameObject card in HandManager.hand)
-        {
-            if ((card.GetComponent<CardManager>().m_card.name) == "Electrician") Objective = card;
-        }
-        StartCoroutine(highlight());
-
+        StartCoroutine(PlayVoiceLine("Farsight"));
     }
-
-    private void Stage3()
+    public void Foundation()
     {
-        if (Objective == Goal && coroutineplaying == true)
-        {
-            StopAllCoroutines();
-            Goal = null;
-            coroutineplaying = false;
-            tutorialsequence ++;
-            return;
-        }
-        if (coroutineplaying == true) return;     
-        handActive = true;
-        coroutineplaying = true;
-        Objective = Playfield;
-
-        StartCoroutine(highlight());
-
+        StartCoroutine(PlayVoiceLine("Foundation"));
     }
-    private void Stage4()
+    public void Draw()
     {
-        if (!coroutineplaying) linenumber = 0;
-
-        if(!isVoiceLinePlaying && linenumber < lineNamesJack.Count) 
+        if (!drawtutplayed)
         {
-            isVoiceLinePlaying = true;
-
-            StartCoroutine(PlayVoiceLine(lineNamesJack[linenumber])); 
-            linenumber++; 
+            PlayVoiceLine("Draw");
+            drawtutplayed = true;
         }
-        else if (!isVoiceLinePlaying && linenumber >= lineNamesJack.Count) { UI.Tutorial.SetActive(false); }
 
-        if (Objective == Goal && coroutineplaying)
-        {
-            StopAllCoroutines();
-            Goal = null;
-            coroutineplaying = false;
-            tutorialsequence = 5;
-            UI.Tutorial.SetActive(false);
-            return;
-        }
-        if (coroutineplaying) return;
-        UI.Tutorial.SetActive(true);
-        coroutineplaying = true;
-        Objective = CardOnly;
-
-
-        StartCoroutine(highlight());
     }
-    private void Stage5()
-    {
-        Goal = playerManager.selectedCard;
-        if (!coroutineplaying) linenumber = 0;
-
-        if (!isVoiceLinePlaying && linenumber < lineNamesAlex.Count) 
-        { 
-            isVoiceLinePlaying = true;
-            StartCoroutine(PlayVoiceLine(lineNamesAlex[linenumber])); 
-            linenumber++; 
-        }
-        else if (!isVoiceLinePlaying && linenumber >= lineNamesAlex.Count) { UI.Tutorial.SetActive(false); }
-
-        if (Objective == Goal && coroutineplaying)
-        {
-            StopAllCoroutines();
-            Goal = null;
-            coroutineplaying = false;
-            tutorialsequence = 6;
-            UI.Tutorial.SetActive(false);
-            return;
-        }
-        if (coroutineplaying) return;
-        UI.Tutorial.SetActive(true);
-
-        coroutineplaying = true;
-
-        foreach (GameObject card in HandManager.hand)
-        {
-            if ((card.GetComponent<CardManager>().m_card.name) == "Plumber") Objective = card;
-        }
-
-        StartCoroutine(highlight());
-    }
-    private void Stage6()
-    {
-
-        if (Objective == Goal && coroutineplaying == true)
-        {
-            StopAllCoroutines();
-            Goal = null;
-            coroutineplaying = false;
-            tutorialsequence = 8;
-            return;
-        }
-        if (coroutineplaying == true) return;
-        coroutineplaying = true;
-        handActive = true;
-        Objective = UI.endTurn;
-        StartCoroutine(highlight());
-    }
-    private void Stage7()
-    {
-        if (!coroutineplaying) linenumber = 0;
-
-        if (isVoiceLinePlaying == true) return;
-
-        isVoiceLinePlaying = true;
-
-        if (linenumber <= lineNamesEnd.Count - 1)
-        {
-            Debug.Log(linenumber);
-
-            StartCoroutine(PlayVoiceLine(lineNamesEnd[linenumber]));
-            linenumber++;
-
-        }
-        else
-        {
-            UI.Tutorial.SetActive(false);
-            levelManager.win.SetActive(true);
-        }
-    }
-
     public new IEnumerator PlayVoiceLine(string name)
     {
+        UI.Tutorial.SetActive(true);
 
         Tutoriallines T = Array.Find(lines, x => x.LineName == name);
         string text = T.Line;
@@ -236,12 +73,17 @@ public class TutorailLevel2 : Tutorial
 
         if (voiceLine != "") { yield return new WaitUntil(() => AudioManager.instance.sfxSource.isPlaying == false); }
 
-        else { yield return new WaitForSeconds(3f); }
+        else { yield return new WaitForSeconds(5f); }
 
         EndText();
 
         yield break;
 
+    }
+    public new void EndText()
+    {
+        base.EndText();
+        UI.Tutorial.SetActive(false);
     }
     
 

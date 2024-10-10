@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5d4abf91e1029cb488ef4e4f8b92543a, type: 3}
-  m_Name: Engineer
+  m_Name: Try a Trade Student
   m_EditorClassIdentifier: 
-  cost: 20000
+  cost: 10000
   image: {fileID: 0}
-  name: Engineer
-  background: {fileID: 21300000, guid: cb4bc47e95493be4ea23b71e948c4130, type: 3}
-  type: 0
-  description: '-'
-  resource: 0
-  abilityName: 
-  abilityCost: 0
+  name: Try a Trade Student
+  background: {fileID: 21300000, guid: 8c7457d87ff87df47a6d33ced078bc3e, type: 3}
+  type: 1
+  description: Farsight 15000 - Look at the top 3 cards and put one in your hand
+  resource: 3
+  abilityName: Farsight
+  abilityCost: 20000

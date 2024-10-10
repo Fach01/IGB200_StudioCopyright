@@ -6761,7 +6761,7 @@ MonoBehaviour:
   levelManager: {fileID: 0}
   player: {fileID: 0}
   cardPrefab: {fileID: 5862813643101496642, guid: 1acc8e753cd31794f814db0ee06f2ec9, type: 3}
-  label: {fileID: 0}
+  label: {fileID: 4891717804967882780}
   deck:
   - {fileID: 11400000, guid: c1214dc01243473489033ddfc0941e92, type: 2}
   - {fileID: 11400000, guid: c1214dc01243473489033ddfc0941e92, type: 2}

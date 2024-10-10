@@ -80,7 +80,7 @@ public class CardManager : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         playerManager.SelectCard(gameObject);
         if (m_active)
         {
-            transform.Translate(0, -20f, 0);
+            transform.Translate(0, -30f, 0);
             m_active = false;
         }
     }

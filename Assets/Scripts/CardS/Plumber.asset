@@ -17,7 +17,7 @@ MonoBehaviour:
   name: Plumber
   background: {fileID: 21300000, guid: 3a046cd99c55ee941a1f7516de0467d2, type: 3}
   type: 2
-  description: '-'
+  description: ' Discard 2 cards draw 2 cards'
   resource: 5
   abilityName: Flush
-  abilityCost: 5000
+  abilityCost: 10000

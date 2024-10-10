@@ -17,7 +17,7 @@ MonoBehaviour:
   name: Electrician
   background: {fileID: 21300000, guid: 3a046cd99c55ee941a1f7516de0467d2, type: 3}
   type: 2
-  description: '-'
+  description: Zap 10,000 - swap a card in your hand with one on the field
   resource: 5
   abilityName: Zap
   abilityCost: 10000

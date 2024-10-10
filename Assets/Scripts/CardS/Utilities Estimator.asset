@@ -17,7 +17,7 @@ MonoBehaviour:
   name: Utilities Estimator
   background: {fileID: 21300000, guid: 3a046cd99c55ee941a1f7516de0467d2, type: 3}
   type: 2
-  description: '-'
+  description: look at the top 4 cards of your deck and put one in your hand
   resource: 5
   abilityName: Farsight
-  abilityCost: 10000
+  abilityCost: 20000

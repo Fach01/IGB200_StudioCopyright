@@ -17,7 +17,7 @@ MonoBehaviour:
   name: Bricklayer
   background: {fileID: 21300000, guid: 8c7457d87ff87df47a6d33ced078bc3e, type: 3}
   type: 1
-  description: qwggqiweyoqiwueqiowejuqowiewqiwuegqwuieiqwge
+  description: Foundation 30,000 - Put an extra card onto the field
   resource: 5
   abilityName: Foundation
-  abilityCost: 30000
+  abilityCost: 10000

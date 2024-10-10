@@ -95,7 +95,7 @@ public class PlayerManager : MonoBehaviour
         }
         if (actionPoints > 0 && phase == Phase.Setup)
         {
-            if (levelManager.GetComponent<LevelManager>().tutorial != null)
+            if (levelManager.GetComponent<LevelManager>().tutorial != null && levelManager.GetComponent<LevelManager>().level == level.level1)
             {
                 levelManager.GetComponent<LevelManager>().tutorial.GetComponent<Tutorial>().Goal = playField;
             }

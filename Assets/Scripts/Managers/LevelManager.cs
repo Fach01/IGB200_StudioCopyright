@@ -29,7 +29,7 @@ public class LevelManager : MonoBehaviour
     private int utilitiesCount;
     private int frameworksCount;
 
-    private int turn = 1;
+    public int turn = 1;
 
     public GameObject win;
     public GameObject lose;
