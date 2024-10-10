@@ -60,6 +60,16 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: b66a8df29cbb4604a9bb8c419474cc02, type: 3}
   - name: Pickup Card
     clip: {fileID: 8300000, guid: 5d16dc208d5eacf4b8221af67cba73fc, type: 3}
+  - name: Change Scene
+    clip: {fileID: 8300000, guid: 3c43309131e649f4087607784c2ca49b, type: 3}
+  - name: Select Option
+    clip: {fileID: 8300000, guid: a1e1512953f7a7c46a06012e09eab854, type: 3}
+  - name: Foundation
+    clip: {fileID: 8300000, guid: 18a8b9c0c696f9a418b1d2b8afae8e07, type: 3}
+  - name: Zap
+    clip: {fileID: 8300000, guid: 9026a02c826208f46bcca0d04ca7246d, type: 3}
+  - name: Farsight
+    clip: {fileID: 8300000, guid: 71d957e539f7dab43b3a4961211acae3, type: 3}
   musicSource: {fileID: 6034508708041789726}
   sfxSource: {fileID: 224228833735210498}
   musicV: 100

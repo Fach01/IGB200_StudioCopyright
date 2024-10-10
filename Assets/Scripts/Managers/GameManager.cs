@@ -39,6 +39,7 @@ public class GameManager : MonoBehaviour
     public void ChangeScene(string sceneName)
     {
         StartCoroutine(Transitionout(sceneName));
+        AudioManager.instance.PlaySFX("Change Scene");
     }
     public IEnumerator TransitionIn()
     {

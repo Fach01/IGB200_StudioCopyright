@@ -14,7 +14,7 @@ public abstract class Tutorial : MonoBehaviour
     protected bool isVoiceLinePlaying = false;
     protected bool coroutineplaying = false;
 
-    public GameObject Goal;
+    public GameObject? Goal;
     public GameObject Objective;
     public GameObject guidance;
 
@@ -39,13 +39,12 @@ public abstract class Tutorial : MonoBehaviour
         UI.TutorialActive(text);
 
         if (voiceLine != null) { yield return new WaitUntil(() => AudioManager.instance.sfxSource.isPlaying == false); }
-        else { yield return new WaitForSeconds(3f); }
+        else { yield return new WaitForSeconds(1f); }
         EndText();
 
     }
     public IEnumerator highlight()
     {
-        coroutineplaying = true;
         while (Goal != Objective)
         {
 
@@ -73,6 +72,7 @@ public abstract class Tutorial : MonoBehaviour
     public void Skip()
     {
         AudioManager.instance.StopSFX();
+        StopAllCoroutines();
         EndText();
     }
 }

@@ -1096,6 +1096,18 @@ PrefabInstance:
       propertyPath: playField
       value: 
       objectReference: {fileID: 383169627}
+    - target: {fileID: 5872605249764963331, guid: 7c208aa2d33faf6449f0a6db8b17f823, type: 3}
+      propertyPath: startBudget
+      value: 200000
+      objectReference: {fileID: 0}
+    - target: {fileID: 5872605249764963331, guid: 7c208aa2d33faf6449f0a6db8b17f823, type: 3}
+      propertyPath: utilitiesGoal
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5872605249764963331, guid: 7c208aa2d33faf6449f0a6db8b17f823, type: 3}
+      propertyPath: frameworksGoal
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 7033082372945394501, guid: 7c208aa2d33faf6449f0a6db8b17f823, type: 3}
       propertyPath: floodPrompt
       value: 

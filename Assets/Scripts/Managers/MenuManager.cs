@@ -15,6 +15,10 @@ public class MenuManager : MonoBehaviour
     {
         GameManager.instance.ChangeScene(LevelName);
     }
+    public void playaudio()
+    {
+        AudioManager.instance.PlaySFX("Select Option");
+    }
     public void Quit()
     {
         GameManager.instance.Quit();

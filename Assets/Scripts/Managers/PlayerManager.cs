@@ -123,7 +123,8 @@ public class PlayerManager : MonoBehaviour
     {
         AudioManager.instance.PlaySFX("Pickup Card");
         GameObject card = deck.GetComponent<DeckManager>().DrawCard();
-        hand.GetComponent<HandManager>().AddCard(card);
+        if (card != null) hand.GetComponent<HandManager>().AddCard(card);
+        else Debug.Log("DeckEmpty");
     }
 
     public IEnumerator DrawXCards(int x)
