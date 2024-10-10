@@ -51,6 +51,7 @@ public class Foundation : BuilderAbility
         }
 
         //add card from hand to playfield
+        AudioManager.instance.PlaySFX("Foundation");
         playerManager.playField.GetComponent<PlayFieldManager>().AddCard(chosenCard);
 
         playerManager.playField.GetComponent<PlayFieldManager>().OrderCards();

@@ -24,6 +24,7 @@ public class Zap : BuilderAbility
         }
         else
         {
+            AudioManager.instance.PlaySFX("Zap");
             AbilityUI.GetComponent<AbilityUI>().SetAbilityInfo();
             playerManager.playField.GetComponent<Button>().interactable = false;
             StartCoroutine(SelectCards(playerManager, false, null, null, AbilityUI));

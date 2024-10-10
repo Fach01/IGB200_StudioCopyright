@@ -73,6 +73,7 @@ public class Farsight : BuilderAbility
         }
 
         // move chosen card to hand
+        AudioManager.instance.PlaySFX("Farsight");
         snapshotManager.cards.Remove(chosenDeckCard);
         playerManager.hand.GetComponent<HandManager>().AddCard(chosenDeckCard);
         

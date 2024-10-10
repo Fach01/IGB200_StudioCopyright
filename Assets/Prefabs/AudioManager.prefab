@@ -70,6 +70,8 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 9026a02c826208f46bcca0d04ca7246d, type: 3}
   - name: Farsight
     clip: {fileID: 8300000, guid: 71d957e539f7dab43b3a4961211acae3, type: 3}
+  - name: Flush
+    clip: {fileID: 8300000, guid: 3c43309131e649f4087607784c2ca49b, type: 3}
   musicSource: {fileID: 6034508708041789726}
   sfxSource: {fileID: 224228833735210498}
   musicV: 100
