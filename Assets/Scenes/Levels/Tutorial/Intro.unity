@@ -579,20 +579,20 @@ MonoBehaviour:
   - LineName: Tut 1
     Line: "So, you must be our new production manager, my name\u2019s Caitlyn, nice
       to meet ya."
-    AudioClipName: 
+    AudioClipName: Line 1
   - LineName: Tut 2
     Line: "I\u2019m sure with your experience you will be up to the task."
-    AudioClipName: 
+    AudioClipName: Line 2
   - LineName: Tut 3
     Line: WAIT WHAT!?
-    AudioClipName: 
+    AudioClipName: Line 3
   - LineName: Tut 4
     Line: This is your first gig!?
-    AudioClipName: 
+    AudioClipName: Line 4
   - LineName: Tut 5
     Line: 'Well lucky for you, you happened to run into best person to teach you
       how things work around here, Come on '
-    AudioClipName: 
+    AudioClipName: Line 5
   text: {fileID: 18678232}
   lineNames:
   - Tut 1
@@ -1009,6 +1009,6 @@ SceneRoots:
   - {fileID: 1976023893}
   - {fileID: 277558361}
   - {fileID: 1494460612}
-  - {fileID: 1050942691}
   - {fileID: 704947969}
   - {fileID: 1976814064}
+  - {fileID: 1050942691}
