@@ -11,17 +11,29 @@ public class Tutorialentryscene : Tutorial
     public List<string> lineNames;
     private int linenumber = 0;
     public GameObject Fade;
+    private bool entranceplayed = false;
 
-    public void Awake()
+
+    private void Awake()
     {
-        GameManager.instance.Foreground = Fade;
-        StartCoroutine(GameManager.instance.TransitionIn());
-        StartCoroutine(PlayVoiceLine(lineNames[linenumber]));
+        Invoke(nameof(Play), 1f);
     }
+    private void Play()
+    {
+       StartCoroutine(PlayVoiceLine(lineNames[linenumber]));
+    
+    }
+
 
     // Update is called once per frame
     new void Update()
     {
+        if (!entranceplayed)
+        {
+            GameManager.instance.Foreground = Fade;
+            StartCoroutine(GameManager.instance.TransitionIn());
+            entranceplayed=true;
+        }
         if (isVoiceLinePlaying && Input.GetKeyDown(KeyCode.Space)) Skip();
     }
 

@@ -72,6 +72,16 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 71d957e539f7dab43b3a4961211acae3, type: 3}
   - name: Flush
     clip: {fileID: 8300000, guid: 3c43309131e649f4087607784c2ca49b, type: 3}
+  - name: Line 1
+    clip: {fileID: 8300000, guid: 436b3f043686f8e468a2b1255f84af65, type: 3}
+  - name: Line 2
+    clip: {fileID: 8300000, guid: 5ec6866138228e643ba0aa3b193a7a1a, type: 3}
+  - name: Line 3
+    clip: {fileID: 8300000, guid: 32620dff3143c06478b4be62a7c60b58, type: 3}
+  - name: Line 4
+    clip: {fileID: 8300000, guid: c7403c4d97b01664eb750fe44622e638, type: 3}
+  - name: Line 5
+    clip: {fileID: 8300000, guid: 28b7ece2055aabf4e9410623b0eaf532, type: 3}
   musicSource: {fileID: 6034508708041789726}
   sfxSource: {fileID: 224228833735210498}
   musicV: 100

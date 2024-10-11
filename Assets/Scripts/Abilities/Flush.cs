@@ -59,8 +59,7 @@ public override void ActivateAbility(PlayerManager playerManager, GameObject Abi
 
         if (playerManager.selectedCard != null)
         {
-            
-            Destroy(playerManager.selectedCard);
+            playerManager.selectedCard.GetComponent<CardManager>().cardanimator.SetBool("Flush", true);
 
             AudioManager.instance.PlaySFX("Flush");
             for (int i = 0; i < numDraw; i++)

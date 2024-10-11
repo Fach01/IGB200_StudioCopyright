@@ -134,6 +134,10 @@ public class CardManager : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         cardanimator.SetBool(parameter, false);
         inanimation = false;
     }
+    public void DestroySelf()
+    {
+        Destroy(this.gameObject);
+    }
     public void ResetOrientation()
     {
         this.transform.rotation = Orientation.rotation;
