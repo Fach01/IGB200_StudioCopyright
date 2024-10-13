@@ -3,9 +3,9 @@ using UnityEngine;
 public interface IAbility
 {
 
-    public string Description { get; set; }
+    public string Description(int level);
 
-    public void ActivateAbility(PlayerManager playerManager, GameObject AbilityUI);
+    public void ActivateAbility(PlayerManager playerManager, GameObject AbilityUI, int level);
 }
 
 

@@ -12,6 +12,7 @@ public class Card : ScriptableObject
     public int resource;
     public string abilityName;
     public int abilityCost;
+    public int abilityLevel;
 
     [HideInInspector]
     public IAbility ability; // ability script, can be passive or activated
