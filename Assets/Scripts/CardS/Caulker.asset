@@ -20,4 +20,5 @@ MonoBehaviour:
   description: Fush 5000, discard 1 card , draw 2 cards
   resource: 2
   abilityName: Flush
-  abilityCost: 30000
+  abilityCost: 5000
+  abilityLevel: 1

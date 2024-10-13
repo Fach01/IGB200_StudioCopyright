@@ -21,3 +21,4 @@ MonoBehaviour:
   resource: 6
   abilityName: Farsight
   abilityCost: 20000
+  abilityLevel: 3

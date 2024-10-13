@@ -5,10 +5,12 @@ using UnityEngine.UI;
 
 public class Foundation : BuilderAbility
 {
-    public override string Description { set { value = desc; } get { return desc; } }
-    public string desc = "Play an extra card for no additional cost.";
+    public override string Description(int level)
+    {
+        return "Play an extra card for no additional cost.";
+    }
 
-    public override void ActivateAbility(PlayerManager playerManager, GameObject AbilityUI)
+    public override void ActivateAbility(PlayerManager playerManager, GameObject AbilityUI, int level)
     {
         if (playerManager.hand.GetComponent<HandManager>().hand.Count <= 0)
         {

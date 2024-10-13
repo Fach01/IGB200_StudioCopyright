@@ -20,4 +20,5 @@ MonoBehaviour:
   description: Farsight 15000 - Look at the top 3 cards and put one in your hand
   resource: 3
   abilityName: Farsight
-  abilityCost: 20000
+  abilityCost: 15000
+  abilityLevel: 2

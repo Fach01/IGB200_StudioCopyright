@@ -5,14 +5,43 @@ using UnityEngine.UI;
 
 public class Flush : BuilderAbility
 {
-    public override string Description {set{value = desc;} get{return desc;}}
-    public string desc = "Discard 1 card, draw 2";
+    public override string Description(int level)
+    {
+        switch (level)
+        {
+            case 1:
+                return "Discard 1 card, draw 2";
+            case 2:
+                return "Discard 2 cards, draw 2";
+            default:
+                return "Discard 1 card, draw 2";
+
+        }
+    }
     public GameObject deck;
 
-public override void ActivateAbility(PlayerManager playerManager, GameObject AbilityUI)
+public override void ActivateAbility(PlayerManager playerManager, GameObject AbilityUI, int level)
     {
         DeckManager deckManager = deck.GetComponent<DeckManager>();
-        int numDraw = 2;
+        int numDraw;
+        int numDisc;
+
+
+        switch (level)
+        {
+            case 1:
+                numDisc = 1;
+                numDraw = 2;
+                break;
+            case 2:
+                numDisc = 2;
+                numDraw = 2;
+                break;
+            default:
+                numDisc = 1;
+                numDraw = 2;
+                break;
+        }
 
         if (deckManager != null) {
             if (deckManager.deck.Count <= 0)
@@ -32,7 +61,7 @@ public override void ActivateAbility(PlayerManager playerManager, GameObject Abi
                 AbilityUI.GetComponent<AbilityUI>().SetAbilityInfo();
                 playerManager.playField.GetComponent<Button>().interactable = false;
                 
-                StartCoroutine(SelectCard(playerManager, numDraw, AbilityUI, false));
+                StartCoroutine(SelectCard(playerManager, numDraw, numDisc, AbilityUI, false));
             }
         } 
     }
@@ -40,8 +69,9 @@ public override void ActivateAbility(PlayerManager playerManager, GameObject Abi
     
 
     //TODO check whether the card being played is still activated and if thats the issue
-    IEnumerator SelectCard(PlayerManager playerManager, int numDraw, GameObject AbilityUI, bool confirmed)
+    IEnumerator SelectCard(PlayerManager playerManager, int numDraw, int numDisc, GameObject AbilityUI, bool confirmed)
     {
+        GameObject[] discardCards = new GameObject[numDisc];
         while (!confirmed)
         {
             if (playerManager.selectedCard == null || !playerManager.hand.GetComponent<HandManager>().SearchForCard(playerManager.selectedCard))

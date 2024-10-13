@@ -20,4 +20,5 @@ MonoBehaviour:
   description: Foundation 30,000 - Put an extra card onto the field
   resource: 5
   abilityName: Foundation
-  abilityCost: 10000
+  abilityCost: 30000
+  abilityLevel: 1

@@ -6,10 +6,13 @@ using UnityEngine.UI;
 
 public class Zap : BuilderAbility
 {
-    public override string Description { set { value = desc; } get { return desc; } }
-    public string desc = "wow!";
+    public override string Description(int level)
+    {
+        return "Swap one card from your hand with one from the field";
+    }
+   
 
-    public override void ActivateAbility(PlayerManager playerManager, GameObject AbilityUI)
+    public override void ActivateAbility(PlayerManager playerManager, GameObject AbilityUI, int level)
     {
         
         if (playerManager.playField.GetComponent<PlayFieldManager>().Size() <= 1)
@@ -74,22 +77,6 @@ public class Zap : BuilderAbility
         playerManager.playField.GetComponent<Button>().interactable = true;
         AbilityUI.GetComponent<AbilityUI>().Reset();
 
-        yield break;
-    }
-
-    IEnumerator WaitForConfirm(bool confirmed, PlayerManager playerManager, GameObject AbilityUI)
-    {
-        while (!confirmed)
-        {
-            if (Input.GetKeyDown(KeyCode.Return))
-            {
-                confirmed = true;
-            }
-            yield return null;
-        }
-
-        playerManager.playField.GetComponent<Button>().interactable = true;
-        AbilityUI.GetComponent<AbilityUI>().Reset();
         yield break;
     }
 }
