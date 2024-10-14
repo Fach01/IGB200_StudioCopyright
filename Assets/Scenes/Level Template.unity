@@ -635,6 +635,10 @@ PrefabInstance:
       propertyPath: playField
       value: 
       objectReference: {fileID: 1265561410}
+    - target: {fileID: 3410410126516686711, guid: 7c208aa2d33faf6449f0a6db8b17f823, type: 3}
+      propertyPath: deck
+      value: 
+      objectReference: {fileID: 716173656}
     - target: {fileID: 3651989695097228048, guid: 7c208aa2d33faf6449f0a6db8b17f823, type: 3}
       propertyPath: buildingname
       value: Test

@@ -21,4 +21,4 @@ MonoBehaviour:
   resource: 5
   abilityName: Flush
   abilityCost: 10000
-  abilityLevel: 1
+  abilityLevel: 2
