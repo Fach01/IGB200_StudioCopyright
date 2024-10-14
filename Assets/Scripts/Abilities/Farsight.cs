@@ -56,6 +56,7 @@ public class Farsight : BuilderAbility
             {
                 AbilityUI.GetComponent<AbilityUI>().SetAbilityInfo();
                 deckSnapshot.SetActive(true);
+                playerManager.playField.GetComponent<Button>().interactable = false;
                 DeckSnapshot snapshotManager = deckSnapshot.GetComponent<DeckSnapshot>();
 
                 for (int i = 0; i < numSnapshot; i++)
