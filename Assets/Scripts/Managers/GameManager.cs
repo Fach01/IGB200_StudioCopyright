@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour
     public void ChangeScene(string sceneName)
     {
         StartCoroutine(Transitionout(sceneName));
-        AudioManager.instance.PlaySFX("Change Scene");
+
     }
     public IEnumerator TransitionIn()
     {
@@ -78,10 +78,48 @@ public class GameManager : MonoBehaviour
         }
 
     }
+    public IEnumerator Transitionout(int sceneNum)
+    {
+        AudioManager.instance.PlaySFX("Change Scene");
+        Foreground.SetActive(true);
+        Color c = Foreground.GetComponent<Image>().color;
+        c.a = 0;
+        Foreground.GetComponent<Image>().color = c;
+
+        for (float i = 0f; i <= 1; i += 0.1f)
+        {
+            c.a = i;
+            Foreground.GetComponent<Image>().color = c;
+            yield return new WaitForSeconds(0.1f);
+        }
+        try
+        {
+            SceneManager.LoadScene(sceneNum);
+        }
+        catch
+        {
+            Debug.Log("Check Scene name is correct and in build");
+        }
+
+    }
+    public void ReturntoMain()
+    {
+        ChangeScene("Main Menu");
+    }
     public void ChangeScene(int sceneNumber)
     {
-        SceneManager.LoadScene(sceneNumber);
-  
+        StartCoroutine(Transitionout(sceneNumber));
+
+    }
+    public void NextLevel()
+    {
+        int Scenenum = SceneManager.GetActiveScene().buildIndex + 1;
+        ChangeScene(Scenenum);
+    }
+    public void Restart()
+    {
+        int Scenenum = SceneManager.GetActiveScene().buildIndex;
+        ChangeScene(Scenenum);
     }
     public void Quit()
     {

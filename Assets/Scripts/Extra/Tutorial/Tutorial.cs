@@ -14,7 +14,7 @@ public abstract class Tutorial : MonoBehaviour
 
     public bool handActive = false;
     protected bool isVoiceLinePlaying = false;
-    public bool coroutineplaying = false;
+    protected bool coroutineplaying = false;
 
     public GameObject? Goal;
     public GameObject Objective;

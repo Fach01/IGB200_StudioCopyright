@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d4abf91e1029cb488ef4e4f8b92543a, type: 3}
   m_Name: Contractor
   m_EditorClassIdentifier: 
-  cost: 40000
+  cost: 25000
   image: {fileID: 0}
   name: Contractor
   background: {fileID: 21300000, guid: 3a046cd99c55ee941a1f7516de0467d2, type: 3}

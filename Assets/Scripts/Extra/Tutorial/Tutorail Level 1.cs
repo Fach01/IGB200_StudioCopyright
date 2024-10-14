@@ -51,7 +51,10 @@ public class TutorailLevel1 : Tutorial
                 HighlightObject(UI.endTurn);
                 break;
             case 10:
-                if (Dialouge(lineNamesEnd)) levelManager.win.SetActive(true);
+                Invoke(nameof(Stage10), 5f);
+                break;
+            case 11:
+                levelManager.win.SetActive(true);
                 break;
             default:
                 Debug.Log("no stage");
@@ -146,6 +149,10 @@ public class TutorailLevel1 : Tutorial
                 break;
             }
         }
+    }
+    private void Stage10()
+    {
+        Dialouge(lineNamesEnd);
     }
     public new void Skip()
     {

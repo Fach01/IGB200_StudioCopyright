@@ -21,7 +21,6 @@ public class Tutorialentryscene : Tutorial
     private void Play()
     {
        StartCoroutine(PlayVoiceLine(lineNames[linenumber]));
-    
     }
 
 
@@ -35,6 +34,11 @@ public class Tutorialentryscene : Tutorial
             entranceplayed=true;
         }
         if (isVoiceLinePlaying && Input.GetKeyDown(KeyCode.Space)) Skip();
+    }
+    public new void Skip()
+    {
+        AudioManager.instance.StopSFX();
+        EndText();
     }
 
     public new IEnumerator PlayVoiceLine(string name)

@@ -5,8 +5,6 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine.UI;
 using UnityEngine;
-
-[ExecuteAlways]
 public class UIManager : MonoBehaviour
 {
     public GameObject player;
@@ -54,6 +52,19 @@ public class UIManager : MonoBehaviour
 
         GameManager.instance.Foreground = Fade;
         StartCoroutine(GameManager.instance.TransitionIn());
+    }
+    public void NextLevel()
+    {
+        GameManager.instance.NextLevel();
+    }
+    public void ReturnToMain()
+    {
+        GameManager.instance.ReturntoMain();
+
+    }
+    public void Restart()
+    {
+        GameManager.instance.Restart();
     }
 
     // Update is called once per frame

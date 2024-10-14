@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.UI;
 
 public class LevelSelection : MonoBehaviour
@@ -17,6 +18,7 @@ public class LevelSelection : MonoBehaviour
             {
                 lvlButtons[i].interactable = false;
             }
+                lvlButtons[0].interactable = true;
                 
         }
     }

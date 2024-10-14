@@ -12,12 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d4abf91e1029cb488ef4e4f8b92543a, type: 3}
   m_Name: Tafe Student
   m_EditorClassIdentifier: 
-  cost: 30000
+  cost: 10000
   image: {fileID: 0}
   name: Tafe Student
   background: {fileID: 21300000, guid: 8c7457d87ff87df47a6d33ced078bc3e, type: 3}
-  type: 1
-  description: 10,000 - look at the top 2 cards of your deck put one in your hand
-  resource: 5
-  abilityName: Farsight
-  abilityCost: 10
+  type: 2
+  description: Zap - 5,000 Discard 2 cards draw 2 cards
+  resource: 2
+  abilityName: Zap
+  abilityCost: 5000
+  abilityLevel: 1
