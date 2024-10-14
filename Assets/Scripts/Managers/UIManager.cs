@@ -26,6 +26,9 @@ public class UIManager : MonoBehaviour
     public GameObject win;
     public GameObject lose;
 
+    public TMP_Text highscore;
+    public GameObject pauseScreen;
+
     public GameObject EndTurnAnimation;
 
     public TMP_Text Budget;
@@ -65,6 +68,12 @@ public class UIManager : MonoBehaviour
     public void Restart()
     {
         GameManager.instance.Restart();
+    }
+    public void Pause(int budget, bool on)
+    {
+       if (on) AudioManager.instance.PlaySFX("Nail");
+        highscore.text = budget.ToString();
+        pauseScreen.SetActive(on);
     }
 
     // Update is called once per frame

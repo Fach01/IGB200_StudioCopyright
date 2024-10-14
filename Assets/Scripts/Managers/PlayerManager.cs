@@ -15,11 +15,14 @@ public class PlayerManager : MonoBehaviour
     public GameObject deck;
     public GameObject endTurn;
 
+    public KeyCode pause = KeyCode.Escape;
+    private bool pauseonoff = false;
     public GameObject selectedCard;
 
     public Phase phase;
 
     private UIManager UIManager;
+    private LevelManager LevelManager;
 
     private int actionPoints = 2;
     private bool cardSelected = false;
@@ -36,6 +39,7 @@ public class PlayerManager : MonoBehaviour
     private void Start()
     {
         UIManager = uiManager.GetComponent<UIManager>();
+        LevelManager = levelManager.GetComponent<LevelManager>();
     }
 
     // Update is called once per frame
@@ -43,6 +47,7 @@ public class PlayerManager : MonoBehaviour
     {
         UIManager.SetActionPointsText(actionPoints.ToString());
         UIManager.SetPhaseText(phase);
+        if (Input.GetKeyDown(pause)) { pauseonoff = !pauseonoff;  UIManager.Pause(LevelManager.highscore, pauseonoff); }
     }
 
     private void LateUpdate()

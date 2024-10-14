@@ -35,6 +35,7 @@ public class LevelManager : MonoBehaviour
     public GameObject win;
     public GameObject lose;
 
+    public int highscore = 0;
     [Header("Tutorial stuff")]
 
     public GameObject tutorial;
@@ -55,8 +56,20 @@ public class LevelManager : MonoBehaviour
 
     private void Start()
     {
-        if (level == level.level2) startBudget += buildingManager.BudgetPoolLevel1;
-        if (level == level.level3) startBudget += buildingManager.BudgetPoolLevel2 + buildingManager.BudgetPoolLevel1;
+        if(level == level.level1)
+        {
+            highscore = buildingManager.BudgetPoolLevel1;
+        }
+        if (level == level.level2)
+        {
+            highscore = buildingManager.BudgetPoolLevel2;
+            startBudget += buildingManager.BudgetPoolLevel1;
+        }
+        if (level == level.level3)
+        {
+            highscore = buildingManager.BudgetPoolLevel3;
+            startBudget += buildingManager.BudgetPoolLevel2;
+        }
         AudioManager.instance.PlayMusic("LevelMusic");
         BeginLevel();
     }
@@ -222,8 +235,10 @@ public class LevelManager : MonoBehaviour
     }
     private void UpdateBuildingBudgetPool(int budget)
     {
+        if (budget < highscore) return;
         if (level == level.level1) { PlayerPrefs.SetInt(buildingManager.buildingname + "level1", budget); }
         else if (level == level.level2) { PlayerPrefs.SetInt(buildingManager.buildingname + "level2", budget); }
+        else if (level == level.level3) { PlayerPrefs.SetInt(buildingManager.buildingname + "level3", budget); }
     }
     IEnumerator PlayPhaseAnimation()
     {
@@ -263,7 +278,7 @@ public class LevelManager : MonoBehaviour
                 yield return new WaitForSeconds(0.5f);
 
                 //apply changes in budge frames and utilities
-                turnBudget -= tempBudget;
+                turnBudget += tempBudget;
                 utilitiesCount += tempUtil;
                 frameworksCount += tempFrames;
 
