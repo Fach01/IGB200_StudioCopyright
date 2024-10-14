@@ -71,7 +71,7 @@ public class CardManager : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         // TODO make description what its meant 2 be
         if (card.ability != null)
         {
-            m_Tdescription.text = $"{card.abilityName} {card.abilityCost} - {card.ability.Description}";
+            m_Tdescription.text = $"{card.abilityName} {card.abilityCost} - {card.ability.Description(card.abilityLevel)}";
         }
     }
     public void SetActiveCard()

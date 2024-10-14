@@ -151,7 +151,7 @@ public class UIManager : MonoBehaviour
         Card carddetails = Cards.GetComponent<CardManager>().m_card;
         CardDescription.text = $"Ability Cost: {carddetails.abilityCost}\n" +
             $"Ability Name: {carddetails.abilityName}\n" +
-            $"Ability Description: {carddetails.ability.Description}";
+            $"Ability Description: {carddetails.ability.Description(carddetails.abilityLevel)}";
 
     }
     public void DeHighlightCard()

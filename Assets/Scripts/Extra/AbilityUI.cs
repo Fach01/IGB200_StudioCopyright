@@ -22,7 +22,7 @@ public class AbilityUI : MonoBehaviour
     {
         if (card != null && card.ability != null)
         {
-            card.ability.ActivateAbility(player.GetComponent<PlayerManager>(), this.gameObject);
+            card.ability.ActivateAbility(player.GetComponent<PlayerManager>(), this.gameObject, card.abilityLevel);
             PlayingAbility();
         }
         else
@@ -56,7 +56,7 @@ public class AbilityUI : MonoBehaviour
 
     public void SetAbilityInfo()
     {
-        text.text = card.ability.Description + "\n" + defaultText;
+        text.text = card.ability.Description(card.abilityLevel) + "\n" + defaultText;
     }
 
     public void PlayingAbility()

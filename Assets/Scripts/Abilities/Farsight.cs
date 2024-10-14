@@ -5,13 +5,15 @@ using UnityEngine.UI;
 
 public class Farsight : BuilderAbility
 {
-    public override string Description { set { value = desc; } get { return desc; } }
-    public string desc = "See a snapshot of your deck and switch one with a card from your hand";
+    public override string Description(int level)
+    {
+        return "See a snapshot of your deck and switch one with a card from your hand";
+    }
 
     public GameObject deckSnapshot;
     public GameObject deck;
 
-    public override void ActivateAbility(PlayerManager playerManager, GameObject AbilityUI)
+    public override void ActivateAbility(PlayerManager playerManager, GameObject AbilityUI, int level)
     {
         DeckManager deckManager = deck.GetComponent<DeckManager>();
 
