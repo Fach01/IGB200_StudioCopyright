@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,38 +8,66 @@ public class Foundation : BuilderAbility
 {
     public override string Description(int level)
     {
-        return "Play an extra card for no additional cost.";
+        switch (level)
+        {
+            case 1:
+                return "Play an extra card for no additional cost.";
+            case 2:
+                return "Play 2 extra cards for no additional cost.";
+            default:
+                return "Play an extra card for no additional cost.";
+        }
     }
 
     public override void ActivateAbility(PlayerManager playerManager, GameObject AbilityUI, int level)
     {
+        
         if (playerManager.hand.GetComponent<HandManager>().hand.Count <= 0)
         {
             AbilityUI.GetComponent<AbilityUI>().SetText("Hand is empty! Press enter to continue.");
             StartCoroutine(AbilityUI.GetComponent<AbilityUI>().WaitForConfirm(false));
         } else
         {
+            int numPlay;
+            switch (level)
+            {
+                case 1:
+                    numPlay = 1;
+                    break;
+                case 2:
+                    numPlay = 2;
+                    break;
+                default:
+                    numPlay = 1;
+                    break;
+            }
+
             AbilityUI.GetComponent<AbilityUI>().SetAbilityInfo();
             playerManager.playField.GetComponent<Button>().interactable = false;
-            StartCoroutine(FreePlay(playerManager, false, null, AbilityUI));
+            StartCoroutine(FreePlay(playerManager, false, null, AbilityUI, numPlay));
         } 
     }
 
-    IEnumerator FreePlay(PlayerManager playerManager, bool confirmed, GameObject chosenCard, GameObject AbilityUI)
+    private bool IsArrayFull(GameObject[] array)
     {
-        // select one card from hand and one from playfield, then swap them
+        return array.All(slot => slot != null);
+    }
+
+    IEnumerator FreePlay(PlayerManager playerManager, bool confirmed, GameObject chosenCard, GameObject AbilityUI, int numPlay)
+    {
+        GameObject[] cardsToPlay = new GameObject[numPlay];
 
         while (!confirmed)
         {
             if (Input.GetKeyDown(KeyCode.Return))
             {
-                if (chosenCard != null)
+                if (IsArrayFull(cardsToPlay))
                 {
                     confirmed = true;
                 }
                 else
                 {
-                    Debug.Log("Select a card!");
+                    Debug.Log("Select cards!");
                 }
             }
 
@@ -46,6 +75,7 @@ public class Foundation : BuilderAbility
             {
                 if (playerManager.hand.GetComponent<HandManager>().SearchForCard(playerManager.selectedCard))
                 {
+                    // add another if statement here like in flush
                     chosenCard = playerManager.selectedCard;
                 }
             }
