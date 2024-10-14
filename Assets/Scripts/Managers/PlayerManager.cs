@@ -97,6 +97,9 @@ public class PlayerManager : MonoBehaviour
         {
             if (levelManager.GetComponent<LevelManager>().tutorial != null && levelManager.GetComponent<LevelManager>().level == level.level1)
             {
+                Debug.Log(levelManager.GetComponent<LevelManager>().tutorial);
+                Debug.Log(levelManager.GetComponent<LevelManager>().tutorial.GetComponent<TutorailLevel1>());
+
                 levelManager.GetComponent<LevelManager>().tutorial.GetComponent<Tutorial>().Goal = playField;
             }
             if (playField.GetComponent<PlayFieldManager>().PlayCurrentCard(selectedCard))
