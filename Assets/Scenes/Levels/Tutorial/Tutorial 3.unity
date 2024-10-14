@@ -381,6 +381,105 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2659586663759651326, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
   m_PrefabInstance: {fileID: 1280504980}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &428858063
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 428858065}
+  - component: {fileID: 428858064}
+  m_Layer: 0
+  m_Name: Tutorial Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &428858064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 428858063}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2c04df9798867f418d32add0114ffec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UI: {fileID: 808517944}
+  levelManager: {fileID: 97675835}
+  HandManager: {fileID: 2100016100}
+  playerManager: {fileID: 1425214768}
+  handActive: 0
+  coroutineplaying: 0
+  Goal: {fileID: 0}
+  Objective: {fileID: 0}
+  guidance: {fileID: 0}
+  lines:
+  - LineName: Null
+    Line: 
+    AudioClipName: null
+  - LineName: Start
+    Line: Oh no!? We got a major problem! Jack has just called in sick with the stomach
+      bug, he might have gotten others sick so be careful this can really slow down
+      production
+    AudioClipName: 
+  - LineName: Sick 1
+    Line: "Oh no looks like they aren\u2019t feeling the best either, we will have
+      to send them home to get some rest. "
+    AudioClipName: 
+  - LineName: Sick 2
+    Line: "Quick let\u2019s try to finish production before anyone else gets sick."
+    AudioClipName: 
+  - LineName: End 1
+    Line: Phew that was rough, thankfully we managed to get through it without too
+      much trouble.
+    AudioClipName: 
+  - LineName: End 2
+    Line: That kinda thing happens all the time on the work site, from flooding to
+      people getting sick anything can happen
+    AudioClipName: 
+  - LineName: End 3
+    Line: "That\u2019s why you\u2019re here to make sure everything continues to
+      work smoothly, and we complete the project without running out of funding. "
+    AudioClipName: 
+  - LineName: End 4
+    Line: "Well, I got to go clean up but if you need a refresher don\u2019t hesitate
+      to come ask."
+    AudioClipName: 
+  startLines:
+  - Null
+  - Start
+  eventLines:
+  - Null
+  - Sick 1
+  - Sick 2
+  endLines:
+  - Null
+  - End 1
+  - End 2
+  - End 3
+  - End 4
+  levelWon: 0
+--- !u!4 &428858065
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 428858063}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1392.0001, y: 156.00006, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &494368448 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8495413695785024392, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
@@ -1089,6 +1188,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1743572021}
     - target: {fileID: 5872605249764963331, guid: 7c208aa2d33faf6449f0a6db8b17f823, type: 3}
+      propertyPath: level
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5872605249764963331, guid: 7c208aa2d33faf6449f0a6db8b17f823, type: 3}
       propertyPath: tutorial
       value: 
       objectReference: {fileID: 218764807}
@@ -1096,6 +1199,10 @@ PrefabInstance:
       propertyPath: playField
       value: 
       objectReference: {fileID: 383169627}
+    - target: {fileID: 5872605249764963331, guid: 7c208aa2d33faf6449f0a6db8b17f823, type: 3}
+      propertyPath: levelEvents
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5872605249764963331, guid: 7c208aa2d33faf6449f0a6db8b17f823, type: 3}
       propertyPath: startBudget
       value: 200000
@@ -1554,6 +1661,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6664512349418307417, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
   m_PrefabInstance: {fileID: 1280504980}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2100016100 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9010714049027543117, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
+  m_PrefabInstance: {fileID: 1280504980}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2100016098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50f0fc49f937df240a6c73d1c6331319, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &2145554051 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8916864825492151025, guid: 7c208aa2d33faf6449f0a6db8b17f823, type: 3}
@@ -1574,3 +1692,4 @@ SceneRoots:
   - {fileID: 27604698}
   - {fileID: 1280504980}
   - {fileID: 1776301229}
+  - {fileID: 428858065}

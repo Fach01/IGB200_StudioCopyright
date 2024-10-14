@@ -22,7 +22,6 @@ public class TutorailLevel1 : Tutorial
     private new void Update()
     {
         base.Update();
-
         switch (tutorialsequence)
         {
             case 1:
@@ -39,29 +38,39 @@ public class TutorailLevel1 : Tutorial
             case 5:
                 HighlightObject(CardOnly);
                 break;
-            case 6: 
-                Dialouge(lineNamesAlex); 
+            case 6:
+                Dialouge(lineNamesAlex);
                 break;
-            case 7: 
-                Stage7(); 
+            case 7:
+                Stage7();
                 break;
-            case 8: 
-                HighlightObject(UI.endTurn); 
+            case 8:
+                HighlightObject(CardOnly);
                 break;
-            case 9: 
+            case 9:
+                HighlightObject(UI.endTurn);
+                break;
+            case 10:
                 if (Dialouge(lineNamesEnd)) levelManager.win.SetActive(true);
                 break;
-            default: 
-                Debug.Log("no stage"); 
+            default:
+                Debug.Log("no stage");
                 break;
         }
 
+
+
     }
 
-    void Start()
+    void Awake()
+    {
+        UI.deck.GetComponent<Button>().enabled = false;
+       
+    }
+    void StartTutorial()
     {
         UI.Tutorial.SetActive(true);
-        UI.deck.GetComponent<Button>().enabled = false;
+        Dialouge(lineNamesStartText);
     }
     // initial diaglouge played
     private bool Dialouge(List<string> lineNames)
@@ -137,35 +146,6 @@ public class TutorailLevel1 : Tutorial
                 break;
             }
         }
-    }
-    private void Stage9()
-    {
-        
-        
-    }
-
-    public new IEnumerator PlayVoiceLine(string name)
-    {
-
-        Tutoriallines T = Array.Find(lines, x => x.LineName == name);
-        string text = T.Line;
-        string voiceLine = T.AudioClipName;
-
-        isVoiceLinePlaying = true;
-        handActive = false;
-
-        AudioManager.instance.PlaySFX(voiceLine);
-        UI.TutorialActive(text);
-
-
-        if (voiceLine != "") { yield return new WaitUntil(() => AudioManager.instance.sfxSource.isPlaying == false); }
-
-        else { yield return new WaitForSeconds(5f); }
-
-        EndText();
-
-        yield break;
-
     }
     public new void Skip()
     {

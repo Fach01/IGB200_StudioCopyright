@@ -30,17 +30,21 @@ public class LevelManager : MonoBehaviour
     private int frameworksCount;
 
     public int turn = 1;
+    public bool phaseplaying = false;
 
     public GameObject win;
     public GameObject lose;
 
+    [Header("Tutorial stuff")]
+
     public GameObject tutorial;
+    public bool levelWon = false;
+    public bool tutorialplayed = false;
 
     [Header("Animation Stuff")]
     public int tempBudget;
     public int tempFrames;
     public int tempUtil;
-
 
     private void Awake()
     {
@@ -60,10 +64,11 @@ public class LevelManager : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+        if (phaseplaying) return;
         switch (playerManager.phase)
         {
             case Phase.PreTurn:
-                PreTurn();
+                StartCoroutine(PreTurn());
                 break;
             case Phase.Setup:
                 SetupPhase();
@@ -72,7 +77,7 @@ public class LevelManager : MonoBehaviour
                 PlayPhase();
                 break;
             case Phase.Event:
-                EventPhase();
+                StartCoroutine(EventPhase());
                 break;
             case Phase.End:
                 EndPhase();
@@ -84,8 +89,6 @@ public class LevelManager : MonoBehaviour
 
     private void BeginLevel()
     {
-
-
         levelBudget = startBudget;
         turnBudget = levelBudget;
 
@@ -101,16 +104,18 @@ public class LevelManager : MonoBehaviour
 
         playerManager.phase = Phase.PreTurn;
     }
-
-    public void PreTurn()
+    public IEnumerator PreTurn()
     {
-
+        phaseplaying = true;
         turnBudget = levelBudget;
 
         if(turn != 1) playerManager.DrawCard(); // if its not the very first round draw a card
+        yield return new WaitForSeconds(1f); //waits for the animation to stop
 
         playerManager.ResetPlayer();
-        playerManager.phase = Phase.Setup;
+
+        playerManager.phase = Phase.Setup; // sets next phase
+        phaseplaying = false;
     }
 
     public void SetupPhase()
@@ -127,18 +132,15 @@ public class LevelManager : MonoBehaviour
     public void PlayPhase()
     {
         StartCoroutine(PlayPhaseAnimation());
-
-
-        playerManager.phase = Phase.Event;
-
-
     }
-
-    public void EventPhase()
+    public IEnumerator EventPhase()
     {
-        if (!levelEvents) {
+        phaseplaying = true;
+        if (!levelEvents)
+        {
             playerManager.phase = Phase.End;
-            return; }
+            phaseplaying = false;
+            yield break; }
         if (!eventManager.eventActive)
         {
             for (int i = 0; i < playFieldManager.cards.Count; i++)
@@ -151,17 +153,30 @@ public class LevelManager : MonoBehaviour
                 }
             }
 
-            var chance = Random.Range(0f, 1f);
-            if (chance > 0.75f)
+            if (tutorial != null && tutorialplayed == false) // 100% chance in tutorial level 3 of an event playing once otherwise there is a chance of it occuring
             {
-                eventManager.nextEvent = chance > 0.9f ? GameEvent.Flood : GameEvent.SickDay;
+                
+                eventManager.nextEvent = GameEvent.SickDay;
+                eventManager.PlayEvent();
+                tutorialplayed = true;
             }
-            eventManager.PlayEvent();
+            else
+            {
+                var chance = Random.Range(0f, 1f);
+                if (chance > 0.75f)
+                {
+                    eventManager.nextEvent = chance > 0.9f ? GameEvent.Flood : GameEvent.SickDay;
+                }
+                eventManager.PlayEvent();
+            }
+
+            
         }
     }
 
-    public void EndPhase()
+    public IEnumerator EndPhase()
     {
+        phaseplaying = true;
         if (utilitiesCount > utilitiesGoal / 2 && frameworksCount > frameworksCount / 2 && level == level.level1)
         {
             UIManager.ChangePlane(UIManager.buildingimages[1]);
@@ -186,7 +201,10 @@ public class LevelManager : MonoBehaviour
         UIManager.SetFrameworksText(frameworksCount.ToString());
         UIManager.SetTurnText(turn);
 
+        yield return null;
+
         playerManager.phase = Phase.PreTurn;
+        phaseplaying = false;
     }
 
     public void Spend(int cost)
@@ -209,6 +227,7 @@ public class LevelManager : MonoBehaviour
     }
     IEnumerator PlayPhaseAnimation()
     {
+        phaseplaying = true;
         // animation will play at the start of the play phase to show all cards in play
         for (int i = 0; i < playFieldManager.cards.Count; i++)
         {
@@ -258,14 +277,17 @@ public class LevelManager : MonoBehaviour
                 if (utilitiesCount >= utilitiesGoal && frameworksCount >= frameworksGoal)
                 {
                     GameManager.instance.UnlockNextLevel();
-
-                    if(tutorial == null) win.SetActive(true);
+                    UpdateBuildingBudgetPool(levelBudget);
+                    levelWon = true;
+                    if(tutorial == null || level == level.level2) win.SetActive(true); // second level does not contain end lines but 1 and 3 do 
                 }
                 else if (turnBudget <= 0)
                 {
                     lose.SetActive(true);
                 }
 
+                playerManager.phase = Phase.Event;
+                phaseplaying = false;
 
                 yield break;
             }
@@ -305,12 +327,15 @@ public class LevelManager : MonoBehaviour
                 UIManager.EndTurnAnimation.GetComponent<Animator>().SetBool("Gives Frames", true);
                 AudioManager.instance.PlaySFX("Add Resource");
 
+                playerManager.phase = Phase.Event;
             }
 
             //wait for 0.05 seconds to turn off animation to stop looping
             yield return new WaitForSeconds(0.05f);
             UIManager.EndTurnAnimation.GetComponent<Animator>().SetBool("Gives Util", false);
             UIManager.EndTurnAnimation.GetComponent<Animator>().SetBool("Gives Frames", false);
+
+
         }
     }
     public void ResetTempPools()

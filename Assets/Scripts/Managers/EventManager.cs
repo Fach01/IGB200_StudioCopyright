@@ -27,6 +27,7 @@ public class EventManager : MonoBehaviour
                 break;
             default:
                 GetComponent<LevelManager>().player.GetComponent<PlayerManager>().phase = Phase.End;
+                GetComponent<LevelManager>().phaseplaying = false;
                 break;
         }
     }
@@ -35,7 +36,7 @@ public class EventManager : MonoBehaviour
         eventActive = true;
 
         GetComponent<LevelManager>().player.GetComponent<PlayerManager>().phase = Phase.End;
-
+        GetComponent<LevelManager>().phaseplaying = false;
         eventActive = false;
 
         yield return null;
@@ -59,9 +60,12 @@ public class EventManager : MonoBehaviour
         GameObject card = GetComponent<LevelManager>().playField.GetComponent<PlayFieldManager>().cards[cardIndex];
         card.GetComponent<CardManager>().sick = true;
 
-        // GetComponent<LevelManager>().player.GetComponent<PlayerManager>().phase = Phase.End;
-        nextEvent = GameEvent.None;
+        GetComponent<LevelManager>().player.GetComponent<PlayerManager>().phase = Phase.End;
+        GetComponent<LevelManager>().phaseplaying = false;
 
+        nextEvent = GameEvent.None;
         yield return null;
+
+
     }
 }

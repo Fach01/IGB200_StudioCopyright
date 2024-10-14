@@ -82,6 +82,50 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: c7403c4d97b01664eb750fe44622e638, type: 3}
   - name: Line 5
     clip: {fileID: 8300000, guid: 28b7ece2055aabf4e9410623b0eaf532, type: 3}
+  - name: Line 6
+    clip: {fileID: 8300000, guid: c903b7f13c309284181d3f9a5b7addfe, type: 3}
+  - name: Line 7
+    clip: {fileID: 8300000, guid: dc07c56935bb56948b34f934545bff9f, type: 3}
+  - name: Line 8
+    clip: {fileID: 8300000, guid: 02e6bb98d72dc0e4fb8ddf5d417dbe9c, type: 3}
+  - name: Line 9
+    clip: {fileID: 8300000, guid: 93eab66c085c6b047bb07254e6826ebb, type: 3}
+  - name: Line 10
+    clip: {fileID: 8300000, guid: cfc901d0f1ff15d448aaa2086ae6d3cc, type: 3}
+  - name: Line 11
+    clip: {fileID: 8300000, guid: cfc901d0f1ff15d448aaa2086ae6d3cc, type: 3}
+  - name: Line 12
+    clip: {fileID: 8300000, guid: 7810afb9a6c3b484b918e9140d34b34e, type: 3}
+  - name: Line 13
+    clip: {fileID: 8300000, guid: 1c2b109610cd8a649ad82f744eb22db1, type: 3}
+  - name: Line 14
+    clip: {fileID: 8300000, guid: 03ae6fe7982241948869ede607d42f35, type: 3}
+  - name: Line 15
+    clip: {fileID: 8300000, guid: 61b2cc9ceb5f5e5418a6e9b5447f0e0d, type: 3}
+  - name: Line 16
+    clip: {fileID: 8300000, guid: 3559c3a6e305ac742b9725c99a55b34e, type: 3}
+  - name: Line 17
+    clip: {fileID: 8300000, guid: da4c2a99539ed834c99fa38054af2803, type: 3}
+  - name: Line 18
+    clip: {fileID: 8300000, guid: 3e7621860054e5246bb24eedfde7d4d0, type: 3}
+  - name: Line 19
+    clip: {fileID: 8300000, guid: a676a8ba137ed32449bc712b0fe626f6, type: 3}
+  - name: Line 20
+    clip: {fileID: 8300000, guid: 4da6bc78074927a498146340184b4347, type: 3}
+  - name: Line 21
+    clip: {fileID: 8300000, guid: 5e164eae745845e4fba356358f39d50a, type: 3}
+  - name: Line 22
+    clip: {fileID: 8300000, guid: e4847ed49a420274b9657c913d7509c4, type: 3}
+  - name: Line 23
+    clip: {fileID: 8300000, guid: a8361764fad917349be51f4366e26851, type: 3}
+  - name: Line 24
+    clip: {fileID: 8300000, guid: e7740b77ac0c0ea4b98423a08c6bc4f4, type: 3}
+  - name: Line 25
+    clip: {fileID: 8300000, guid: 11f425b762c27a844b34833a647385f7, type: 3}
+  - name: Line 26
+    clip: {fileID: 8300000, guid: 5dab04a29fde08a4fbc0e4cfb3b010be, type: 3}
+  - name: Line 27
+    clip: {fileID: 8300000, guid: 4d4fee5690878a04a8a33600b0a723c4, type: 3}
   musicSource: {fileID: 6034508708041789726}
   sfxSource: {fileID: 224228833735210498}
   musicV: 100

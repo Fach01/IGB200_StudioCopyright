@@ -10,9 +10,11 @@ public abstract class Tutorial : MonoBehaviour
     public HandManager? HandManager;
     public PlayerManager? playerManager;
 
+
+
     public bool handActive = false;
     protected bool isVoiceLinePlaying = false;
-    protected bool coroutineplaying = false;
+    public bool coroutineplaying = false;
 
     public GameObject? Goal;
     public GameObject Objective;
@@ -26,8 +28,9 @@ public abstract class Tutorial : MonoBehaviour
         HandManager.ToggleActivateHand(handActive);
         if (isVoiceLinePlaying && Input.GetKeyDown(KeyCode.Space)) Skip();
     }
-    public IEnumerator PlayVoiceLine(string name) //nullable untill we get the voice lines
+    public IEnumerator PlayVoiceLine(string name)
     {
+
         Tutoriallines T = Array.Find(lines, x => x.LineName == name);
         string text = T.Line;
         string voiceLine = T.AudioClipName;
@@ -38,9 +41,16 @@ public abstract class Tutorial : MonoBehaviour
         AudioManager.instance.PlaySFX(voiceLine);
         UI.TutorialActive(text);
 
-        if (voiceLine != null) { yield return new WaitUntil(() => AudioManager.instance.sfxSource.isPlaying == false); }
-        else { yield return new WaitForSeconds(1f); }
+
+        if (voiceLine != "" && voiceLine != "null") { yield return new WaitUntil(() => AudioManager.instance.sfxSource.isPlaying == false); }
+
+        else if (voiceLine == "null") { yield return new WaitForSeconds(2f); }
+
+        else { yield return new WaitForSeconds(5f); }
+
         EndText();
+
+        yield break;
 
     }
     public IEnumerator highlight()

@@ -498,20 +498,35 @@ MonoBehaviour:
   - LineName: Start
     Line: This is the frameworks crew; we are good at getting you a lot of resources,
       but we cost a bit more.
-    AudioClipName: 
+    AudioClipName: Line 24
   - LineName: Farsight
     Line: 'Farsight is high cost, high reward ability that allows you to look at
       some of the next employees in your deck and select one or more employee from
       among them. '
-    AudioClipName: 
+    AudioClipName: Line 25
   - LineName: Foundation
     Line: 'Foundation is a lower cost ability that allows you to put one other employee
       from your hand onto the field. '
-    AudioClipName: 
+    AudioClipName: Line 26
   - LineName: Draw
     Line: Every round you get to draw an employee, but you can always draw an extra
       employee instead of playing an employee by paying $10,000.
-    AudioClipName: 
+    AudioClipName: Line 27
+  - LineName: Null
+    Line: 
+    AudioClipName: null
+  startLines:
+  - Null
+  - Start
+  farsightLines:
+  - Null
+  - Farsight
+  foundationLines:
+  - Null
+  - Foundation
+  drawLines:
+  - Null
+  - Draw
 --- !u!4 &97600982
 Transform:
   m_ObjectHideFlags: 0
@@ -667,7 +682,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 76989621}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 32767598d0448dc4892cdd1d6859f02e, type: 3}
   m_Name: 
