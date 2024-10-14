@@ -563,42 +563,42 @@ MonoBehaviour:
   Objective: {fileID: 0}
   guidance: {fileID: 4754321225288323763, guid: 1d85e9919feb03a44ae57f2405288723, type: 3}
   lines:
+  - LineName: Start
+    Line: 
+    AudioClipName: null
   - LineName: Start 1
     Line: Alright ,where do I begin
-    AudioClipName: 
+    AudioClipName: Line 6
   - LineName: Start 2
     Line: Well, as the production manager, your role on the site is to collect the
       right number of resources we need for the job.
-    AudioClipName: 
+    AudioClipName: Line 7
   - LineName: Start 3
     Line: And to gather resources you need to put us to work.
-    AudioClipName: 
+    AudioClipName: Line 8
   - LineName: Start 4
     Line: We all have a role to play on the job site, and everyone gathers different
       resources.
-    AudioClipName: 
-  - LineName: Start 5
-    Line: And to gather resources you need to put us to work.
-    AudioClipName: 
+    AudioClipName: Line 9
   - LineName: Start 6
     Line: "Me, I\u2019m a bricklayer myself which means that I work best when you
       need Frameworks. "
-    AudioClipName: 
+    AudioClipName: Line 10
   - LineName: Start 7
     Line: The Utilities Crew are not the best at getting resources, but they are
       really good at getting you more employees.
-    AudioClipName: 
+    AudioClipName: Line 11
   - LineName: Start 8
     Line: "If you see Jack down, there he\u2019s an electrician so he will work best
       when you need Utilities. "
-    AudioClipName: 
+    AudioClipName: Line 12
   - LineName: Start 9
     Line: Go on put him to work by selecting him then selecting the work site.
-    AudioClipName: 
+    AudioClipName: Line 13
   - LineName: Jack 1
     Line: 'Oh, I almost forgot most of us have special skills that you can use when
       we enter the worksite, they can be pricey, but they can come in handy.  '
-    AudioClipName: 
+    AudioClipName: Line 14
   - LineName: Jack 2
     Line: "Jack\u2019s ability is Zap which allows him to switch any employee on
       the work sight with one from your hand, but there aren\u2019t any on the site
@@ -606,60 +606,63 @@ MonoBehaviour:
     AudioClipName: 
   - LineName: Alex 1
     Line: 'Next up is our resident plumber Alex his ability is called flush, '
-    AudioClipName: 
+    AudioClipName: Line 15
   - LineName: Alex 2
     Line: 'this ability makes you discard one or more employees from your hand then
       draw one or more employees.  '
-    AudioClipName: 
+    AudioClipName: Line 16
   - LineName: Alex 3
     Line: "Many of us share these special skills but we like to put our own personal
       spin on them, by changing how much they cost or in Alex\u2019s case how many
       employees you have discard and draw."
-    AudioClipName: 
+    AudioClipName: Line 17
   - LineName: Alex 4
     Line: If you ever want to get more info on an employee just right click them
       to open the information panel.
-    AudioClipName: 
+    AudioClipName: Line 18
   - LineName: End 1
     Line: 'Every turn you get to put two employees on the job site but then you must
       end your turn. '
-    AudioClipName: 
+    AudioClipName: Line 19
   - LineName: End 2
     Line: "During this time every employee\u2019s salary is deducted from your budget
       as shown on the top left of their employee ID\u2019s and their resource is
       added to their respective resource pool. "
-    AudioClipName: 
+    AudioClipName: Line 20
   - LineName: End 3
     Line: Looks like you have already fulfilled your quota for this phase of development,
       but it looks like you got some money left over.
-    AudioClipName: 
+    AudioClipName: Line 21
   - LineName: End 4
     Line: Not to worry, your excess budget carries across between phases, who knows?
       it might come in handy.
-    AudioClipName: 
+    AudioClipName: Line 22
   - LineName: End 5
     Line: Now that you have met all the utilities peeps you should meet the rest
       of the Frameworks crew, see you there.
-    AudioClipName: 
+    AudioClipName: Line 23
   lineNamesStartText:
+  - Start
   - Start 1
   - Start 2
   - Start 3
   - Start 4
-  - Start 5
   - Start 6
   - Start 7
   - Start 8
   - Start 9
   lineNamesJack:
+  - Start
   - Jack 1
   - Jack 2
   lineNamesAlex:
+  - Start
   - Alex 1
   - Alex 2
   - Alex 3
   - Alex 4
   lineNamesEnd:
+  - Start
   - End 1
   - End 2
   - End 3
@@ -883,6 +886,38 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 754252392609620542, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 754252392609620542, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 754252392609620542, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 499295844}
+    - target: {fileID: 754252392609620542, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 754252392609620542, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: SetGoal
+      objectReference: {fileID: 0}
+    - target: {fileID: 754252392609620542, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: Tutorial, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 754252392609620542, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 896443226}
+    - target: {fileID: 754252392609620542, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.GameObject, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 1304159426304974177, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
       propertyPath: m_text
       value: /0

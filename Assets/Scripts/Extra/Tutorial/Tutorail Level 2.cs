@@ -8,83 +8,82 @@ using UnityEngine.UI;
 
 public class TutorailLevel2 : Tutorial
 {
-    private bool drawtutplayed = false;
+    public List<string> startLines;
+    public List<string> farsightLines;
+    public List<string> foundationLines;
+    public List<string> drawLines;
 
+    private int linenumber = 0;
+    private bool tutorialstartplayed = false;
+    private bool drawtutplayed = false;
     private bool line1played = false;
     private bool line2played = false;
 
     private new void Update()
     {
         base.Update();
-
+        if (!tutorialstartplayed) StartTutorial();
         if (playerManager.selectedCard != null)
         {
             string ability = playerManager.selectedCard.GetComponent<CardManager>().m_card.abilityName;
-            if (ability == "Farsight" && !line1played) { Farsight(); line1played = true; }
-            else if (ability == "Foundation" && !line2played) { Foundation(); line2played = true; }
+            if (ability == "Farsight" && !line1played) Farsight();
+            else if (ability == "Foundation" && !line2played) Foundation();
         }
         if (playerManager.phase == Phase.Setup && levelManager.turn != 1)
         {
             Draw();
         }
     }
+    private void Dialouge(List<string> lineNames, ref bool p)
+    {
+        UI.Tutorial.SetActive(true);
+        if (isVoiceLinePlaying == true) return;
 
-    void Start()
+        isVoiceLinePlaying = true;
+
+        if (linenumber <= lineNames.Count - 1)
+        {
+
+            StartCoroutine(PlayVoiceLine(lineNames[linenumber]));
+            linenumber++;
+
+        }
+        else
+        {
+            linenumber = 0;
+            p = true;
+            isVoiceLinePlaying = false;
+            UI.Tutorial.SetActive(false);
+        }
+
+
+    }
+    void Awake()
     {
         UI.Tutorial.SetActive(true);
         UI.deck.GetComponent<Button>().enabled = false;
-        Invoke("StartTutorial", 0.4f);
     }
     private void StartTutorial()
     {
-        StartCoroutine(PlayVoiceLine("Start"));
+        Dialouge(startLines, ref tutorialstartplayed);
     }
     public void Farsight()
     {
-        StartCoroutine(PlayVoiceLine("Farsight"));
+        Dialouge(farsightLines, ref line1played);
     }
     public void Foundation()
     {
-        StartCoroutine(PlayVoiceLine("Foundation"));
+        Dialouge(foundationLines, ref line2played);
     }
     public void Draw()
     {
-        if (!drawtutplayed)
-        {
-            PlayVoiceLine("Draw");
-            drawtutplayed = true;
-        }
+        Dialouge(drawLines, ref drawtutplayed);
 
     }
-    public new IEnumerator PlayVoiceLine(string name)
+    public new void Skip()
     {
-        UI.Tutorial.SetActive(true);
-
-        Tutoriallines T = Array.Find(lines, x => x.LineName == name);
-        string text = T.Line;
-        string voiceLine = T.AudioClipName;
-
-        isVoiceLinePlaying = true;
-        handActive = false;
-
-        AudioManager.instance.PlaySFX(voiceLine);
-        UI.TutorialActive(text);
-
-
-        if (voiceLine != "") { yield return new WaitUntil(() => AudioManager.instance.sfxSource.isPlaying == false); }
-
-        else { yield return new WaitForSeconds(5f); }
-
-        EndText();
-
-        yield break;
-
+        base.Skip();
+        coroutineplaying = false;
     }
-    public new void EndText()
-    {
-        base.EndText();
-        UI.Tutorial.SetActive(false);
-    }
-    
 
 }
