@@ -7,14 +7,42 @@ public class Farsight : BuilderAbility
 {
     public override string Description(int level)
     {
-        return "See a snapshot of your deck and switch one with a card from your hand";
+        switch (level)
+        {
+            case 1:
+                return "View 2 cards in your deck and swap one with a card in your hand";
+            case 2:
+                return "View 3 cards in your deck and swap one with a card in your hand";
+            case 3:
+                return "View 4 cards in your deck and swap one with a card in your hand";
+            default:
+                return "View 2 cards in your deck and swap one with a card in your hand";
+        }
     }
+
+
 
     public GameObject deckSnapshot;
     public GameObject deck;
 
     public override void ActivateAbility(PlayerManager playerManager, GameObject AbilityUI, int level)
     {
+        int numSnapshot;
+        switch (level)
+        {
+            case 1:
+                numSnapshot = 2;
+                break;
+            case 2:
+                numSnapshot = 3;
+                break;
+            case 3:
+                numSnapshot = 4;
+                break;
+            default:
+                numSnapshot = 2;
+                break;
+        }
         DeckManager deckManager = deck.GetComponent<DeckManager>();
 
         if (deckManager != null)
@@ -30,7 +58,7 @@ public class Farsight : BuilderAbility
                 deckSnapshot.SetActive(true);
                 DeckSnapshot snapshotManager = deckSnapshot.GetComponent<DeckSnapshot>();
 
-                for (int i = 0; i < 4; i++)
+                for (int i = 0; i < numSnapshot; i++)
                 {
                     snapshotManager.AddCard();
                 }
