@@ -113,7 +113,9 @@ public class LevelManager : MonoBehaviour
         StartCoroutine(playerManager.DrawXCards(4));
 
         UIManager.SetTurnText(turn);
-        UIManager.SetBudgetText(levelBudget.ToString());
+        UIManager.SetBudgetText(levelBudget.ToString("N0"));
+        UIManager.SetUtilitiesText("0", utilitiesGoal.ToString());
+        UIManager.SetFrameworksText("0", frameworksGoal.ToString());
 
         playerManager.phase = Phase.PreTurn;
     }
@@ -209,9 +211,9 @@ public class LevelManager : MonoBehaviour
 
         levelBudget = turnBudget;
         turn += 1;
-        UIManager.SetBudgetText(levelBudget.ToString());
-        UIManager.SetUtilitiesText(utilitiesCount.ToString());
-        UIManager.SetFrameworksText(frameworksCount.ToString());
+        UIManager.SetBudgetText(levelBudget.ToString("N0"));
+        UIManager.SetUtilitiesText(utilitiesCount.ToString(), utilitiesGoal.ToString());
+        UIManager.SetFrameworksText(frameworksCount.ToString(), frameworksGoal.ToString());
         UIManager.SetTurnText(turn);
 
         playerManager.phase = Phase.PreTurn;
@@ -284,9 +286,9 @@ public class LevelManager : MonoBehaviour
                 ResetTempPools(); // reset the temporary pools
 
                 // Displays changes to the UI
-                UIManager.SetBudgetText(turnBudget.ToString()); 
-                UIManager.SetUtilitiesText(utilitiesCount.ToString());
-                UIManager.SetFrameworksText(frameworksCount.ToString());
+                UIManager.SetBudgetText(turnBudget.ToString("N0")); 
+                UIManager.SetUtilitiesText(utilitiesCount.ToString(), utilitiesGoal.ToString());
+                UIManager.SetFrameworksText(frameworksCount.ToString(), frameworksGoal.ToString());
 
                 if (utilitiesCount >= utilitiesGoal && frameworksCount >= frameworksGoal)
                 {

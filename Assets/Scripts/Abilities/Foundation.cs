@@ -75,8 +75,28 @@ public class Foundation : BuilderAbility
             {
                 if (playerManager.hand.GetComponent<HandManager>().SearchForCard(playerManager.selectedCard))
                 {
-                    // add another if statement here like in flush
-                    chosenCard = playerManager.selectedCard;
+                    if (!IsArrayFull(cardsToPlay))
+                    {
+                        for (int i = 0; i < numPlay; i++)
+                        {
+                            if (cardsToPlay[i] == null)
+                            {
+                                cardsToPlay[i] = playerManager.selectedCard;
+                                break;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        // move all cards forward one slot
+                        for (int i = 1; i < numPlay; i++)
+                        {
+                            cardsToPlay[i - 1] = cardsToPlay[i];
+                        }
+
+                        // add new card in last slot
+                        cardsToPlay[numPlay - 1] = playerManager.selectedCard;
+                    }
                 }
             }
             yield return null;
@@ -84,10 +104,16 @@ public class Foundation : BuilderAbility
 
         //add card from hand to playfield
         AudioManager.instance.PlaySFX("Foundation");
-        playerManager.playField.GetComponent<PlayFieldManager>().AddCard(chosenCard);
 
+        foreach (GameObject card in cardsToPlay)
+        {
+            if (card != null)
+            {
+                playerManager.playField.GetComponent<PlayFieldManager>().AddCard(card);
+            }
+        }
+        
         playerManager.playField.GetComponent<PlayFieldManager>().OrderCards();
-
 
         playerManager.playField.GetComponent<Button>().interactable = true;
         AbilityUI.GetComponent<AbilityUI>().Reset();
