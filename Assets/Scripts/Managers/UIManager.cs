@@ -122,16 +122,16 @@ public class UIManager : MonoBehaviour
         turnText.text = "Shift: " + turn;
     }
 
-    public void SetUtilitiesText(string utilitiesText)
+    public void SetUtilitiesText(string utilitiesText, string utilGoal)
     {
         TMP_Text utilitiesTextObject = utilities.GetComponent<TMP_Text>();
-        utilitiesTextObject.text = "Utilities: " + Constants.convertBigNumber(utilitiesText);
+        utilitiesTextObject.text = "Utilities: " + Constants.convertBigNumber(utilitiesText) + "/" + utilGoal;
     }
 
-    public void SetFrameworksText(string frameworksText)
+    public void SetFrameworksText(string frameworksText, string frameGoal)
     {
         TMP_Text frameworksTextObject = frameworks.GetComponent<TMP_Text>();
-        frameworksTextObject.text = "Frameworks: " + Constants.convertBigNumber(frameworksText);
+        frameworksTextObject.text = "Frameworks: " + Constants.convertBigNumber(frameworksText) + "/" + frameGoal;
     }
 
     public void SetActionPointsText(string actionPointsText)
