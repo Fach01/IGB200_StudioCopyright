@@ -50,7 +50,7 @@ public class AbilityUI : MonoBehaviour
         playField.GetComponent<PlayFieldManager>().ToggleActivatePlayfield(false);
 
         card = currentCard;
-        text.text = $"Play {currentCard.abilityName} for {currentCard.abilityCost}?";
+        text.text = $"Play {currentCard.abilityName} for ${currentCard.abilityCost.ToString("N0")}?";
         
     }
 

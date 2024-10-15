@@ -113,7 +113,7 @@ public class LevelManager : MonoBehaviour
         StartCoroutine(playerManager.DrawXCards(4));
 
         UIManager.SetTurnText(turn);
-        UIManager.SetBudgetText(levelBudget.ToString());
+        UIManager.SetBudgetText(levelBudget.ToString("N0"));
 
         playerManager.phase = Phase.PreTurn;
     }
@@ -209,7 +209,7 @@ public class LevelManager : MonoBehaviour
 
         levelBudget = turnBudget;
         turn += 1;
-        UIManager.SetBudgetText(levelBudget.ToString());
+        UIManager.SetBudgetText(levelBudget.ToString("N0"));
         UIManager.SetUtilitiesText(utilitiesCount.ToString());
         UIManager.SetFrameworksText(frameworksCount.ToString());
         UIManager.SetTurnText(turn);
@@ -285,7 +285,7 @@ public class LevelManager : MonoBehaviour
                 ResetTempPools(); // reset the temporary pools
 
                 // Displays changes to the UI
-                UIManager.SetBudgetText(turnBudget.ToString()); 
+                UIManager.SetBudgetText(turnBudget.ToString("N0")); 
                 UIManager.SetUtilitiesText(utilitiesCount.ToString());
                 UIManager.SetFrameworksText(frameworksCount.ToString());
 

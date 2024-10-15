@@ -61,7 +61,7 @@ public class CardManager : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         m_card = card;
         m_image.sprite = card.image;
         m_Tbackground.sprite = card.background;
-        m_Tcost.text = Constants.convertBigNumber(card.cost.ToString());
+        m_Tcost.text = card.cost.ToString("N0");
         m_Tname.text = card.name;
         m_Ttype.text = card.type.ToString();
         m_TResource.text = card.resource.ToString();
@@ -71,7 +71,7 @@ public class CardManager : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         // TODO make description what its meant 2 be
         if (card.ability != null)
         {
-            m_Tdescription.text = $"{card.abilityName} {card.abilityCost} - {card.ability.Description(card.abilityLevel)}";
+            m_Tdescription.text = $"{card.abilityName} {card.abilityCost.ToString("N0")} - {card.ability.Description(card.abilityLevel)}";
         }
     }
     public void SetActiveCard()
