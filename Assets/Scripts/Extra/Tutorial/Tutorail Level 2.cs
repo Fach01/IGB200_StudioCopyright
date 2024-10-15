@@ -29,7 +29,7 @@ public class TutorailLevel2 : Tutorial
             if (ability == "Farsight" && !line1played) Farsight();
             else if (ability == "Foundation" && !line2played) Foundation();
         }
-        if (playerManager.phase == Phase.Setup && levelManager.turn != 1)
+        if (playerManager.phase == Phase.Setup && !drawtutplayed)
         {
             Draw();
         }
@@ -43,17 +43,17 @@ public class TutorailLevel2 : Tutorial
 
         if (linenumber <= lineNames.Count - 1)
         {
-
+            Debug.Log(linenumber);
             StartCoroutine(PlayVoiceLine(lineNames[linenumber]));
             linenumber++;
-
+            
         }
         else
         {
             linenumber = 0;
             p = true;
             isVoiceLinePlaying = false;
-            UI.Tutorial.SetActive(false);
+            UI.Tutorial.SetActive(false);   
         }
 
 

@@ -187,7 +187,7 @@ public class LevelManager : MonoBehaviour
         }
     }
 
-    public IEnumerator EndPhase()
+    public void EndPhase()
     {
         phaseplaying = true;
         if (utilitiesCount > utilitiesGoal / 2 && frameworksCount > frameworksCount / 2 && level == level.level1)
@@ -214,10 +214,9 @@ public class LevelManager : MonoBehaviour
         UIManager.SetFrameworksText(frameworksCount.ToString());
         UIManager.SetTurnText(turn);
 
-        yield return null;
-
         playerManager.phase = Phase.PreTurn;
         phaseplaying = false;
+
     }
 
     public void Spend(int cost)

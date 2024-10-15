@@ -43,7 +43,7 @@ public class EventManager : MonoBehaviour
     }
     public IEnumerator SickDay()
     {
-        Debug.Log("hi");
+        // Debug.Log("hi");
         eventActive = true;
 
         sickDayPrompt.SetActive(true);
@@ -65,7 +65,5 @@ public class EventManager : MonoBehaviour
 
         nextEvent = GameEvent.None;
         yield return null;
-
-
     }
 }
