@@ -671,6 +671,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1377044011}
+    - target: {fileID: 1787698391138670994, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2447659567632930561, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -766,6 +770,10 @@ PrefabInstance:
     - target: {fileID: 5374742702610807616, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
       value: UIManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5439913776392315392, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6128612652974618173, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
