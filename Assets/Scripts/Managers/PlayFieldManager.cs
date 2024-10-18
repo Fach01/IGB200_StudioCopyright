@@ -61,7 +61,6 @@ public class PlayFieldManager : MonoBehaviour
                 currentCard.transform.position = new Vector3(150f, 400f, 0);
                 currentCard.GetComponent<CardManager>().locked = true;
                 playAbility.SetActive(true);
-                // TODO: toggle hand off
                 playAbility.GetComponent<AbilityUI>().SetCard(currentCard);
             }
             else
