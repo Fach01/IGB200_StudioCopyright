@@ -89,19 +89,34 @@ public override void ActivateAbility(PlayerManager playerManager, GameObject Abi
         
             if (playerManager.selectedCard != null)
             {
-                if (!IsArrayFull(discardCards))
+                bool isSelected = false;
+                foreach (GameObject card in discardCards)
+                {
+                    if (card != null)
+                    {
+                        if (card == playerManager.selectedCard)
+                        {
+                            isSelected = true;
+                            break;
+                        }
+                    }
+                }
+                if (!IsArrayFull(discardCards) && !isSelected)
                 {
                     for (int i = 0; i < numDisc; i++)
                     {
                         if (discardCards[i] == null)
                         {
                             discardCards[i] = playerManager.selectedCard;
+                            playerManager.selectedCard.GetComponent<CardManager>().locked = true;
                             break;
                         }
                     }
                 }
-                else
+                else if (!isSelected)
                 {
+                    discardCards[0].GetComponent<CardManager>().Unlock();
+                    discardCards[0].GetComponent<CardManager>().Deselect();
                     // move all cards forward one slot
                     for (int i = 1; i < numDisc; i++)
                     {
@@ -110,6 +125,7 @@ public override void ActivateAbility(PlayerManager playerManager, GameObject Abi
 
                     // add new card in last slot
                     discardCards[numDisc - 1] = playerManager.selectedCard;
+                    playerManager.selectedCard.GetComponent<CardManager>().locked = true;
                 }
             }
             yield return null;

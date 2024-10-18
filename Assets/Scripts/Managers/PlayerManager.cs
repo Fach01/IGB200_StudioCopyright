@@ -80,7 +80,7 @@ public class PlayerManager : MonoBehaviour
     }
     public void SelectCard(GameObject card)
     {
-        if (selectedCard != null)
+        if (selectedCard != null && !selectedCard.GetComponent<CardManager>().locked)
         {
             selectedCard.transform.Translate(0, -20f, 0);
         }

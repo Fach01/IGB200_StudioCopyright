@@ -36,6 +36,7 @@ public class CardManager : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     public bool inanimation = false;
 
     public bool sick;
+    public bool locked = false;
 
     private void Awake()
     {
@@ -76,8 +77,10 @@ public class CardManager : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     }
     public void SetActiveCard()
     {
+        if (locked) { return; }
         // add animation of picking it from hand?
         playerManager.SelectCard(gameObject);
+        
         if (m_active)
         {
             transform.Translate(0, -30f, 0);
@@ -87,6 +90,9 @@ public class CardManager : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+        if (locked) {
+            Debug.Log("doing nothing!");
+            return; }
         originalIndex = transform.GetSiblingIndex();
         if (playerManager.phase != Phase.Setup)
         {
@@ -111,6 +117,7 @@ public class CardManager : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     }
     public void OnPointerExit(PointerEventData eventData)
     {
+        if (locked) { return; }
         if (playerManager.phase != Phase.Setup)
         {
             return;
@@ -159,5 +166,22 @@ public class CardManager : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
             m_image.color = new Color(1f, 1f, 1f, 1f);
             GetComponent<Button>().interactable = true;
         }
+    }
+
+    public void Unlock()
+    {
+        Debug.Log("Unlocking");
+        if (playerManager.selectedCard != gameObject && m_active)
+        {
+            transform.Translate(0, -30f, 0);
+            
+            m_active = false;
+        }
+        transform.SetSiblingIndex(originalIndex);
+        locked = false;
+    }
+    public void Deselect()
+    {
+        transform.Translate(0, -20f, 0);
     }
 }
