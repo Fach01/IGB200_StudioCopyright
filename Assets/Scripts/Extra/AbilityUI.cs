@@ -15,6 +15,7 @@ public class AbilityUI : MonoBehaviour
     public Button playCardButton;
 
     private Card card = null;
+    private GameObject cardObject = null;
 
     private string defaultText = "Press enter to confirm your choice.";
 
@@ -28,12 +29,15 @@ public class AbilityUI : MonoBehaviour
         else
         {
             Debug.Log("oh no");
+            cardObject.GetComponent<CardManager>().Unlock();
             playField.GetComponent<PlayFieldManager>().OrderCards();
         }
     }
 
     public void OnPlayCard()
     {
+        cardObject.GetComponent<CardManager>().Unlock();
+
         // toggle cards on
         hand.GetComponent<HandManager>().ToggleActivateHand(true);
         playField.GetComponent<PlayFieldManager>().ToggleActivatePlayfield(true);
@@ -43,14 +47,15 @@ public class AbilityUI : MonoBehaviour
 
     }
 
-    public void SetCard(Card currentCard)
+    public void SetCard(GameObject currentCard)
     {
         // toggle hand and playfield off
         hand.GetComponent<HandManager>().ToggleActivateHand(false);
         playField.GetComponent<PlayFieldManager>().ToggleActivatePlayfield(false);
 
-        card = currentCard;
-        text.text = $"Play {currentCard.abilityName} for ${currentCard.abilityCost.ToString("N0")}?";
+        card = currentCard.GetComponent<CardManager>().m_card;
+        cardObject = currentCard;
+        text.text = $"Play {card.abilityName} for ${card.abilityCost.ToString("N0")}?";
         
     }
 
@@ -76,13 +81,13 @@ public class AbilityUI : MonoBehaviour
         playAbilityButton.gameObject.SetActive(true);
         playCardButton.gameObject.SetActive(true);
 
+        cardObject.GetComponent<CardManager>().Unlock();
         playField.GetComponent<PlayFieldManager>().OrderCards();
         this.gameObject.SetActive(false);
     }
 
     public void SetText(string newText)
     {
-        Debug.Log("yippee");
         text.text = newText;
     }
 

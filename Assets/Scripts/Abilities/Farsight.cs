@@ -91,13 +91,25 @@ public class Farsight : BuilderAbility
             {
                 if (playerManager.hand.GetComponent<HandManager>().SearchForCard(playerManager.selectedCard))
                 {
+                    if (chosenHandCard != null && chosenHandCard != playerManager.selectedCard)
+                    {
+                        chosenHandCard.GetComponent<CardManager>().Unlock();
+                        chosenHandCard.GetComponent<CardManager>().Deselect();
+                    }
+
                     chosenHandCard = playerManager.selectedCard;
-                    //TODO: make sure it stays 'selected'
+                    playerManager.selectedCard.GetComponent<CardManager>().locked = true;
                 }
                 else
                 {
+                    if (chosenDeckCard != null && chosenDeckCard != playerManager.selectedCard)
+                    {
+                        chosenDeckCard.GetComponent<CardManager>().Unlock();
+                        chosenDeckCard.GetComponent<CardManager>().Deselect();                    
+                    }
+                    
                     chosenDeckCard = playerManager.selectedCard;
-                    //TODO: make sure it stays 'selected'
+                    playerManager.selectedCard.GetComponent<CardManager>().locked = true;
                 }
             }
             yield return null;
@@ -105,6 +117,10 @@ public class Farsight : BuilderAbility
 
         // move chosen card to hand
         AudioManager.instance.PlaySFX("Farsight");
+        chosenDeckCard.GetComponent<CardManager>().Unlock();
+        chosenDeckCard.GetComponent<CardManager>().Deselect();
+        
+
         snapshotManager.cards.Remove(chosenDeckCard);
         playerManager.hand.GetComponent<HandManager>().AddCard(chosenDeckCard);
         

@@ -75,19 +75,36 @@ public class Foundation : BuilderAbility
             {
                 if (playerManager.hand.GetComponent<HandManager>().SearchForCard(playerManager.selectedCard))
                 {
-                    if (!IsArrayFull(cardsToPlay))
+
+                    bool isSelected = false;
+                    foreach (GameObject card in cardsToPlay)
+                    {
+                        if (card != null)
+                        {
+                            if (card == playerManager.selectedCard)
+                            {
+                                isSelected = true;
+                                break;
+                            }
+                        }
+                    }
+
+                        if (!IsArrayFull(cardsToPlay) && !isSelected)
                     {
                         for (int i = 0; i < numPlay; i++)
                         {
                             if (cardsToPlay[i] == null)
                             {
                                 cardsToPlay[i] = playerManager.selectedCard;
+                                playerManager.selectedCard.GetComponent<CardManager>().locked = true;
                                 break;
                             }
                         }
                     }
-                    else
-                    {
+                    else if (IsArrayFull(cardsToPlay) && !isSelected)
+                        {
+                        cardsToPlay[0].GetComponent<CardManager>().Unlock();
+                        cardsToPlay[0].GetComponent<CardManager>().Deselect();
                         // move all cards forward one slot
                         for (int i = 1; i < numPlay; i++)
                         {
@@ -96,6 +113,7 @@ public class Foundation : BuilderAbility
 
                         // add new card in last slot
                         cardsToPlay[numPlay - 1] = playerManager.selectedCard;
+                        playerManager.selectedCard.GetComponent<CardManager>().locked = true;
                     }
                 }
             }

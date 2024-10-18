@@ -65,12 +65,30 @@ public class Zap : BuilderAbility
 
     private void AddCardToArray(GameObject[] cards, GameObject newCard)
     {
+        bool isSelected = false;
+        foreach (GameObject card in cards)
+        {
+            if (card != null)
+            {
+                if (card == newCard)
+                {
+                    isSelected = true;
+                    break;
+                }
+            }
+        }
+        if (isSelected)
+        {
+            return;
+        }
+
         if (!IsArrayFull(cards))
         {
             for (int i = 0; i < cards.Length; i++)
             {
                 if (cards[i] == null)
                 {
+                    newCard.GetComponent<CardManager>().locked = true;
                     cards[i] = newCard;
                     break;
                 }
@@ -78,6 +96,8 @@ public class Zap : BuilderAbility
         }
         else
         {
+            cards[0].GetComponent<CardManager>().Unlock();
+            cards[0].GetComponent<CardManager>().Deselect();
             // move all cards forward one slot
             for (int i = 1; i < cards.Length; i++)
             {
@@ -86,6 +106,7 @@ public class Zap : BuilderAbility
 
             // add new card in last slot
             cards[cards.Length - 1] =  newCard;
+            newCard.GetComponent<CardManager>().locked = true;
         }
 
     }
