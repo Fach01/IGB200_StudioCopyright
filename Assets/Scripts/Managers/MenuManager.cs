@@ -23,4 +23,9 @@ public class MenuManager : MonoBehaviour
     {
         GameManager.instance.Quit();
     }
+    public void TransitionInOut()
+    {
+        GameManager.instance.InThenOut();
+    }
+
 }

@@ -56,9 +56,14 @@ MonoBehaviour:
   startBudget: 300000
   utilitiesGoal: 15
   frameworksGoal: 20
+  turn: 1
+  phaseplaying: 0
   win: {fileID: 0}
   lose: {fileID: 0}
+  highscore: 0
   tutorial: {fileID: 0}
+  levelWon: 0
+  tutorialplayed: 0
   tempBudget: 0
   tempFrames: 0
   tempUtil: 0
@@ -185,6 +190,8 @@ MonoBehaviour:
   replaceCard: {fileID: 0}
   win: {fileID: 0}
   lose: {fileID: 0}
+  highscore: {fileID: 0}
+  pauseScreen: {fileID: 0}
   EndTurnAnimation: {fileID: 0}
   Budget: {fileID: 0}
   Framework: {fileID: 0}
@@ -244,7 +251,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3092ea210beeafe4283e7c394ef5e922, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  desc: Switch any card on the field with one from your hand.
 --- !u!1 &5117708710373484964
 GameObject:
   m_ObjectHideFlags: 0
@@ -289,7 +295,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05299ae102302b244b9837226fd6d381, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  desc: Discard 1 card, draw 2
+  deck: {fileID: 0}
 --- !u!1 &5176286773947898928
 GameObject:
   m_ObjectHideFlags: 0
@@ -341,6 +347,7 @@ MonoBehaviour:
   discard: {fileID: 0}
   deck: {fileID: 0}
   endTurn: {fileID: 0}
+  pause: 27
   selectedCard: {fileID: 0}
   phase: 0
 --- !u!1 &5493480644845690656
@@ -387,7 +394,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5142250541981b49bb639b6afb9602c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  desc: Play an extra card for no additional cost
 --- !u!1 &7173227226371943189
 GameObject:
   m_ObjectHideFlags: 0
@@ -465,8 +471,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 5989212412039659313}
   - {fileID: 2946742002148585558}
+  - {fileID: 5989212412039659313}
   - {fileID: 5715919556647698748}
   - {fileID: 8092000614337404718}
   - {fileID: 45060204863823946}
@@ -518,9 +524,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b20e0ab4eead4384db12a7b167048571, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  desc: look at the top 4 cards in your deck and replace a card in your hand with
-    one of them
   deckSnapshot: {fileID: 0}
+  deck: {fileID: 0}
 --- !u!1 &8812858773230775736
 GameObject:
   m_ObjectHideFlags: 0
@@ -568,6 +573,7 @@ MonoBehaviour:
   buildingname: 
   BudgetPoolLevel1: 0
   BudgetPoolLevel2: 0
+  BudgetPoolLevel3: 0
 --- !u!1001 &8347866807151246603
 PrefabInstance:
   m_ObjectHideFlags: 0

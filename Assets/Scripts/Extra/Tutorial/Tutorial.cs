@@ -26,7 +26,6 @@ public abstract class Tutorial : MonoBehaviour
     public void Update()
     {
         HandManager.ToggleActivateHand(handActive);
-        if (isVoiceLinePlaying && Input.GetKeyDown(KeyCode.Space)) Skip();
     }
     public IEnumerator PlayVoiceLine(string name)
     {
@@ -41,12 +40,8 @@ public abstract class Tutorial : MonoBehaviour
         AudioManager.instance.PlaySFX(voiceLine);
         UI.TutorialActive(text);
 
-
-        if (voiceLine != "" && voiceLine != "null") { yield return new WaitUntil(() => AudioManager.instance.sfxSource.isPlaying == false); }
-
-        else if (voiceLine == "null") { yield return new WaitForSeconds(2f); }
-
-        else { yield return new WaitForSeconds(5f); }
+        if (voiceLine == "null") { yield return new WaitForSeconds(2f); }
+        else { yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space)); }
 
         EndText();
 
@@ -82,7 +77,6 @@ public abstract class Tutorial : MonoBehaviour
     public void Skip()
     {
         AudioManager.instance.StopSFX();
-        StopAllCoroutines();
         EndText();
     }
 }

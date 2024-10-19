@@ -1090,6 +1090,10 @@ PrefabInstance:
       propertyPath: levelManager
       value: 
       objectReference: {fileID: 857635305}
+    - target: {fileID: 6505348841126435090, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6847297923303256296, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
       value: 2

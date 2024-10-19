@@ -49,12 +49,12 @@ public class UIManager : MonoBehaviour
     private void Start()
     {
 
+        GameManager.instance.Foreground = Fade;
+        StartCoroutine(GameManager.instance.TransitionIn());
     }
     private void Awake()
     {
 
-        GameManager.instance.Foreground = Fade;
-        StartCoroutine(GameManager.instance.TransitionIn());
     }
     public void NextLevel()
     {

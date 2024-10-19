@@ -68,6 +68,7 @@ public class TutorailLevel1 : Tutorial
     void Awake()
     {
         UI.deck.GetComponent<Button>().enabled = false;
+        Invoke(nameof(StartTutorial) , 1f) ;
        
     }
     void StartTutorial()
