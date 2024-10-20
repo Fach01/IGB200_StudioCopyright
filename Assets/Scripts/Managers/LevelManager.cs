@@ -156,7 +156,7 @@ public class LevelManager : MonoBehaviour
             playerManager.phase = Phase.End;
             phaseplaying = false;
             yield break; }
-        if (!eventManager.eventActive)
+        if (eventManager.eventActive)
         {
             if (eventManager.currentEvent == "Sick Day")
             {
@@ -169,15 +169,19 @@ public class LevelManager : MonoBehaviour
                         cardManager.sick = false;
                     }
                 }
-            } else if (eventManager.currentEvent == "Flood")
+                eventManager.eventActive = false;
+            }
+            else if (eventManager.currentEvent == "Flood")
             {
                 // if not 1 count down
                 // otherwise remove all cards from playfield
             }
-
+        }
+        else
+        {
             if (tutorial != null && tutorialplayed == false) // 100% chance in tutorial level 3 of an event playing once otherwise there is a chance of it occuring
             {
-                
+
                 eventManager.nextEvent = GameEvent.SickDay;
                 eventManager.PlayEvent();
                 tutorialplayed = true;
@@ -185,15 +189,15 @@ public class LevelManager : MonoBehaviour
             else
             {
                 var chance = Random.Range(0f, 1f);
-                if (chance > 0.75f)
+                if (chance > 0.6f)
                 {
                     eventManager.nextEvent = chance > 0.9f ? GameEvent.Flood : GameEvent.SickDay;
                 }
                 eventManager.PlayEvent();
             }
 
-            
         }
+
     }
 
     public void EndPhase()

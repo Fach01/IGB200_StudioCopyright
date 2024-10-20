@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class EventManager : MonoBehaviour
 {
@@ -8,12 +9,16 @@ public class EventManager : MonoBehaviour
     public string currentEvent;
     public GameEvent nextEvent;
 
-    public GameObject floodPrompt;
-    public GameObject sickDayPrompt;
+    public GameObject eventPrompt;
+    public TMP_Text promptText;
+    public TMP_Text rainyDayText;
+
+    private int turnsRemaining;
 
     private void Start()
     {
         eventActive = false;
+        rainyDayText.text = "";
     }
 
     public void PlayEvent()
@@ -34,22 +39,46 @@ public class EventManager : MonoBehaviour
     }
     public IEnumerator Flood()
     {
-        eventActive = true;
-        currentEvent = "Flood";
-
-        int turnsRemaining = 3;
-
-        while ( turnsRemaining > 0)
+        Debug.Log(eventActive);
+        
+        if (!eventActive)
         {
+            eventActive = true;
+            currentEvent = "Flood";
 
+            
+            eventPrompt.SetActive(true);
+            promptText.text = "There's heavy rain forecasted the next few days. Be careful...";
+
+            turnsRemaining = 3;
+            rainyDayText.text = "3 days of rain ahead.";
+
+            nextEvent = GameEvent.None;
         }
-   
-        // set a 3 turn countdown
 
-        GetComponent<LevelManager>().player.GetComponent<PlayerManager>().phase = Phase.End;
-        GetComponent<LevelManager>().phaseplaying = false;
 
-        yield return null;
+        while (eventActive && turnsRemaining > 0)
+        {
+            rainyDayText.text = turnsRemaining + " days of rain ahead.";
+            turnsRemaining--;
+            
+
+            GetComponent<LevelManager>().player.GetComponent<PlayerManager>().phase = Phase.End;
+            GetComponent<LevelManager>().phaseplaying = false;
+
+            yield return new WaitUntil(() => GetComponent<LevelManager>().player.GetComponent<PlayerManager>().phase == Phase.Event);
+        }
+
+        rainyDayText.text = "";
+        eventPrompt.SetActive(true);
+        promptText.text = "All that rain caught up! The jobsite is flooding, everyone go home!";
+        turnsRemaining = 0;
+
+        //remove all cards
+        GetComponent<LevelManager>().playField.GetComponent<PlayFieldManager>().DiscardAll();
+
+        eventActive = false;
+        yield break;
     }
     public IEnumerator SickDay()
     {
@@ -57,7 +86,8 @@ public class EventManager : MonoBehaviour
         eventActive = true;
         currentEvent = "Sick Day";
 
-        sickDayPrompt.SetActive(true);
+        eventPrompt.SetActive(true);
+        promptText.text = "Oh No! Someone has gotten ill! They won't be able to work their next shift.";
 
         int cards = 0;
         for (int i = 0; i < GetComponent<LevelManager>().playField.GetComponent<PlayFieldManager>().cards.Count; i++)

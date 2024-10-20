@@ -87,6 +87,17 @@ public class PlayFieldManager : MonoBehaviour
         return false;
     }
 
+    public void DiscardAll()
+    {
+        foreach(GameObject card in cards)
+        {
+            if (card != null)
+            {
+                Destroy(card);
+            }
+        }
+    }
+
     public void OrderCards()
     {
         int steps = 360 / capacity;

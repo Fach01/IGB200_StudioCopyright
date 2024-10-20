@@ -398,9 +398,21 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 371450335}
     - target: {fileID: 7033082372945394501, guid: 7c208aa2d33faf6449f0a6db8b17f823, type: 3}
+      propertyPath: promptText
+      value: 
+      objectReference: {fileID: 2100434793}
+    - target: {fileID: 7033082372945394501, guid: 7c208aa2d33faf6449f0a6db8b17f823, type: 3}
+      propertyPath: eventPrompt
+      value: 
+      objectReference: {fileID: 1568915454}
+    - target: {fileID: 7033082372945394501, guid: 7c208aa2d33faf6449f0a6db8b17f823, type: 3}
       propertyPath: floodPrompt
       value: 
-      objectReference: {fileID: 869405396}
+      objectReference: {fileID: 0}
+    - target: {fileID: 7033082372945394501, guid: 7c208aa2d33faf6449f0a6db8b17f823, type: 3}
+      propertyPath: rainyDayText
+      value: 
+      objectReference: {fileID: 1587450781}
     - target: {fileID: 7033082372945394501, guid: 7c208aa2d33faf6449f0a6db8b17f823, type: 3}
       propertyPath: sickDayPrompt
       value: 
@@ -611,11 +623,6 @@ GameObject:
 --- !u!1 &868788744 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5986862955946901938, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
-  m_PrefabInstance: {fileID: 1225118050}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &869405396 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2238135294817760595, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
   m_PrefabInstance: {fileID: 1225118050}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &975093508 stripped
@@ -1114,6 +1121,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7019696482504627669, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
   m_PrefabInstance: {fileID: 1225118050}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1587450781 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4322224238199819755, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
+  m_PrefabInstance: {fileID: 1225118050}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1589001102 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2827185724064647458, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
@@ -1228,6 +1246,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3183120807059552284, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
   m_PrefabInstance: {fileID: 1225118050}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2100434793 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8894024946355462443, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
+  m_PrefabInstance: {fileID: 1225118050}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

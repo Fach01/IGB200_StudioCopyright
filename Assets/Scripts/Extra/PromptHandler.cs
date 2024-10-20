@@ -19,7 +19,7 @@ public class PromptHandler : MonoBehaviour
     public void HidePrompt(GameObject panel)
     {
         panel.SetActive(false);
-        GameObject.Find("Level Manager").GetComponent<EventManager>().eventActive = false;
+        //GameObject.Find("Level Manager").GetComponent<EventManager>().eventActive = false;
         GameObject.Find("Level Manager").GetComponent<LevelManager>().player.GetComponent<PlayerManager>().phase = Phase.End;
     }
 }
