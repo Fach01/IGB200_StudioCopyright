@@ -2623,7 +2623,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Oh No! it seems someone has gotten ill!
+  m_text: Oh No! Someone has gotten ill! They won't be able to work their next shift.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e0fdab2dbd03d5846b691dc2b58f2c82, type: 2}
   m_sharedMaterial: {fileID: -5290740573181013655, guid: e0fdab2dbd03d5846b691dc2b58f2c82, type: 2}
@@ -3499,8 +3499,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -20}
-  m_SizeDelta: {x: 70, y: 42.115}
+  m_AnchoredPosition: {x: -0.0000076293945, y: -27.5912}
+  m_SizeDelta: {x: 76.6423, y: 26.9326}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1148884377460720519
 CanvasRenderer:
@@ -6021,7 +6021,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.9622642, g: 0.7164698, b: 0.46751517, a: 0.79607844}
+  m_Color: {r: 0.8235295, g: 0.8235295, b: 0.36862746, a: 0.79607844}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

@@ -5,6 +5,7 @@ using UnityEngine;
 public class EventManager : MonoBehaviour
 {
     public bool eventActive;
+    public string currentEvent;
     public GameEvent nextEvent;
 
     public GameObject floodPrompt;
@@ -34,10 +35,19 @@ public class EventManager : MonoBehaviour
     public IEnumerator Flood()
     {
         eventActive = true;
+        currentEvent = "Flood";
+
+        int turnsRemaining = 3;
+
+        while ( turnsRemaining > 0)
+        {
+
+        }
+   
+        // set a 3 turn countdown
 
         GetComponent<LevelManager>().player.GetComponent<PlayerManager>().phase = Phase.End;
         GetComponent<LevelManager>().phaseplaying = false;
-        eventActive = false;
 
         yield return null;
     }
@@ -45,6 +55,7 @@ public class EventManager : MonoBehaviour
     {
         // Debug.Log("hi");
         eventActive = true;
+        currentEvent = "Sick Day";
 
         sickDayPrompt.SetActive(true);
 

@@ -51,7 +51,7 @@ MonoBehaviour:
   uiManager: {fileID: 2513269012405713385}
   playField: {fileID: 0}
   deck: {fileID: 0}
-  levelEvents: 0
+  levelEvents: 1
   eventManager: {fileID: 7033082372945394501}
   startBudget: 300000
   utilitiesGoal: 15
@@ -129,6 +129,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nextSceneLoad: 0
   Foreground: {fileID: 0}
+  sceneloading: 0
 --- !u!1 &2513269012405713385
 GameObject:
   m_ObjectHideFlags: 0

@@ -158,14 +158,21 @@ public class LevelManager : MonoBehaviour
             yield break; }
         if (!eventManager.eventActive)
         {
-            for (int i = 0; i < playFieldManager.cards.Count; i++)
+            if (eventManager.currentEvent == "Sick Day")
             {
-                if (playFieldManager.cards[i] == null) continue;
-                CardManager cardManager = playFieldManager.cards[i].GetComponent<CardManager>();
-                if (cardManager.sick)
+                for (int i = 0; i < playFieldManager.cards.Count; i++)
                 {
-                    cardManager.sick = false;
+                    if (playFieldManager.cards[i] == null) continue;
+                    CardManager cardManager = playFieldManager.cards[i].GetComponent<CardManager>();
+                    if (cardManager.sick)
+                    {
+                        cardManager.sick = false;
+                    }
                 }
+            } else if (eventManager.currentEvent == "Flood")
+            {
+                // if not 1 count down
+                // otherwise remove all cards from playfield
             }
 
             if (tutorial != null && tutorialplayed == false) // 100% chance in tutorial level 3 of an event playing once otherwise there is a chance of it occuring
