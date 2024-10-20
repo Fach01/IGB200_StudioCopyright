@@ -42,6 +42,8 @@ public class AbilityUI : MonoBehaviour
         hand.GetComponent<HandManager>().ToggleActivateHand(true);
         playField.GetComponent<PlayFieldManager>().ToggleActivatePlayfield(true);
 
+        player.GetComponent<PlayerManager>().endTurn.GetComponent<Button>().interactable = true;
+
         playField.GetComponent<PlayFieldManager>().OrderCards();
         this.gameObject.SetActive(false);
 
@@ -76,8 +78,14 @@ public class AbilityUI : MonoBehaviour
         
     }
 
-    public void Reset()
+    public void Reset(bool success)
     {
+        if (success)
+        {
+            player.GetComponent<PlayerManager>().levelManager.GetComponent<LevelManager>().Spend(card.abilityCost);
+        }
+
+        player.GetComponent<PlayerManager>().endTurn.GetComponent<Button>().interactable = true;
         playAbilityButton.gameObject.SetActive(true);
         playCardButton.gameObject.SetActive(true);
 
@@ -103,7 +111,7 @@ public class AbilityUI : MonoBehaviour
         }
 
         playField.GetComponent<Button>().interactable = true;
-        Reset();
+        Reset(false);
         yield break;
     }
 

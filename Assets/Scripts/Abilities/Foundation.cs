@@ -134,7 +134,7 @@ public class Foundation : BuilderAbility
         playerManager.playField.GetComponent<PlayFieldManager>().OrderCards();
 
         playerManager.playField.GetComponent<Button>().interactable = true;
-        AbilityUI.GetComponent<AbilityUI>().Reset();
+        AbilityUI.GetComponent<AbilityUI>().Reset(true);
 
         yield break;
     }

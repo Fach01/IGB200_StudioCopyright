@@ -58,7 +58,8 @@ public class PlayFieldManager : MonoBehaviour
 
             if (cardDetails.type != CardType.Planner && cardDetails.ability != null)
             {
-                currentCard.transform.position = new Vector3(150f, 400f, 0);
+                playerController.endTurn.GetComponent<Button>().interactable = false;
+                currentCard.transform.position = new Vector3(155f, 470f, 0);
                 currentCard.GetComponent<CardManager>().locked = true;
                 playAbility.SetActive(true);
                 playAbility.GetComponent<AbilityUI>().SetCard(currentCard);

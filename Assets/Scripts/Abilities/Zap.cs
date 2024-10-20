@@ -166,7 +166,7 @@ public class Zap : BuilderAbility
 
 
         playerManager.playField.GetComponent<Button>().interactable = true;
-        AbilityUI.GetComponent<AbilityUI>().Reset();
+        AbilityUI.GetComponent<AbilityUI>().Reset(true);
 
         yield break;
     }

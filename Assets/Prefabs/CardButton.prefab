@@ -378,8 +378,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0.3}
-  m_SizeDelta: {x: 30, y: 20}
+  m_AnchoredPosition: {x: -0.12170029, y: 0.0568}
+  m_SizeDelta: {x: 28.1845, y: 17.5677}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7339672845725469852
 CanvasRenderer:
@@ -439,8 +439,8 @@ MonoBehaviour:
   m_fontSize: 7
   m_fontSizeBase: 7
   m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 5
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 2
@@ -776,6 +776,7 @@ MonoBehaviour:
   cardanimator: {fileID: 0}
   inanimation: 0
   sick: 0
+  locked: 0
 --- !u!95 &4628520126595079682
 Animator:
   serializedVersion: 5
@@ -1013,7 +1014,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 000000
+  m_text: 00
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e0fdab2dbd03d5846b691dc2b58f2c82, type: 2}
   m_sharedMaterial: {fileID: -5290740573181013655, guid: e0fdab2dbd03d5846b691dc2b58f2c82, type: 2}
@@ -1040,12 +1041,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 7
+  m_fontSize: 15
   m_fontSizeBase: 7
   m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 6
+  m_fontSizeMax: 15
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512

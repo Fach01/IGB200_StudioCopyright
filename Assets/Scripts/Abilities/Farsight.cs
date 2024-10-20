@@ -132,7 +132,7 @@ public class Farsight : BuilderAbility
         //then destroy their gameobjects
 
         playerManager.playField.GetComponent<Button>().interactable = true;
-        AbilityUI.GetComponent<AbilityUI>().Reset();
+        AbilityUI.GetComponent<AbilityUI>().Reset(true);
 
         yield break;
     }
