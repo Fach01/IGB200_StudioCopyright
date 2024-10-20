@@ -682,6 +682,22 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: Restart
       objectReference: {fileID: 0}
+    - target: {fileID: 1736086267467703384, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 92.6746
+      objectReference: {fileID: 0}
+    - target: {fileID: 1736086267467703384, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 106.959
+      objectReference: {fileID: 0}
+    - target: {fileID: 1736086267467703384, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -887
+      objectReference: {fileID: 0}
+    - target: {fileID: 1736086267467703384, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 201
+      objectReference: {fileID: 0}
     - target: {fileID: 1738617665585924199, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
       propertyPath: player
       value: 
