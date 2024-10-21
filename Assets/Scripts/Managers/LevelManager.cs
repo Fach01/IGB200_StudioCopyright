@@ -257,12 +257,10 @@ public class LevelManager : MonoBehaviour
     }
     IEnumerator PlayPhaseAnimation()
     {
-        Debug.Log("Entered play phase coroutine");
         phaseplaying = true;
         // animation will play at the start of the play phase to show all cards in play
         for (int i = 0; i < playFieldManager.cards.Count; i++)
         {
-            Debug.Log("Counting card " + i);
             if (playFieldManager.cards[i] == null)
             {
                 if (playFieldManager.Size()  > 0) 
@@ -276,7 +274,6 @@ public class LevelManager : MonoBehaviour
             }
             if (playFieldManager.cards[i].GetComponent<CardManager>().sick)
             {
-                Debug.Log("Card is sick");
                 continue;
             }
             playFieldManager.cards[i].GetComponent<CardManager>().cardanimator.SetBool("Add Resource", true);
@@ -293,7 +290,7 @@ public class LevelManager : MonoBehaviour
         {
             yield return new WaitForSeconds(1f); // waits at the start to keep consistent timing
 
-            if (playFieldManager.cards[i] == null)
+            if (playFieldManager.cards[i] == null || i == (playFieldManager.cards.Count - 1))
             {
                 //after animation deactivate EndTurnPanel
                 UIManager.EndTurnAnimation.GetComponent<Animator>().SetBool("Exit", true);

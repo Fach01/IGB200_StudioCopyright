@@ -610,32 +610,32 @@ MonoBehaviour:
     Line: 
     AudioClipName: null
   - LineName: Start 1
-    Line: Alright ,where do I begin
+    Line: Alright, where do I begin?
     AudioClipName: Line 6
   - LineName: Start 2
-    Line: Well, as the production manager, your role on the site is to collect the
+    Line: Well, as the Production Manager, your role on the site is to collect the
       right number of resources we need for the job.
     AudioClipName: Line 7
   - LineName: Start 3
-    Line: And to gather resources you need to put us to work.
+    Line: And to gather resources, you need to put us to work.
     AudioClipName: Line 8
   - LineName: Start 4
     Line: We all have a role to play on the job site, and everyone gathers different
       resources.
     AudioClipName: Line 9
   - LineName: Start 6
-    Line: "Me, I\u2019m a bricklayer myself which means that I work best when you
+    Line: "Me? I\u2019m a bricklayer myself, which means that I work best when you
       need Frameworks. "
     AudioClipName: Line 10
   - LineName: Start 8
-    Line: "If you see Jack down, there he\u2019s an electrician so he will work best
+    Line: "If you see Jack down there, he\u2019s an electrician so he will work best
       when you need Utilities. "
     AudioClipName: Line 12
   - LineName: Start 9
-    Line: Go on put him to work by selecting him then selecting the work site.
+    Line: Go on! Put him to work by selecting him then selecting the work site.
     AudioClipName: Line 13
   - LineName: Jack 1
-    Line: 'Oh, I almost forgot most of us have special skills that you can use when
+    Line: 'Oh, I almost forgot! Most of us have special skills that you can use when
       we enter the worksite, they can be pricey, but they can come in handy.  '
     AudioClipName: Line 14
   - LineName: Draw 1
@@ -644,16 +644,16 @@ MonoBehaviour:
     AudioClipName: Line 27
   - LineName: Event 1
     Line: Oh no!? We got a major problem! Jack has just called in sick with the stomach
-      bug, he might have gotten others sick so be careful this can really slow down
-      production
+      bug, he might have gotten others sick, so be careful. This can really slow
+      down production!
     AudioClipName: Line 28
   - LineName: Event 2
     Line: That kinda thing happens all the time on the work site, from flooding to
-      people getting sick anything can happen
+      people getting sick- anything can happen!
     AudioClipName: Line 32
   - LineName: End 1
     Line: 'Every turn you get to put two employees on the job site but then you must
-      end your turn. '
+      end your shift. '
     AudioClipName: Line 19
   - LineName: End 2
     Line: "During this time every employee\u2019s salary is deducted from your budget
@@ -665,12 +665,12 @@ MonoBehaviour:
       but it looks like you got some money left over.
     AudioClipName: Line 21
   - LineName: End 4
-    Line: Not to worry, your excess budget carries across between phases, who knows?
-      it might come in handy.
+    Line: Not to worry, your excess budget carries across between phases. Who knows?
+      It might come in handy.
     AudioClipName: Line 22
   - LineName: End 5
-    Line: "Well, I got to go clean up but if you need a refresher don\u2019t hesitate
-      to come ask."
+    Line: "Well, I've got to go clean up but if you need a refresher, don\u2019t
+      hesitate to come ask."
     AudioClipName: Line 34
   lineNamesStartText:
   - Start

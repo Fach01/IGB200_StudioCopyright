@@ -185,7 +185,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.54901963, g: 0.5882353, b: 0.63529414, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -654,7 +654,7 @@ MonoBehaviour:
   guidance: {fileID: 0}
   lines:
   - LineName: Tut 1
-    Line: "So, you must be our new production manager, my name\u2019s Caitlyn, nice
+    Line: "So, you must be our new Production Manager, my name\u2019s Caitlyn! Nice
       to meet ya."
     AudioClipName: Line 1
   - LineName: Tut 2
@@ -667,8 +667,8 @@ MonoBehaviour:
     Line: This is your first gig!?
     AudioClipName: Line 4
   - LineName: Tut 5
-    Line: 'Well lucky for you, you happened to run into best person to teach you
-      how things work around here, Come on '
+    Line: Well lucky for you, you happened to run into best person to teach you how
+      things work around here, Come on!
     AudioClipName: Line 5
   text: {fileID: 18678232}
   lineNames:
