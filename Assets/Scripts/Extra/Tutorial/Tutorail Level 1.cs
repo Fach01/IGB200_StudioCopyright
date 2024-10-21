@@ -59,15 +59,18 @@ public class TutorailLevel1 : Tutorial
                 Dialouge(lineNamesAlex);
                 break;
             case 7:
-                HighlightObject(UI.endTurn);
+                tutorialsequence++;
                 break;
             case 8:
-                Dialouge(eventLines);
+                HighlightObject(UI.endTurn);
                 break;
             case 9:
-                Invoke(nameof(Stage10), 5f);
+                Dialouge(eventLines);
                 break;
             case 10:
+                Invoke(nameof(Stage10), 5f);
+                break;
+            case 11:
                 levelManager.win.SetActive(true);
                 break;
             default:
@@ -143,6 +146,7 @@ public class TutorailLevel1 : Tutorial
             tutorialsequence ++;
             isVoiceLinePlaying = false;
             Debug.Log(tutorialsequence);
+            AudioManager.instance.StopDialouge();
             UI.Tutorial.SetActive(false);
             return true;
         }
