@@ -110,11 +110,6 @@ public class UIManager : MonoBehaviour
         budgetTurnLoss.transform.position = new Vector3(budgetObject.transform.position.x + textOffset, budgetObject.transform.position.y - 10f, budgetObject.transform.position.z);
     }
 
-    public void SetPhaseText(Phase phase)
-    {
-        TMP_Text phaseText = this.phase.GetComponent<TMP_Text>();
-        phaseText.text = "Phase: " + phase.ToString();
-    }
    
     public void SetTurnText(int turn)
     {
