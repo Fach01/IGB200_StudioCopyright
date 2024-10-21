@@ -13,6 +13,7 @@ public class DeckSnapshot : MonoBehaviour
         GameObject card = deck.GetComponent<DeckManager>().DrawCard();
         cards.Add(card);
         card.transform.SetParent(transform, false);
+        card.GetComponent<CardManager>().Unlock();
         OrderCards();
     }
 

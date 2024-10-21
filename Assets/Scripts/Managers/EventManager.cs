@@ -66,6 +66,8 @@ public class EventManager : MonoBehaviour
             GetComponent<LevelManager>().player.GetComponent<PlayerManager>().phase = Phase.End;
             GetComponent<LevelManager>().phaseplaying = false;
 
+            yield return new WaitForSeconds(10f);
+
             yield return new WaitUntil(() => GetComponent<LevelManager>().player.GetComponent<PlayerManager>().phase == Phase.Event);
         }
 

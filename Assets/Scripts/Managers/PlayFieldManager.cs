@@ -69,6 +69,7 @@ public class PlayFieldManager : MonoBehaviour
                 OrderCards();
                 if (currentCard != null)
                 {
+                    currentCard.GetComponent<CardManager>().Unlock();
                     currentCard.transform.Translate(0, 20f, 0);
                 }
             }
@@ -123,6 +124,7 @@ public class PlayFieldManager : MonoBehaviour
         {
             if (card != null)
             {
+                card.GetComponent<CardManager>().Unlock();
                 Button cardButton = card.GetComponent<Button>();
                 if (cardButton != null)
                 {

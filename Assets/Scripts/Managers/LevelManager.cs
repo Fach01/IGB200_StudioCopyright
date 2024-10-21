@@ -288,14 +288,14 @@ public class LevelManager : MonoBehaviour
         UIManager.EndTurnAnimation.SetActive(true);
         for (int i = 0; i < playFieldManager.cards.Count; i++)
         {
-            yield return new WaitForSeconds(1f); // waits at the start to keep consistent timing
+            yield return new WaitForSeconds(1.5f); // waits at the start to keep consistent timing
 
-            if (playFieldManager.cards[i] == null || i == (playFieldManager.cards.Count - 1))
+            if ((playFieldManager.cards[i] == null && playFieldManager.Size() <= i) || i == (playFieldManager.cards.Count - 1))
             {
                 //after animation deactivate EndTurnPanel
                 UIManager.EndTurnAnimation.GetComponent<Animator>().SetBool("Exit", true);
 
-                yield return new WaitForSeconds(0.5f);
+                yield return new WaitForSeconds(1.5f);
 
                 //apply changes in budge frames and utilities
                 turnBudget += tempBudget;
@@ -326,6 +326,11 @@ public class LevelManager : MonoBehaviour
                 phaseplaying = false;
 
                 yield break;
+            }
+
+            if (playFieldManager.cards[i] == null)
+            {
+                continue;
             }
 
             if (playFieldManager.cards[i].GetComponent<CardManager>().sick)

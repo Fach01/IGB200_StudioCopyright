@@ -74,6 +74,8 @@ public class CardManager : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         {
             m_Tdescription.text = $"{card.abilityName} {card.abilityCost.ToString("N0")} - {card.ability.Description(card.abilityLevel)}";
         }
+
+        locked = true;
     }
     public void SetActiveCard()
     {
