@@ -313,11 +313,12 @@ public class LevelManager : MonoBehaviour
                     GameManager.instance.UnlockNextLevel();
                     UpdateBuildingBudgetPool(levelBudget);
                     levelWon = true;
-                    if(tutorial == null || level == level.level2) win.SetActive(true); // second level does not contain end lines but 1 and 3 do 
+                    if(tutorial == null) win.SetActive(true); GameManager.instance.TransitionInOut();
                 }
                 else if (turnBudget <= 0)
                 {
-                    lose.SetActive(true);
+                    lose.SetActive(true); 
+                    GameManager.instance.TransitionInOut();
                 }
 
                 playerManager.phase = Phase.Event;
