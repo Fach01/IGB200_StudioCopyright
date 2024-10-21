@@ -27,5 +27,23 @@ public class MenuManager : MonoBehaviour
     {
         GameManager.instance.InThenOut();
     }
+    public void Active(GameObject Panel)
+    {
+        StartCoroutine(setActive(Panel));
+    }
+    public void InActive(GameObject Panel)
+    {
+        StartCoroutine(SetInActive(Panel));
+    }
+    public IEnumerator setActive(GameObject panel)
+    {
+        yield return new WaitForSeconds(0.5f);
+        panel.SetActive(!panel.activeInHierarchy); 
+    }
+    public IEnumerator SetInActive(GameObject panel)
+    {
+        yield return new WaitForSeconds(0.5f);
+        panel.SetActive(false);
+    }
 
 }
