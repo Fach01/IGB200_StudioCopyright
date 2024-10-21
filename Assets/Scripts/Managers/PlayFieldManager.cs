@@ -82,6 +82,7 @@ public class PlayFieldManager : MonoBehaviour
         if (cards.Contains(card))
         {
             cards.Remove(card);
+            cards.Add(null);
             playerController.hand.GetComponent<HandManager>().AddCard(card);
             return true;
         }
@@ -90,11 +91,12 @@ public class PlayFieldManager : MonoBehaviour
 
     public void DiscardAll()
     {
-        foreach(GameObject card in cards)
+        for (int i = 0; i < cards.Count; i++)
         {
-            if (card != null)
+            if (cards[i] != null)
             {
-                Destroy(card);
+                Destroy(cards[i]);
+                cards[i] = null;
             }
         }
     }

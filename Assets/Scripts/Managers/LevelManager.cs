@@ -171,13 +171,13 @@ public class LevelManager : MonoBehaviour
                 }
 
                 eventManager.eventActive = false;
+                phaseplaying = false;
                 playerManager.phase = Phase.End;
 
             }
             else if (eventManager.currentEvent == "Flood")
             {
-                // if not 1 count down
-                // otherwise remove all cards from playfield
+                
             }
         }
         else
@@ -265,6 +265,10 @@ public class LevelManager : MonoBehaviour
             Debug.Log("Counting card " + i);
             if (playFieldManager.cards[i] == null)
             {
+                if (playFieldManager.Size()  > 0) 
+                { 
+                    continue;
+                }
                 //then start the tallying of the gains and losses
                 StartCoroutine(TallyGainsAndLosses());
 
@@ -278,7 +282,7 @@ public class LevelManager : MonoBehaviour
             playFieldManager.cards[i].GetComponent<CardManager>().cardanimator.SetBool("Add Resource", true);
             yield return new WaitForSeconds(.2f); 
         }
-        Debug.Log("Exiting for loop");
+        StartCoroutine(TallyGainsAndLosses());
     }
     IEnumerator TallyGainsAndLosses()
     {
