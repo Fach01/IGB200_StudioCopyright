@@ -1095,6 +1095,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nextSceneLoad: 0
   Foreground: {fileID: 0}
+  sceneloading: 0
 --- !u!4 &1976814064
 Transform:
   m_ObjectHideFlags: 0
@@ -1206,6 +1207,10 @@ PrefabInstance:
     - target: {fileID: 2520305717148366254, guid: d0dc62b9b540ab34184a9fae523d912a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6727301460022208523, guid: d0dc62b9b540ab34184a9fae523d912a, type: 3}
+      propertyPath: m_margin.w
+      value: -160.83684
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

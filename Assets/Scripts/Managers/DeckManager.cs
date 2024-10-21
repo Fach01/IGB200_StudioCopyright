@@ -17,7 +17,7 @@ public class DeckManager : MonoBehaviour
     public List<Card> deck;
 
     private PlayerManager PlayerManager;
-    private bool outOfCards;
+    private bool outOfCards = false;
 
     private void Start()
     {
