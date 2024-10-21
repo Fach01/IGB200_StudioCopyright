@@ -17,8 +17,6 @@ public class TutorailLevel1 : Tutorial
 
     private int linenumber = 0;
     private int tutorialsequence = 1;
-    public DeckManager deck;
-    public Card card;
     [Header("Highlighted Objects")]
     public GameObject Playfield;
     public GameObject CardOnly;
@@ -31,6 +29,7 @@ public class TutorailLevel1 : Tutorial
     public GameObject Caitlyn;
     public GameObject CardType;
     public GameObject ResourceAmount;
+    public GameObject BudgetAmount;
     [Header("Jack Card")]
     public GameObject Jack;
     public GameObject Description;
@@ -56,18 +55,21 @@ public class TutorailLevel1 : Tutorial
                 HighlightObject(CardOnly);
                 break;
             case 6:
-                Dialouge(lineNamesAlex);
+                BudgetID();
                 break;
             case 7:
-                HighlightObject(UI.endTurn);
+                HighlightObject(Draw);
                 break;
             case 8:
-                Dialouge(eventLines);
+                HighlightObject(UI.endTurn);
                 break;
             case 9:
                 Invoke(nameof(Stage10), 5f);
                 break;
             case 10:
+                Dialouge(lineNamesEnd);
+                break;
+            case 11:
                 levelManager.win.SetActive(true);
                 break;
             default:
@@ -81,7 +83,6 @@ public class TutorailLevel1 : Tutorial
 
     void Awake()
     {
-        UI.deck.GetComponent<Button>().enabled = false;
         Invoke(nameof(StartTutorial) , 1f) ;
        
     }
@@ -123,6 +124,17 @@ public class TutorailLevel1 : Tutorial
             Jack.SetActive(false);
         }
     }
+    public void BudgetID()
+    {
+        Dialouge(lineNamesAlex);
+        if (linenumber == 4)
+        {
+            Caitlyn.SetActive(true);
+            HighlightMidDialouge(BudgetAmount);
+
+        }
+        else Caitlyn.SetActive(false);
+    }
     private bool Dialouge(List<string> lineNames)
     {
         UI.Tutorial.SetActive(true);
@@ -143,6 +155,7 @@ public class TutorailLevel1 : Tutorial
             tutorialsequence ++;
             isVoiceLinePlaying = false;
             Debug.Log(tutorialsequence);
+            AudioManager.instance.StopDialouge();
             UI.Tutorial.SetActive(false);
             return true;
         }
@@ -180,6 +193,7 @@ public class TutorailLevel1 : Tutorial
     }
     private void HighlightObject( GameObject objective)
     {
+        if(objective.active == false) { tutorialsequence++; return; }
         if (Objective == Goal && coroutineplaying == true)
         {
             Goal = null;
@@ -189,9 +203,9 @@ public class TutorailLevel1 : Tutorial
             Debug.Log(tutorialsequence);
             return;
         }
-        if (coroutineplaying == true) return;     
-        handActive = true;
+        if (coroutineplaying == true) return;
         coroutineplaying = true;
+        handActive = true;
         Objective = objective;
 
         StartCoroutine(highlight());
@@ -206,7 +220,7 @@ public class TutorailLevel1 : Tutorial
     }
     private void Stage10()
     {
-        Dialouge(lineNamesEnd);
+        Dialouge(eventLines);
     }
     public new void Skip()
     {

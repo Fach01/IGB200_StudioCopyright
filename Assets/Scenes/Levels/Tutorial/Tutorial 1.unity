@@ -273,6 +273,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3189424245582187719, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
   m_PrefabInstance: {fileID: 1181015976}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &143093463 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8894024946355462443, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
+  m_PrefabInstance: {fileID: 1181015976}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &192750756
 GameObject:
   m_ObjectHideFlags: 0
@@ -627,15 +638,10 @@ MonoBehaviour:
     Line: 'Oh, I almost forgot most of us have special skills that you can use when
       we enter the worksite, they can be pricey, but they can come in handy.  '
     AudioClipName: Line 14
-  - LineName: Jack 2
-    Line: "Jack\u2019s ability is Zap which allows him to switch any employee on
-      the work sight with one from your hand, but there aren\u2019t any on the site
-      now, so let\u2019s not use his ability right now. "
-    AudioClipName: 
   - LineName: Draw 1
     Line: Every round you get to draw an employee, but you can always draw an extra
       employee instead of playing an employee by paying $10,000.
-    AudioClipName: Line 23
+    AudioClipName: Line 27
   - LineName: Event 1
     Line: Oh no!? We got a major problem! Jack has just called in sick with the stomach
       bug, he might have gotten others sick so be careful this can really slow down
@@ -681,7 +687,7 @@ MonoBehaviour:
   lineNamesJack:
   - Start
   - Jack 1
-  - Jack 2
+  - Start
   lineNamesAlex:
   - Start
   - Draw 1
@@ -867,6 +873,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9c2d8e0c6fb8cd4dbe7858a61607a63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &784215915 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8863596565502696297, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
+  m_PrefabInstance: {fileID: 1181015976}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &822601764 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 939027910569712450, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
@@ -1138,10 +1149,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: UIManager, Assembly-CSharp
       objectReference: {fileID: 0}
-    - target: {fileID: 3589245271517521877, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
-      propertyPath: m_margin.z
-      value: 63.57321
-      objectReference: {fileID: 0}
     - target: {fileID: 4103680354084433675, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 1
@@ -1163,7 +1170,15 @@ PrefabInstance:
       value: Tutorial 1
       objectReference: {fileID: 0}
     - target: {fileID: 4748513757360237219, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4748513757360237219, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4748513757360237219, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4748513757360237219, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
@@ -1171,15 +1186,39 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11715811}
     - target: {fileID: 4748513757360237219, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      value: 
+      objectReference: {fileID: 499295844}
+    - target: {fileID: 4748513757360237219, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4748513757360237219, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
       value: ClickedGameObject
+      objectReference: {fileID: 0}
+    - target: {fileID: 4748513757360237219, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: SetGoal
+      objectReference: {fileID: 0}
+    - target: {fileID: 4748513757360237219, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
+      value: Tutorial, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 4748513757360237219, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgument
       value: 
       objectReference: {fileID: 780133067}
     - target: {fileID: 4748513757360237219, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 780133067}
+    - target: {fileID: 4748513757360237219, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.GameObject, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 4748513757360237219, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.GameObject, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 5143396995409098103, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
@@ -1428,7 +1467,7 @@ PrefabInstance:
       objectReference: {fileID: 857635305}
     - target: {fileID: 8710777138512432751, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
       propertyPath: deck.Array.size
-      value: 5
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8710777138512432751, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
       propertyPath: deck.Array.data[0]
@@ -1833,6 +1872,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1432326847 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4322224238199819755, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
+  m_PrefabInstance: {fileID: 1181015976}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1458902935 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2393148849403493706, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
@@ -2155,9 +2205,25 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7033082372945394501, guid: 7c208aa2d33faf6449f0a6db8b17f823, type: 3}
+      propertyPath: promptText
+      value: 
+      objectReference: {fileID: 143093463}
+    - target: {fileID: 7033082372945394501, guid: 7c208aa2d33faf6449f0a6db8b17f823, type: 3}
+      propertyPath: eventActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7033082372945394501, guid: 7c208aa2d33faf6449f0a6db8b17f823, type: 3}
+      propertyPath: eventPrompt
+      value: 
+      objectReference: {fileID: 784215915}
+    - target: {fileID: 7033082372945394501, guid: 7c208aa2d33faf6449f0a6db8b17f823, type: 3}
       propertyPath: floodPrompt
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 7033082372945394501, guid: 7c208aa2d33faf6449f0a6db8b17f823, type: 3}
+      propertyPath: rainyDayText
+      value: 
+      objectReference: {fileID: 1432326847}
     - target: {fileID: 7033082372945394501, guid: 7c208aa2d33faf6449f0a6db8b17f823, type: 3}
       propertyPath: sickDayPrompt
       value: 
