@@ -8,12 +8,13 @@ public class AudioManager : MonoBehaviour
 {
     public static AudioManager instance; 
 
-    public Sound[] musicSounds, sfxSounds;
+    public Sound[] musicSounds, sfxSounds, DialougeSounds;
     //link Audiosources that will play music and/or sound effects
-    public AudioSource musicSource, sfxSource;
+    public AudioSource musicSource, sfxSource, Dialouge;
 
     public float musicV = 100;
     public float SFXV = 100;
+    public float DialougeV = 100;
     // Start is called before the first frame update
     private void Awake()
     {
@@ -32,14 +33,9 @@ public class AudioManager : MonoBehaviour
         PlayMusic("MenuMusic");
         MusicVolume();
         SFXVolume();
-       
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
 
     }
+
     public void PlayMusic(string name)
     {
         //finds the song name
@@ -72,9 +68,25 @@ public class AudioManager : MonoBehaviour
             sfxSource.Play();
         }
     }
-    public void StopSFX()
+    public void PlayDialouge(string name)
     {
-        sfxSource.Stop();
+        // finds the dialouge name
+        Sound s = Array.Find(DialougeSounds, x => x.name == name);
+        //if dialouge name could not be found
+        if (s == null)
+        {
+            Debug.Log("Sound Not Found");
+        }
+        else
+        {
+            //play diagluge clip
+            Dialouge.clip = s.clip;
+            Dialouge.Play();
+        }
+    }
+    public void StopDialouge()
+    {
+        Dialouge.Stop();
     }
     public void ToggleMusic()
     {
@@ -88,6 +100,10 @@ public class AudioManager : MonoBehaviour
     public void MusicVolume()
     {
         musicSource.volume = musicV;
+    }
+    public void DialougeVolume()
+    {
+        Dialouge.volume = musicV;
     }
     public void SFXVolume()
     {

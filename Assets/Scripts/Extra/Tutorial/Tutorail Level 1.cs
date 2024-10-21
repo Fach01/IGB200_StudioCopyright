@@ -9,15 +9,31 @@ using UnityEngine.UI;
 public class TutorailLevel1 : Tutorial
 {
     public List<string> lineNamesStartText;
+    public List<string> lineNamesID;
     public List<string> lineNamesJack;
     public List<string> lineNamesAlex;
+    public List<string> eventLines;
     public List<string> lineNamesEnd;
 
     private int linenumber = 0;
     private int tutorialsequence = 1;
-
+    public DeckManager deck;
+    public Card card;
+    [Header("Highlighted Objects")]
     public GameObject Playfield;
     public GameObject CardOnly;
+    public GameObject Draw;
+
+    public bool highlighter = false;
+    public bool stopcoroutine = false;
+
+    [Header("Caitlyn Card")]
+    public GameObject Caitlyn;
+    public GameObject CardType;
+    public GameObject ResourceAmount;
+    [Header("Jack Card")]
+    public GameObject Jack;
+    public GameObject Description;
 
     private new void Update()
     {
@@ -25,15 +41,16 @@ public class TutorailLevel1 : Tutorial
         switch (tutorialsequence)
         {
             case 1:
-                Dialouge(lineNamesStartText); break;
+                ShowCaitlyID(); 
+                break;
             case 2:
                 Stage2();
                 break;
-            case 3:
+            case 3: 
                 HighlightObject(Playfield);
                 break;
             case 4:
-                Dialouge(lineNamesJack);
+                ShowJackID();
                 break;
             case 5:
                 HighlightObject(CardOnly);
@@ -42,18 +59,15 @@ public class TutorailLevel1 : Tutorial
                 Dialouge(lineNamesAlex);
                 break;
             case 7:
-                Stage7();
-                break;
-            case 8:
-                HighlightObject(CardOnly);
-                break;
-            case 9:
                 HighlightObject(UI.endTurn);
                 break;
-            case 10:
+            case 8:
+                Dialouge(eventLines);
+                break;
+            case 9:
                 Invoke(nameof(Stage10), 5f);
                 break;
-            case 11:
+            case 10:
                 levelManager.win.SetActive(true);
                 break;
             default:
@@ -74,9 +88,41 @@ public class TutorailLevel1 : Tutorial
     void StartTutorial()
     {
         UI.Tutorial.SetActive(true);
-        Dialouge(lineNamesStartText);
+        ShowCaitlyID();
     }
     // initial diaglouge played
+    public void ShowCaitlyID()
+    {
+        Dialouge(lineNamesStartText);
+
+        if (linenumber == 5) 
+        {
+            Caitlyn.SetActive(true);
+            HighlightMidDialouge(ResourceAmount);
+        }
+        if(linenumber == 6)
+        {
+            Goal = ResourceAmount;
+            HighlightMidDialouge(CardType);
+        }
+        if(linenumber == 7) { Goal = CardType; Caitlyn.SetActive(false); }
+    
+
+    }
+    public void ShowJackID()
+    {
+        Dialouge(lineNamesJack);
+        if (linenumber == 2) 
+        { 
+            Jack.SetActive(true);
+            HighlightMidDialouge(Description); 
+        }
+        if (linenumber == 3)
+        { 
+            Goal = Description;
+            Jack.SetActive(false);
+        }
+    }
     private bool Dialouge(List<string> lineNames)
     {
         UI.Tutorial.SetActive(true);
@@ -84,7 +130,7 @@ public class TutorailLevel1 : Tutorial
 
         isVoiceLinePlaying = true;
         
-        if (linenumber <= lineNames .Count - 1)
+        if (linenumber <= lineNames.Count - 1)
         {
 
             StartCoroutine(PlayVoiceLine(lineNames[linenumber]));
@@ -119,15 +165,27 @@ public class TutorailLevel1 : Tutorial
         }
 
     }
+    private void HighlightMidDialouge(GameObject objective)
+    {
+        if (Goal == objective && highlighter == true)
+        {
+            highlighter = false;
+            return;
 
+        }
+        Objective = objective;
+        if (highlighter == true) { return; }
+        highlighter = true;
+        StartCoroutine(highlightMidDialouge());
+    }
     private void HighlightObject( GameObject objective)
     {
         if (Objective == Goal && coroutineplaying == true)
         {
-            StopAllCoroutines();
             Goal = null;
             coroutineplaying = false;
             tutorialsequence ++;
+            StopCoroutine(highlight());
             Debug.Log(tutorialsequence);
             return;
         }
@@ -139,17 +197,12 @@ public class TutorailLevel1 : Tutorial
         StartCoroutine(highlight());
 
     }
-    private void Stage7()
+    public IEnumerator highlightMidDialouge()
     {
-        Goal = playerManager.selectedCard;
-        foreach (GameObject cards in HandManager.hand)
-        {
-            if ((cards.GetComponent<CardManager>().m_card.name) == "Plumber")
-            {
-                HighlightObject(cards);
-                break;
-            }
-        }
+        GameObject highlight = Instantiate(guidance, Objective.transform.position, Objective.transform.rotation, Objective.transform.parent);
+        yield return new WaitForSeconds(0.6f);
+        Destroy(highlight);
+        highlighter = false;
     }
     private void Stage10()
     {

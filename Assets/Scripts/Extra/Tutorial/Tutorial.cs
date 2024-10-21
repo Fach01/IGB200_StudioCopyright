@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public abstract class Tutorial : MonoBehaviour
@@ -37,7 +38,7 @@ public abstract class Tutorial : MonoBehaviour
         isVoiceLinePlaying = true;
         handActive = false;
 
-        AudioManager.instance.PlaySFX(voiceLine);
+        AudioManager.instance.PlayDialouge(voiceLine);
         UI.TutorialActive(text);
 
         if (voiceLine == "null") { yield return new WaitForSeconds(2f); }
@@ -50,14 +51,10 @@ public abstract class Tutorial : MonoBehaviour
     }
     public IEnumerator highlight()
     {
-        while (Goal != Objective)
-        {
-
-            GameObject highlight = Instantiate(guidance, Objective.transform.position, Objective.transform.rotation, Objective.transform.parent);
-            yield return new WaitForSeconds(0.6f);
-            Destroy(highlight);
-
-        }
+        GameObject highlight = Instantiate(guidance, Objective.transform.position, Objective.transform.rotation, Objective.transform.parent);
+        yield return new WaitForSeconds(0.6f);
+        Destroy(highlight);
+        coroutineplaying = false;
     }
     public void SetGoal(GameObject newgoal)
     {
@@ -76,7 +73,7 @@ public abstract class Tutorial : MonoBehaviour
     }
     public void Skip()
     {
-        AudioManager.instance.StopSFX();
+        AudioManager.instance.StopDialouge();
         EndText();
     }
 }

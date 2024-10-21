@@ -37,7 +37,8 @@ public class Tutorialentryscene : Tutorial
     }
     public new void Skip()
     {
-        AudioManager.instance.StopSFX();
+        AudioManager.instance.StopDialouge();
+
         EndText();
     }
 
@@ -49,10 +50,10 @@ public class Tutorialentryscene : Tutorial
 
         linenumber++;
         isVoiceLinePlaying = true;
-        AudioManager.instance.PlaySFX(voiceLine);
+        AudioManager.instance.PlayDialouge(voiceLine);
         text.text = newtext;
 
-        if (voiceLine != "") { yield return new WaitUntil(() => AudioManager.instance.sfxSource.isPlaying == false); }
+        if (voiceLine != "") { yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space)); }
         else { yield return new WaitForSeconds(3f); }
 
         EndText();
