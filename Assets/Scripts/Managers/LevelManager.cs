@@ -169,7 +169,10 @@ public class LevelManager : MonoBehaviour
                         cardManager.sick = false;
                     }
                 }
+
                 eventManager.eventActive = false;
+                playerManager.phase = Phase.End;
+
             }
             else if (eventManager.currentEvent == "Flood")
             {
@@ -254,11 +257,12 @@ public class LevelManager : MonoBehaviour
     }
     IEnumerator PlayPhaseAnimation()
     {
+        Debug.Log("Entered play phase coroutine");
         phaseplaying = true;
         // animation will play at the start of the play phase to show all cards in play
         for (int i = 0; i < playFieldManager.cards.Count; i++)
         {
-
+            Debug.Log("Counting card " + i);
             if (playFieldManager.cards[i] == null)
             {
                 //then start the tallying of the gains and losses
@@ -268,14 +272,17 @@ public class LevelManager : MonoBehaviour
             }
             if (playFieldManager.cards[i].GetComponent<CardManager>().sick)
             {
+                Debug.Log("Card is sick");
                 continue;
             }
             playFieldManager.cards[i].GetComponent<CardManager>().cardanimator.SetBool("Add Resource", true);
             yield return new WaitForSeconds(.2f); 
         }
+        Debug.Log("Exiting for loop");
     }
     IEnumerator TallyGainsAndLosses()
     {
+        Debug.Log("Tallying gains and losses");
         // open EndTurnAnimation 
         UIManager.EndTurnAnimation.SetActive(true);
         for (int i = 0; i < playFieldManager.cards.Count; i++)
