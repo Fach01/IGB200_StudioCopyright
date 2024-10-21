@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Architect
   m_EditorClassIdentifier: 
   cost: 20000
-  image: {fileID: 0}
+  image: {fileID: 21300000, guid: 7fd3f1f8ec1f04f449670c9082606446, type: 3}
   name: Architect
   background: {fileID: 21300000, guid: 8c7457d87ff87df47a6d33ced078bc3e, type: 3}
   type: 1

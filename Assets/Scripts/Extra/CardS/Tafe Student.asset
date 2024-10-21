@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Tafe Student
   m_EditorClassIdentifier: 
   cost: 10000
-  image: {fileID: 0}
+  image: {fileID: 21300000, guid: d99243cbeea2d494d94e7b1e03cd7dfa, type: 3}
   name: Tafe Student
   background: {fileID: 21300000, guid: 3a046cd99c55ee941a1f7516de0467d2, type: 3}
   type: 2
