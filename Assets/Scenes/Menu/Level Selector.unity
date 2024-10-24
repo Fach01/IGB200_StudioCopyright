@@ -224,12 +224,24 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3214554095271685893, guid: d6a6edbc78d195e4485aa416f1ed5cc4, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 206.8778
+      objectReference: {fileID: 0}
+    - target: {fileID: 3214554095271685893, guid: d6a6edbc78d195e4485aa416f1ed5cc4, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 50.9445
+      objectReference: {fileID: 0}
+    - target: {fileID: 3214554095271685893, guid: d6a6edbc78d195e4485aa416f1ed5cc4, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.35470802
       objectReference: {fileID: 0}
     - target: {fileID: 3214554095271685893, guid: d6a6edbc78d195e4485aa416f1ed5cc4, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 1.7
+      value: -1.5023
+      objectReference: {fileID: 0}
+    - target: {fileID: 3214554095271685893, guid: d6a6edbc78d195e4485aa416f1ed5cc4, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 11.1
       objectReference: {fileID: 0}
     - target: {fileID: 3908975796214506115, guid: d6a6edbc78d195e4485aa416f1ed5cc4, type: 3}
       propertyPath: m_Name
@@ -241,7 +253,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4083780580724447962, guid: d6a6edbc78d195e4485aa416f1ed5cc4, type: 3}
       propertyPath: m_text
-      value: Building 1
+      value: House 1
       objectReference: {fileID: 0}
     - target: {fileID: 4083780580724447962, guid: d6a6edbc78d195e4485aa416f1ed5cc4, type: 3}
       propertyPath: m_margin.z
@@ -1229,12 +1241,20 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3214554095271685893, guid: d6a6edbc78d195e4485aa416f1ed5cc4, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 187.408
+      objectReference: {fileID: 0}
+    - target: {fileID: 3214554095271685893, guid: d6a6edbc78d195e4485aa416f1ed5cc4, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 51.7451
+      objectReference: {fileID: 0}
+    - target: {fileID: 3214554095271685893, guid: d6a6edbc78d195e4485aa416f1ed5cc4, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -2.4
+      value: -0.8006
       objectReference: {fileID: 0}
     - target: {fileID: 3214554095271685893, guid: d6a6edbc78d195e4485aa416f1ed5cc4, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 8.4
+      value: 11.4601
       objectReference: {fileID: 0}
     - target: {fileID: 3908975796214506115, guid: d6a6edbc78d195e4485aa416f1ed5cc4, type: 3}
       propertyPath: m_Name
@@ -1246,11 +1266,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4083780580724447962, guid: d6a6edbc78d195e4485aa416f1ed5cc4, type: 3}
       propertyPath: m_text
-      value: Building 2
+      value: House 2
       objectReference: {fileID: 0}
     - target: {fileID: 4083780580724447962, guid: d6a6edbc78d195e4485aa416f1ed5cc4, type: 3}
       propertyPath: m_fontSize
       value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 4083780580724447962, guid: d6a6edbc78d195e4485aa416f1ed5cc4, type: 3}
+      propertyPath: m_margin.x
+      value: 0.8006134
       objectReference: {fileID: 0}
     - target: {fileID: 4083780580724447962, guid: d6a6edbc78d195e4485aa416f1ed5cc4, type: 3}
       propertyPath: m_fontSizeBase
@@ -2519,8 +2543,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -358, y: -112}
-  m_SizeDelta: {x: 172.4265, y: 67.7834}
+  m_AnchoredPosition: {x: -318, y: -33.892}
+  m_SizeDelta: {x: 185.253, y: 67.783}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &984995862
 MonoBehaviour:

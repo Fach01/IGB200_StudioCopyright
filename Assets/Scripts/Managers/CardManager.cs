@@ -38,6 +38,8 @@ public class CardManager : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     public bool sick;
     public bool locked = false;
 
+    private float scalar = 0.3f;
+
     private void Awake()
     {
         m_image = m_picture.GetComponent<Image>();
@@ -154,6 +156,11 @@ public class CardManager : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     private void OnDestroy()
     {
         // discard animation
+    }
+
+    public void ScaleCard()
+    {
+
     }
 
     private void Update()
