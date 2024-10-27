@@ -136,7 +136,7 @@ public class GameManager : MonoBehaviour
 
     public void ReturntoMain()
     {
-        ChangeScene("Main Menu");
+        ChangeScene("Level Selector");
     }
     public void NextLevel()
     {

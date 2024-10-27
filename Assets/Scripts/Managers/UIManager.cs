@@ -69,12 +69,13 @@ public class UIManager : MonoBehaviour
     {
         GameManager.instance.Restart();
     }
-    public void Pause(int budget, bool on)
+    public void Pause(bool on)
     {
        if (on) AudioManager.instance.PlaySFX("Nail");
-        highscore.text = budget.ToString();
         pauseScreen.SetActive(on);
     }
+
+ 
 
     // Update is called once per frame
     // Update is also called when anything in the scene is changed
