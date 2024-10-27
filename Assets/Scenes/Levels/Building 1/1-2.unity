@@ -269,6 +269,38 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: ReturnToMain
       objectReference: {fileID: 0}
+    - target: {fileID: 3814791760505000830, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3814791760505000830, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3814791760505000830, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 958974732}
+    - target: {fileID: 3814791760505000830, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3814791760505000830, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Pause
+      objectReference: {fileID: 0}
+    - target: {fileID: 3814791760505000830, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UIManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3814791760505000830, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3814791760505000830, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 4103680354084433675, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 1
@@ -409,6 +441,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: ReturnToMain
       objectReference: {fileID: 0}
+    - target: {fileID: 8256369440570410580, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 501137650}
     - target: {fileID: 8606948770112144664, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -694,11 +730,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5986862955946901938, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
   m_PrefabInstance: {fileID: 140226983}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &140227000 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5256291097449174009, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
-  m_PrefabInstance: {fileID: 140226983}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &140227001 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2211305576953497363, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
@@ -874,6 +905,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8863596565502696297, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
   m_PrefabInstance: {fileID: 140226983}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &501137650 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1204480448381934534, guid: 7c208aa2d33faf6449f0a6db8b17f823, type: 3}
+  m_PrefabInstance: {fileID: 958974729}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &885004934 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5872605249764963331, guid: 7c208aa2d33faf6449f0a6db8b17f823, type: 3}
@@ -1044,7 +1080,7 @@ PrefabInstance:
     - target: {fileID: 8815873458332358560, guid: 7c208aa2d33faf6449f0a6db8b17f823, type: 3}
       propertyPath: phase
       value: 
-      objectReference: {fileID: 140227000}
+      objectReference: {fileID: 0}
     - target: {fileID: 8815873458332358560, guid: 7c208aa2d33faf6449f0a6db8b17f823, type: 3}
       propertyPath: Budget
       value: 
