@@ -5,11 +5,18 @@ using UnityEngine;
 public class MenuManager : MonoBehaviour
 {
     public GameObject fade;
+    public GameObject quitButton;
 
     public void Awake()
     {
         GameManager.instance.Foreground = fade;
         StartCoroutine(GameManager.instance.TransitionIn());
+
+        if (Application.platform == RuntimePlatform.WebGLPlayer)
+        {
+            // Hide the quit button for WebGL builds
+            quitButton.SetActive(false);
+        }
     }
     public void changeScene(string LevelName)
     {

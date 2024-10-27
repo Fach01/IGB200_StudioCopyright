@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class LevelSelection : MonoBehaviour
 {
     public Button[] lvlButtons;
+    public GameObject selectButton;
     // Start is called before the first frame update
     void Start()
     {
