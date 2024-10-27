@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics.Tracing;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -39,6 +40,7 @@ public class CardManager : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     public bool locked = false;
 
     private float scalar = 0.3f;
+    public bool descaled = false;
 
     private void Awake()
     {
@@ -160,7 +162,17 @@ public class CardManager : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
     public void ScaleCard()
     {
-
+        Vector3 currentScale = transform.localScale;
+        if (descaled)
+        {
+            transform.localScale = new Vector3(currentScale.x + scalar, currentScale.y + scalar, currentScale.z);
+            descaled = false;
+        }
+        else
+        {
+            transform.localScale = new Vector3(currentScale.x - scalar, currentScale.y - scalar, currentScale.z);
+            descaled = true;
+        }
     }
 
     private void Update()

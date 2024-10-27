@@ -69,6 +69,7 @@ public class PlayFieldManager : MonoBehaviour
                 OrderCards();
                 if (currentCard != null)
                 {
+                    currentCard.GetComponent<CardManager>().ScaleCard();
                     currentCard.GetComponent<CardManager>().Unlock();
                     currentCard.transform.Translate(0, 20f, 0);
                 }
@@ -85,6 +86,7 @@ public class PlayFieldManager : MonoBehaviour
             cards.Remove(card);
             cards.Add(null);
             playerController.hand.GetComponent<HandManager>().AddCard(card);
+            card.GetComponent<CardManager>().ScaleCard();
             return true;
         }
         return false;

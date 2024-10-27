@@ -29,6 +29,7 @@ public class AbilityUI : MonoBehaviour
         else
         {
             Debug.Log("oh no");
+            cardObject.GetComponent<CardManager>().ScaleCard();
             cardObject.GetComponent<CardManager>().Unlock();
             playField.GetComponent<PlayFieldManager>().OrderCards();
         }
@@ -37,6 +38,7 @@ public class AbilityUI : MonoBehaviour
     public void OnPlayCard()
     {
         cardObject.GetComponent<CardManager>().Unlock();
+        cardObject.GetComponent<CardManager>().ScaleCard();
 
         // toggle cards on
         hand.GetComponent<HandManager>().ToggleActivateHand(true);
