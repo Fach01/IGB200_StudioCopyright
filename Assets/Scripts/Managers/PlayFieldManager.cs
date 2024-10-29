@@ -50,6 +50,8 @@ public class PlayFieldManager : MonoBehaviour
         return added;
     }
 
+    private GameObject curCard;
+    public GameObject getCurCard() => curCard;
     public bool PlayCurrentCard(GameObject currentCard)
     {
 
@@ -63,6 +65,8 @@ public class PlayFieldManager : MonoBehaviour
                 currentCard.GetComponent<CardManager>().locked = true;
                 playAbility.SetActive(true);
                 playAbility.GetComponent<AbilityUI>().SetCard(currentCard);
+
+                curCard = currentCard;
             }
             else
             {
