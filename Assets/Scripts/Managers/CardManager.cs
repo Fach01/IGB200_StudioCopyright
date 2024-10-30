@@ -76,7 +76,7 @@ public class CardManager : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         // TODO make description what its meant 2 be
         if (card.ability != null)
         {
-            m_Tdescription.text = $"{card.abilityName} {card.abilityCost.ToString("N0")} - {card.ability.Description(card.abilityLevel)}";
+            m_Tdescription.text = $"{card.abilityName} {card.abilityCost.ToString("N0")} \n Level: {card.abilityLevel}";
         }
 
         locked = true;

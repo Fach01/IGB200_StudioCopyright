@@ -17,4 +17,9 @@ public static class Constants
     {
         return string.Format(CultureInfo.InvariantCulture, "{0:N0}", bigNumber);
     }
+    public static string convertBigNumber(int bigNumber)
+    {
+        string sbignumber = bigNumber.ToString();
+        return string.Format(CultureInfo.InvariantCulture, "{0:N0}", sbignumber);
+    }
 }

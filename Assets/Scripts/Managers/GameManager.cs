@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    public int nextSceneLoad;
+    public int thisScene;
     public GameObject Foreground;
     public bool sceneloading = false;
 
@@ -27,15 +27,22 @@ public class GameManager : MonoBehaviour
             DestroyImmediate(gameObject);
         }
 
-        nextSceneLoad = SceneManager.GetActiveScene().buildIndex + 1;
+        thisScene = SceneManager.GetActiveScene().buildIndex;
+        Debug.Log(thisScene);
     }
     public void UnlockNextLevel() 
     {
-        if (nextSceneLoad > PlayerPrefs.GetInt("LevelAt"))
+        if (thisScene >= PlayerPrefs.GetInt("ReachedIndex"))
         {
-            PlayerPrefs.SetInt("LevelAt", nextSceneLoad);
+            PlayerPrefs.SetInt("ReachedIndex", thisScene + 1);
+            PlayerPrefs.SetInt("LevelAt", PlayerPrefs.GetInt("LevelAt", 2) + 1);
+            PlayerPrefs.Save();
+            Debug.Log("levelUnlocked");
         }
-        
+        else
+        {
+            Debug.Log("Error level still locked");
+        } 
     }
     public void ChangeScene(string sceneName)
     {

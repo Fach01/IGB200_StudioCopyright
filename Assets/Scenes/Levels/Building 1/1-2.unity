@@ -245,17 +245,21 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: Restart
       objectReference: {fileID: 0}
-    - target: {fileID: 2447659567632930561, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+    - target: {fileID: 1738617665585924199, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
+      propertyPath: player
       value: 
-      objectReference: {fileID: 958974732}
-    - target: {fileID: 2447659567632930561, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: DeHighlightCard
+      objectReference: {fileID: 958974730}
+    - target: {fileID: 2590211885307225797, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2852798875262198789, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
       propertyPath: m_Color.a
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3189424245582187719, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3215879273178651405, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -617,6 +621,18 @@ PrefabInstance:
       propertyPath: deck.Array.data[19]
       value: 
       objectReference: {fileID: 11400000, guid: 37ebd51ff740af84a9b028c13c3b53ad, type: 2}
+    - target: {fileID: 8865218574219819274, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8865218574219819274, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8865218574219819274, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 135
+      objectReference: {fileID: 0}
     - target: {fileID: 9010714049027543117, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
       propertyPath: levelManager
       value: 
@@ -1125,6 +1141,10 @@ PrefabInstance:
       propertyPath: utilities
       value: 
       objectReference: {fileID: 140226998}
+    - target: {fileID: 8815873458332358560, guid: 7c208aa2d33faf6449f0a6db8b17f823, type: 3}
+      propertyPath: BigAssCard
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 8815873458332358560, guid: 7c208aa2d33faf6449f0a6db8b17f823, type: 3}
       propertyPath: frameworks
       value: 
