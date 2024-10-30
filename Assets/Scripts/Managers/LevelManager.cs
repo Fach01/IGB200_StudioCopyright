@@ -254,6 +254,7 @@ public class LevelManager : MonoBehaviour
         if (level == level.level1) { PlayerPrefs.SetInt(buildingManager.buildingname + "level1", budget); }
         else if (level == level.level2) { PlayerPrefs.SetInt(buildingManager.buildingname + "level2", budget); }
         else if (level == level.level3) { PlayerPrefs.SetInt(buildingManager.buildingname + "level3", budget); }
+        PlayerPrefs.Save();
     }
     IEnumerator PlayPhaseAnimation()
     {
