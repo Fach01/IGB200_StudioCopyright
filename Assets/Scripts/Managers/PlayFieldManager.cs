@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.XR;
+using static TMPro.SpriteAssetUtilities.TexturePacker_JsonArray;
 
 public class PlayFieldManager : MonoBehaviour
 {
@@ -30,13 +32,46 @@ public class PlayFieldManager : MonoBehaviour
 
     private void Update()
     {
+        if (curCard == null) return;
+
+        int cardIndex = cards.IndexOf(curCard);
+
         if (Input.GetMouseButtonDown(0))
         {
+
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
-            if (Physics.Raycast(ray, out hit, Mathf.Infinity))
-            {
+            bool raycast = Physics.Raycast(ray, out hit, Mathf.Infinity);
 
+            // Vector3 end = Camera.main.transform.position + ray.direction * 1000f;
+
+            if (!raycast || hit.transform != curCard.transform)
+            {
+                if (cardIndex != -1)
+                {
+                    cards[cardIndex] = null;
+                    curCard.transform.SetParent(playerController.hand.transform, false);
+                    curCard.GetComponent<CardManager>().ScaleCard();
+
+                    playerController.endTurn.GetComponent<Button>().interactable = true;
+                    curCard.transform.localPosition = new Vector3(0f, 0f, 0f);
+                    foreach (GameObject card in
+                             player.GetComponent<PlayerManager>().hand.GetComponent<HandManager>().hand)
+                    {
+                        card.GetComponent<CardManager>().Unlock();
+                    }
+
+                    curCard.GetComponent<CardManager>().locked = false;
+                    playAbility.SetActive(false);
+                    // playAbility.GetComponent<AbilityUI>().SetCard(null);
+
+                    player.GetComponent<PlayerManager>().hand.GetComponent<HandManager>().AddCard(curCard);
+                    player.GetComponent<PlayerManager>().hand.GetComponent<HandManager>().OrderCards();
+
+                    curCard = null;
+
+                    player.GetComponent<PlayerManager>().AddActionPoint();
+                }
             }
         }
     }
@@ -75,7 +110,7 @@ public class PlayFieldManager : MonoBehaviour
             if (cardDetails.type != CardType.Planner && cardDetails.ability != null)
             {
                 playerController.endTurn.GetComponent<Button>().interactable = false;
-                currentCard.transform.localPosition = new Vector3(-260f, 20f, 0);
+                currentCard.transform.localPosition = new Vector3(-260f, 40f, 0);
                 currentCard.GetComponent<CardManager>().locked = true;
                 playAbility.SetActive(true);
                 playAbility.GetComponent<AbilityUI>().SetCard(currentCard);
