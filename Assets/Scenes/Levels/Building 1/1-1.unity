@@ -665,6 +665,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 105368899731276710, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 4.700001
+      objectReference: {fileID: 0}
     - target: {fileID: 285920745115322550, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -6
@@ -745,9 +749,17 @@ PrefabInstance:
       propertyPath: m_Color.a
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3012787307761787956, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -3.2000008
+      objectReference: {fileID: 0}
     - target: {fileID: 3032775736846253604, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 65
+      objectReference: {fileID: 0}
+    - target: {fileID: 3189424245582187719, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3215879273178651405, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -900,6 +912,10 @@ PrefabInstance:
     - target: {fileID: 5143396995409098103, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5219123822008703364, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -8.299999
       objectReference: {fileID: 0}
     - target: {fileID: 5374742702610807616, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -1308,6 +1324,10 @@ PrefabInstance:
     - target: {fileID: 8765622827433496483, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8928867555321352951, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -8.299999
       objectReference: {fileID: 0}
     - target: {fileID: 9010714049027543117, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
       propertyPath: levelManager
