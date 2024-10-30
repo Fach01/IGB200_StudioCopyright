@@ -46,7 +46,6 @@ public class PlayerManager : MonoBehaviour
     private void Update()
     {
         UIManager.SetActionPointsText(actionPoints.ToString());
-        if (Input.GetKeyDown(pause)) { pauseonoff = !pauseonoff;  UIManager.Pause(pauseonoff); }
     }
 
     private void LateUpdate()

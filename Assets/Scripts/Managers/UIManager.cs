@@ -36,6 +36,7 @@ public class UIManager : MonoBehaviour
     public TMP_Text Utilities;
 
     public GameObject CardInfo;
+    public GameObject BigAssCard;
     public TMP_Text CardDescription;
     public GameObject Fade;
 
@@ -48,13 +49,12 @@ public class UIManager : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-
         GameManager.instance.Foreground = Fade;
         StartCoroutine(GameManager.instance.TransitionIn());
     }
     private void Awake()
     {
-
+        BigAssCard = CardInfo.transform.GetChild(0).gameObject;
     }
     public void NextLevel()
     {
@@ -163,15 +163,10 @@ public class UIManager : MonoBehaviour
     public void HighlightCard(GameObject Cards)
     {
         CardInfo.SetActive(true);
- 
         Card carddetails = Cards.GetComponent<CardManager>().m_card;
-        CardDescription.text = $"Ability Cost: {carddetails.abilityCost}\n" +
-            $"Ability Name: {carddetails.abilityName}\n" +
-            $"Ability Description: {carddetails.ability.Description(carddetails.abilityLevel)}";
+        BigAssCard.GetComponent<HighlightCard>().SetCard(carddetails);
 
-    }
-    public void DeHighlightCard()
-    {
-        CardInfo.SetActive(false);
+        CardDescription.text = $"{carddetails.abilityName} {carddetails.abilityLevel} -{carddetails.ability.Description(carddetails.abilityLevel)}";
+
     }
 }
