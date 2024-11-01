@@ -36,6 +36,5 @@ public class LevelSelection : MonoBehaviour
     private void Update()
     {
 
-        if (Input.GetKeyDown(KeyCode.Space)) { PlayerPrefs.DeleteAll(); } // VERY IMPORTANT DELETE BEFORE BUILDING THIS WAS USED IN BUG TESTING 
     }
 }

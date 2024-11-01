@@ -54,7 +54,7 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 032c0d064710ba5448e2ee83472a31d0, type: 3}
   sfxSounds:
   - name: Nail
-    clip: {fileID: 8300000, guid: d7f536bf452d5914ead7de378f56ec14, type: 3}
+    clip: {fileID: 8300000, guid: 63ffb5e8d888e5145b57c76db26f0879, type: 3}
   - name: Shuffle
     clip: {fileID: 8300000, guid: 7c3a6e943f160a349897dc254af1766b, type: 3}
   - name: Add Resource

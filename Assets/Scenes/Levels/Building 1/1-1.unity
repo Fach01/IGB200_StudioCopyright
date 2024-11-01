@@ -717,14 +717,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2447659567632930561, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1268844443}
-    - target: {fileID: 2447659567632930561, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: DeHighlightCard
-      objectReference: {fileID: 0}
     - target: {fileID: 2470983170726468557, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
       propertyPath: m_IsActive
       value: 0

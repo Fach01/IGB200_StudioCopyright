@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PauseMenu : MonoBehaviour
 {
-    public GameObject gameManager;
     public void OnResume()
     {
         this.gameObject.SetActive(false);
@@ -12,11 +11,11 @@ public class PauseMenu : MonoBehaviour
 
     public void OnRestart()
     {
-        gameManager.GetComponent<GameManager>().Restart();
+        GameManager.instance.Restart();
     }
 
     public void OnMenu()
     {
-        gameManager.GetComponent<GameManager>().ReturntoMain();
+        GameManager.instance.ReturntoMain();
     }
 }

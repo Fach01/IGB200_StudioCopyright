@@ -370,11 +370,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1787698391138670994, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
   m_PrefabInstance: {fileID: 2615599408837001023}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &749557447 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2238135294817760595, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
-  m_PrefabInstance: {fileID: 2615599408837001023}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &789789718 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3524874204026126057, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
@@ -398,6 +393,17 @@ GameObject:
 --- !u!114 &1050966253 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4891717804967882780, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
+  m_PrefabInstance: {fileID: 2615599408837001023}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1127030891 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4322224238199819755, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
   m_PrefabInstance: {fileID: 2615599408837001023}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
@@ -441,6 +447,17 @@ GameObject:
 --- !u!114 &1267313476 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2204682925913291540, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
+  m_PrefabInstance: {fileID: 2615599408837001023}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1329578703 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8894024946355462443, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
   m_PrefabInstance: {fileID: 2615599408837001023}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
@@ -544,6 +561,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1698401579 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8863596565502696297, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
+  m_PrefabInstance: {fileID: 2615599408837001023}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1698445181 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3651989695097228048, guid: 7c208aa2d33faf6449f0a6db8b17f823, type: 3}
@@ -574,11 +596,6 @@ GameObject:
 --- !u!1 &1761934612 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3189424245582187719, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
-  m_PrefabInstance: {fileID: 2615599408837001023}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1772142710 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5256291097449174009, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
   m_PrefabInstance: {fileID: 2615599408837001023}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &1844002242 stripped
@@ -680,9 +697,21 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1698445181}
     - target: {fileID: 7033082372945394501, guid: 7c208aa2d33faf6449f0a6db8b17f823, type: 3}
+      propertyPath: promptText
+      value: 
+      objectReference: {fileID: 1329578703}
+    - target: {fileID: 7033082372945394501, guid: 7c208aa2d33faf6449f0a6db8b17f823, type: 3}
+      propertyPath: eventPrompt
+      value: 
+      objectReference: {fileID: 1698401579}
+    - target: {fileID: 7033082372945394501, guid: 7c208aa2d33faf6449f0a6db8b17f823, type: 3}
       propertyPath: floodPrompt
       value: 
-      objectReference: {fileID: 749557447}
+      objectReference: {fileID: 0}
+    - target: {fileID: 7033082372945394501, guid: 7c208aa2d33faf6449f0a6db8b17f823, type: 3}
+      propertyPath: rainyDayText
+      value: 
+      objectReference: {fileID: 1127030891}
     - target: {fileID: 7033082372945394501, guid: 7c208aa2d33faf6449f0a6db8b17f823, type: 3}
       propertyPath: sickDayPrompt
       value: 
@@ -734,7 +763,7 @@ PrefabInstance:
     - target: {fileID: 8074189638743379663, guid: 7c208aa2d33faf6449f0a6db8b17f823, type: 3}
       propertyPath: floodPrompt
       value: 
-      objectReference: {fileID: 749557447}
+      objectReference: {fileID: 0}
     - target: {fileID: 8074189638743379663, guid: 7c208aa2d33faf6449f0a6db8b17f823, type: 3}
       propertyPath: sickDayPrompt
       value: 
@@ -766,7 +795,7 @@ PrefabInstance:
     - target: {fileID: 8815873458332358560, guid: 7c208aa2d33faf6449f0a6db8b17f823, type: 3}
       propertyPath: phase
       value: 
-      objectReference: {fileID: 1772142710}
+      objectReference: {fileID: 0}
     - target: {fileID: 8815873458332358560, guid: 7c208aa2d33faf6449f0a6db8b17f823, type: 3}
       propertyPath: Budget
       value: 
@@ -868,14 +897,6 @@ PrefabInstance:
     - target: {fileID: 2150254751108788402, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 2447659567632930561, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1844002242}
-    - target: {fileID: 2447659567632930561, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: DeHighlightCard
       objectReference: {fileID: 0}
     - target: {fileID: 3215879273178651405, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -1043,16 +1064,48 @@ PrefabInstance:
       objectReference: {fileID: 1201134670}
     - target: {fileID: 8710777138512432751, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
       propertyPath: deck.Array.size
-      value: 12
+      value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 8710777138512432751, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
+      propertyPath: deck.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 8d7a49f0083c91949b0bda4358069914, type: 2}
+    - target: {fileID: 8710777138512432751, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
+      propertyPath: deck.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: c1214dc01243473489033ddfc0941e92, type: 2}
+    - target: {fileID: 8710777138512432751, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
+      propertyPath: deck.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: 8c8e2c913d4da8b4fa39795954481033, type: 2}
+    - target: {fileID: 8710777138512432751, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
+      propertyPath: deck.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: 26e896d328cd6c7478b7769e326827b3, type: 2}
+    - target: {fileID: 8710777138512432751, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
+      propertyPath: deck.Array.data[4]
+      value: 
+      objectReference: {fileID: 11400000, guid: 69a0cccc92ae0604ea08d2e795f062ba, type: 2}
+    - target: {fileID: 8710777138512432751, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
+      propertyPath: deck.Array.data[5]
+      value: 
+      objectReference: {fileID: 11400000, guid: 70e7d7dab499529418ab6f6616ebbe8c, type: 2}
+    - target: {fileID: 8710777138512432751, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
+      propertyPath: deck.Array.data[6]
+      value: 
+      objectReference: {fileID: 11400000, guid: ff4f2a4a7dfcd1f4e9fc33131e0380ce, type: 2}
+    - target: {fileID: 8710777138512432751, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
+      propertyPath: deck.Array.data[7]
+      value: 
+      objectReference: {fileID: 11400000, guid: 7dfd61aa51e59824d94d3449ce510d55, type: 2}
     - target: {fileID: 8710777138512432751, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
       propertyPath: deck.Array.data[8]
       value: 
-      objectReference: {fileID: 11400000, guid: 70e7d7dab499529418ab6f6616ebbe8c, type: 2}
+      objectReference: {fileID: 11400000, guid: 17218a4fed77eac46b4049b6dc0f3046, type: 2}
     - target: {fileID: 8710777138512432751, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
       propertyPath: deck.Array.data[9]
       value: 
-      objectReference: {fileID: 11400000, guid: 70e7d7dab499529418ab6f6616ebbe8c, type: 2}
+      objectReference: {fileID: 11400000, guid: 37ebd51ff740af84a9b028c13c3b53ad, type: 2}
     - target: {fileID: 8710777138512432751, guid: 23127b1f9e0e1ef4ea595501d5098884, type: 3}
       propertyPath: deck.Array.data[10]
       value: 

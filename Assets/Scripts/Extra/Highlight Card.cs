@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Xml.Linq;
 using TMPro;
 using UnityEngine;
-using static UnityEditor.PlayerSettings;
 using UnityEngine.UI;
 using System.Net.Sockets;
 
