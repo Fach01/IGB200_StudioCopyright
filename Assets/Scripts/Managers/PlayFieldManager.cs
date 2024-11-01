@@ -17,6 +17,7 @@ public class PlayFieldManager : MonoBehaviour
     private int capacity = 5;
 
     public GameObject playAbility;
+    public GameObject pause;
 
     private void Start()
     {
@@ -32,7 +33,7 @@ public class PlayFieldManager : MonoBehaviour
 
     private void Update()
     {
-        if (curCard == null) return;
+        /*if (curCard == null) return;
 
         int cardIndex = cards.IndexOf(curCard);
 
@@ -73,7 +74,7 @@ public class PlayFieldManager : MonoBehaviour
                     player.GetComponent<PlayerManager>().AddActionPoint();
                 }
             }
-        }
+        }*/
     }
 
     public bool AddCard(GameObject currentCard)
