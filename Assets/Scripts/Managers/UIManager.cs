@@ -169,4 +169,8 @@ public class UIManager : MonoBehaviour
         CardDescription.text = $"{carddetails.abilityName} {carddetails.abilityLevel} -{carddetails.ability.Description(carddetails.abilityLevel)}";
 
     }
+    public void DeHighlightCard()
+    {
+        CardInfo.SetActive(false);
+    }
 }

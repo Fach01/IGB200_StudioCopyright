@@ -80,11 +80,11 @@ public class PlayerManager : MonoBehaviour
     {
         if (selectedCard != null && !selectedCard.GetComponent<CardManager>().locked)
         {
-            selectedCard.transform.Translate(0, -20f, 0);
+            selectedCard.transform.Translate(0, -15f, 0);
         }
         if (card != null)
         {
-            card.transform.Translate(0, 20f, 0f);
+            card.transform.Translate(0, 15f, 0f);
         }
         selectedCard = card;
         cardSelected = true;
@@ -120,6 +120,11 @@ public class PlayerManager : MonoBehaviour
             
         }
         return false;
+    }
+
+    public void AddActionPoint()
+    {
+        actionPoints += 1;
     }
 
     public void DrawCard()

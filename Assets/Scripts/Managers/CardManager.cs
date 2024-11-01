@@ -89,7 +89,7 @@ public class CardManager : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         
         if (m_active)
         {
-            transform.Translate(0, -30f, 0);
+            transform.Translate(0, -10f, 0);
             m_active = false;
         }
     }
@@ -110,7 +110,7 @@ public class CardManager : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
             return;
         }
         AudioManager.instance.PlaySFX("Hover Card");
-        transform.Translate(0, 30f, 0f);
+        transform.Translate(0, 10f, 0f);
         transform.SetAsLastSibling();
         m_active = true;
 
@@ -133,7 +133,7 @@ public class CardManager : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         {
             return;
         }
-        transform.Translate(0, -30f, 0);
+        transform.Translate(0, -10f, 0);
         transform.SetSiblingIndex(originalIndex);
         m_active = false;
 
@@ -194,7 +194,7 @@ public class CardManager : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         Debug.Log("Unlocking");
         if (playerManager.selectedCard != gameObject && m_active)
         {
-            transform.Translate(0, -30f, 0);
+            transform.Translate(0, -10f, 0);
             
             m_active = false;
         }
